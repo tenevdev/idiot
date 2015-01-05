@@ -33,5 +33,9 @@
   "devDependencies": {
     "mocha": "^2.1.0",
     "should": "^4.4.2"
+  },
+  "dependencies": {
+    "express": "^4.10.7",
+    "confidence": "^1.0.0"
   }
 }
