@@ -19,8 +19,10 @@ var Confidence = require('confidence'),
         }
     })
 
-exports.getValueForEnvironment = function(key, env) {
-    return store.get(key, {
-        env: env
-    })
+module.exports = {
+    getValueForEnvironment: function(key, env) {
+        return store.get(key, {
+            env: env
+        })
+    }
 }
