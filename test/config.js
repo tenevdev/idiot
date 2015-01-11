@@ -1,5 +1,4 @@
-var expect = require('chai').expect,
-    config = require('../server/config')
+var config = require('../server/config')
 
 describe('Configuration', function() {
     describe('#getValueForEnvironment()', function() {

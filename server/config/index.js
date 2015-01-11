@@ -6,6 +6,7 @@ var Confidence = require('confidence'),
             port: {
                 $filter: 'env',
                 production: process.env.PORT,
+                test: process.env.PORT,
                 $default: 3000
             }
         },
@@ -15,6 +16,7 @@ var Confidence = require('confidence'),
             production: process.env.MONGOLAB_URI,
             staging: 'mongodb://localhost/idiot_staging',
             development: 'mongodb://localhost/idiot_development',
+            test: process.env.MONGOLAB_URI,
             $default: 'mongodb://localhost/idiot_development'
         }
     })

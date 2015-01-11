@@ -4,7 +4,8 @@
   "description": "Interactive data in the Internet of Things",
   "main": "index.js",
   "scripts": {
-    "test": "make test"
+    "test": "make test",
+    "test-cov": "make test-cov"
   },
   "repository": {
     "type": "git",
@@ -32,10 +33,18 @@
   "homepage": "https://github.com/tenevdev/idiot",
   "devDependencies": {
     "mocha": "^2.1.0",
-    "chai": "^1.10.0"
+    "chai": "^1.10.0",
+    "sinon": "^1.12.2",
+    "superagent": "^0.21.0",
+    "morgan": "^1.5.1",
+    "supertest": "^0.15.0",
+    "istanbul": "^0.3.5"
   },
   "dependencies": {
     "express": "^4.10.7",
-    "confidence": "^1.0.0"
+    "confidence": "^1.0.0",
+    "mongoose": "^3.8.21",
+    "bcrypt": "^0.8.0",
+    "fast-json-patch": "^0.5.0"
   }
 }
