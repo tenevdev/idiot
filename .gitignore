@@ -26,3 +26,9 @@ node_modules
 
 # Users Environment Variables
 .lock-wscript
+
+# Local database
+data
+
+# Credentials for test environment
+test/helpers/env.js
