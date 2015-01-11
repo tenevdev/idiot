@@ -1,7 +1,4 @@
 language: node_js
 node_js:
   - '0.10'
-before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'idiot' ]; then cd .. && eval "mv $currentfolder idiot" && cd idiot; fi
-
+script: 'npm run-script test-cov'

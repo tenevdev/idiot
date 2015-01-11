@@ -7,8 +7,12 @@ else
 endif
 
 node_modules := ./node_modules/.bin/
+mocha_bin := ./node_modules/mocha/bin/
 
 test: 
-	$(call FixPath, $(node_modules))mocha -u tdd -R spec
+	$(call FixPath, $(node_modules))mocha
+
+test-cov:
+	$(call FixPath, $(node_modules))istanbul cover$(call FixPath, $(mocha_bin))_mocha
 
 .PHONY: test
