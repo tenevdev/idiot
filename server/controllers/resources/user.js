@@ -24,9 +24,15 @@ module.exports = {
                 res.status(500).json(err)
                 return next(err)
             }
-            res.location(user.id)
-            res.status(201).json(user)
-            return next()
+            User.findById(user.id, function(err, user) {
+                if (err) {
+                    res.status(500).json(err)
+                    return next(err)
+                }
+                res.location(user.id)
+                res.status(201).json(user)
+                return next()
+            })
         })
     },
     load: function(req, res, next, username) {
