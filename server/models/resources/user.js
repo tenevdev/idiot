@@ -12,11 +12,10 @@ var userSchema = new mongoose.Schema({
         type: String,
         required: true,
         trim: true,
-        match: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$/
+        match: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/
     },
     hashedPassword: {
         type: String,
-        required: 'Password is a required field',
         select: false
     },
     firstName: String,
@@ -40,15 +39,18 @@ userSchema.virtual('password')
     .get(function() {
         return this._password
     })
+.set(function(password){
+    this._password = password
+})
 
 userSchema.pre('save', function(next) {
 
     // Password has not changed
-    if (!this.isModified('password')) {
+    if (!this.isModified('password') && !this.isNew) {
         return next()
     }
 
-    //Password has changed
+    //Password has changed or this is a new user
     this.setPassword(this.password, next)
 })
 
@@ -62,12 +64,11 @@ userSchema.methods = {
     },
     setPassword: function(password, next) {
         var self = this
-        self._password = password
 
         bcrypt.genSalt(10, function(err, salt) {
             if (err)
                 return next(err)
-            bcrypt.hash(self._password, salt, function(err, hashedPassword) {
+            bcrypt.hash(password, salt, function(err, hashedPassword) {
                 if (err)
                     return next(err)
                         // Set new hash
