@@ -16,7 +16,7 @@ var Confidence = require('confidence'),
             production: process.env.MONGOLAB_URI,
             staging: 'mongodb://localhost/idiot_staging',
             development: 'mongodb://localhost/idiot_development',
-            test: process.env.MONGOLAB_URI,
+            test: 'mongodb://localhost/idiot_test',
             $default: 'mongodb://localhost/idiot_development'
         }
     })
