@@ -3,4 +3,5 @@ node_js:
   - '0.10'
 services:
   - 'mongodb'
-script: 'npm run-script test-cov'
+script: 'make test-cov'
+after_success: 'make coveralls'

@@ -10,6 +10,8 @@ NODE_MODULES = ./node_modules/.bin/
 MOCHA = ./node_modules/mocha/bin/
 TESTS_INTEGRATION = test/integration/
 TESTS_UNIT = test/unit/
+COVERAGE_REPORT = ./coverage/lcov.info
+COVERALLS = ./node_modules/coveralls/bin/coveralls.js
 
 test: test-unit test-integration
 
@@ -23,5 +25,8 @@ test-cov: istanbul
 
 istanbul:
 	$(call FixPath, $(NODE_MODULES))istanbul cover$(call FixPath, $(MOCHA))_mocha $(TESTS_INTEGRATION) $(TESTS_UNIT)
+
+coveralls:
+	cat $(COVERAGE_REPORT) | $(COVERALLS)
 
 .PHONY: test
