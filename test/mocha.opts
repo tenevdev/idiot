@@ -2,4 +2,3 @@
 -r test/helpers/chai
 -R spec
 -u bdd
---recursive
