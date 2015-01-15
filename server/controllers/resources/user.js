@@ -21,7 +21,12 @@ module.exports = {
 
         user.save(function(err, user) {
             if (err) {
-                res.status(500).json(err)
+                if (err.name === 'ValidationError') {
+                    res.status(400)
+                } else {
+                    res.status(500)
+                }
+                res.json(err)
                 return next(err)
             }
             User.findById(user.id, function(err, user) {
