@@ -18,8 +18,8 @@ describe('Routes', function() {
     describe('User', function() {
         before(function(done) {
             //Check db
-            User.remove({}, function(err){
-                if(err)
+            User.remove({}, function(err) {
+                if (err)
                     throw err
                 else
                     done()
@@ -63,11 +63,17 @@ describe('Routes', function() {
                         done()
                     })
             })
-            it.skip('does not allow users with the same username/email to be created', function(done) {
-                // Just try to create the user from the previous test
+            it('does not allow users with the same name/email to be created', function(done) {
+                // Create the same user twice
                 request.post('/api/users')
                     .send(userData[1])
-                    .expect(400, done)
+                    .expect(201, function() {
+                        request.post('/api/users')
+                            .send(userData[1])
+                            .expect(400, done)
+                    })
+
+
             })
         })
         describe('GET /api/users/:user', function() {
