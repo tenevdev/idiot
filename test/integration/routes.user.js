@@ -1,4 +1,6 @@
 var request = require('supertest'),
+    bcrypt = require('bcrypt'),
+    sinon = require('sinon'),
     User = require('../../server/models').Resources.User,
     userData = [{
         username: 'test1',
@@ -18,6 +20,8 @@ describe('Routes', function() {
     describe('User', function() {
         before(function(done) {
             //Check db
+            sinon.stub(bcrypt, 'genSalt').yields(null, 'salt')
+            sinon.stub(bcrypt, 'hash').yields(null, 'hash')
             User.remove({}, function(err) {
                 if (err)
                     throw err
@@ -37,6 +41,8 @@ describe('Routes', function() {
         })
         after(function(done) {
             //Drop db
+            bcrypt.genSalt.restore()
+            bcrypt.hash.restore()
             done()
         })
         afterEach(function(done) {
