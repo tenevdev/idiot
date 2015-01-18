@@ -1,5 +1,5 @@
 var Project = require('../../models').Resources.Project,
-    statusPatch = require('fast-json-patch')
+    jsonPatch = require('fast-json-patch')
 
 module.exports = {
     list: function(req, res, next) {
@@ -8,7 +8,7 @@ module.exports = {
                 perPage: req.query.perPage || 30
             },
             conditions = {}
-        Project.getPage(options, function(err, projects) {
+        Project.getPage(conditions, options, function(err, projects) {
             if (err) {
                 res.status(500).json(err)
                 return next(err)
@@ -40,7 +40,12 @@ module.exports = {
 
         project.save(function(err, project) {
             if (err) {
-                res.status(500).json(err)
+                if (err.name === 'ValidationError') {
+                    res.status(400)
+                } else {
+                    res.status(500)
+                }
+                res.json(err)
                 return next(err)
             }
             res.status(201).json(project)
@@ -83,12 +88,12 @@ module.exports = {
                 res.status(500).json(err)
                 return next(err)
             }
-            res.status(204, 'Project deleted')
+            res.status(204).json()
             return next()
         })
     },
     patch: function(req, res, next) {
-        if (statusPatch.apply(req.project, req.body)) {
+        if (jsonPatch.apply(req.project, req.body)) {
             // The patch was applied successfully
             req.project.save(function(err, project) {
                 if (err) {

@@ -1,8 +1,12 @@
 // Handle requests on route /projects
 var ProjectController = require('../../controllers').Resources.ProjectController,
+    UserController = require('../../controllers').Resources.UserController,
     ProjectRouter = require('express').Router({
         mergeParams: true
     })
+
+ProjectRouter.param('project', ProjectController.load)
+ProjectRouter.param('owner', UserController.load)
 
 ProjectRouter.route('/')
     .get(ProjectController.list)
