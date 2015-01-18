@@ -53,7 +53,7 @@ projectSchema.statics = {
 
     getPage: function(conditions, options, next) {
         this.find(conditions)
-            .skip((options.page - 1) * options.prePage)
+            .skip((options.page - 1) * options.perPage)
             .limit(options.perPage)
             .populate('owner')
             .populate('hubs')
