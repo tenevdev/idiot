@@ -1,6 +1,11 @@
 var ResourceRouter = require('express').Router({
-    mergeParams: true
-})
+        mergeParams: true
+    }),
+    ProjectController = require('../../controllers').Resources.ProjectController,
+    UserController = require('../../controllers').Resources.UserController
+
+ResourceRouter.param('owner', UserController.load)
+ResourceRouter.param('project', ProjectController.load)
 
 ResourceRouter.use('/projects/:owner/:project/hubs', require('./hub'))
 ResourceRouter.use('/projects/:owner/:project/bundles', require('./bundle'))

@@ -100,30 +100,25 @@ hubSchema.statics = {
     create: function(hubData, next) {
         // Create the new hub
         var hub = new this(hubData);
-
         // Save
         hub.save(function(err, hub) {
             if (err)
                 return next(err)
-
             // Make sure there is a projectId before updating
             if (hubData.projectId) {
-                // Find project with projectId
-                Project.findByIdAndUpdate(hubData.projectId, {
-                    // Add reference to this hub
-                    $push: {
-                        'hubs': hub.id
-                    }
-                }, function(err, project) {
-                    if (err)
-                        return next(err)
-                    return next(null, hub)
-                })
+                hub.attachToProject(hubData.projectId, next)
             }
-
             // The hub was created without a link to a project
             return next(null, hub)
         })
+    },
+    list: function(conditions, options, next) {
+        this.find(conditions)
+            .skip((options.page - 1) * options.perPage)
+            .limit(options.perPage)
+            .populate('owner')
+            .lean()
+            .exec(next)
     }
 };
 

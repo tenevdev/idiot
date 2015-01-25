@@ -1,6 +1,5 @@
 // Handle requests on route /projects/{owner}/{project}/hubs
 var HubController = require('../../controllers').Resources.HubController,
-    ProjectController = require('../../controllers').Resources.ProjectController,
     HubRouter = require('express').Router({
         mergeParams: true
     })
@@ -15,5 +14,10 @@ HubRouter.route('/:hub')
     .get(HubController.single)
     .put(HubController.update)
     .delete(HubController.delete)
+
+// TODO:
+// HubRouter.route('/:hub/datapoints')
+//     .get(HubController.listDataPoints)
+//     .post(HubController.createDataPoint)
 
 module.exports = HubRouter
