@@ -64,6 +64,7 @@ describe('controllers.hub', function() {
             },
             function(project, numberAffected, next) {
                 projectData.id = project.id
+                hubData[0].projectId = project.id
                 next(null)
             }
         ], function(err) {
@@ -80,7 +81,11 @@ describe('controllers.hub', function() {
             if (err)
                 throw err
             hubData[0].id = hub.id
-            done()
+            hub.attachToProject(projectData.id, function(err) {
+                if(err)
+                    throw err
+                done()
+            })
         })
     })
     after(function(done) {
@@ -138,7 +143,7 @@ describe('controllers.hub', function() {
             function(res, id, next) {
                 expect(res.body)
                     .to.have.property('hubs')
-                    .that.has.deep.property('[0]._id', id)
+                    .that.has.deep.property('[1]._id', id)
                 next()
             }
         ], function(err, res) {
@@ -146,6 +151,16 @@ describe('controllers.hub', function() {
                 throw err
             done()
         })
+    })
+    it('lists hubs of a given project', function(done) {
+        request.get('/api/projects/testUser1/testProject1/hubs')
+            .expect(200)
+            .end(function(err, res) {
+                expect(res.body)
+                    .to.be.an('array')
+                    .that.has.length(1)
+                    done()
+            })
     })
     it('creates a data point', function(done) {
         var dataPoint = {
