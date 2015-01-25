@@ -8,8 +8,9 @@ module.exports = {
                 perPage: req.query.perPage || 30
             },
             conditions = {}
+            conditions.projectId = req.project._id
 
-        Hub.list(conditions, options, function(err, hubs) {
+        Hub.findByProject(conditions, options, function(err, hubs) {
             if (err) {
                 return next(err)
             }

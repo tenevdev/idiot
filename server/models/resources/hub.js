@@ -112,13 +112,13 @@ hubSchema.statics = {
             return next(null, hub)
         })
     },
-    list: function(conditions, options, next) {
-        this.find(conditions)
-            .skip((options.page - 1) * options.perPage)
-            .limit(options.perPage)
-            .populate('owner')
+    findByProject: function(conditions, options, next) {
+        Project.findById(conditions.projectId)
+            .populate('hubs')
             .lean()
-            .exec(next)
+            .exec(function(err, project){
+                next(err, project.hubs)
+            })
     }
 };
 
