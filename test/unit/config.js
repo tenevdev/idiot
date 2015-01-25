@@ -1,6 +1,6 @@
 var config = require('../../server/config')
 
-describe('Configuration', function() {
+describe('configuration', function() {
     describe('#getValueForEnvironment()', function() {
         it('should return a port number for non-production environment', function() {
             var port = config.getValueForEnvironment('/app/port')
