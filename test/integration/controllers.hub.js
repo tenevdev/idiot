@@ -190,4 +190,32 @@ describe('controllers.hub', function() {
             done()
         })
     })
+    it('gets an existing hub by id', function(done) {
+        request.get('/api/projects/testUser1/testProject1/hubs/' + hubData[0].id)
+            .expect(200)
+            .end(function(err, res) {
+                expect(res.body).to.have.property('name')
+                expect(res.body).to.have.property('dataStream')
+                expect(res.body).to.have.property('owner')
+                done()
+            })
+    })
+    it('updates an existing hub', function(done) {
+        var updateBody = {
+            name: 'updatedName',
+            state: 'suspended'
+        }
+        request.put('/api/projects/testUser1/testProject1/hubs/' + hubData[0].id)
+            .send(updateBody)
+            .expect(200)
+            .end(function(err, res) {
+                expect(res.body).to.have.property('name', updateBody.name)
+                expect(res.body).to.have.property('state', updateBody.state)
+                done()
+            })
+    })
+    it('deletes an existing hub', function(done) {
+        request.delete('/api/projects/testUser1/testProject1/hubs/' + hubData[0].id)
+            .expect(204, done)
+    })
 })
