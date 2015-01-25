@@ -76,9 +76,10 @@ describe('controllers.hub', function() {
     beforeEach(function(done) {
         // Create a test hub
         var testHub = new Hub(hubData[0])
-        testHub.save(function(err) {
+        testHub.save(function(err, hub) {
             if (err)
                 throw err
+            hubData[0].id = hub.id
             done()
         })
     })
@@ -143,6 +144,49 @@ describe('controllers.hub', function() {
         ], function(err, res) {
             if (err)
                 throw err
+            done()
+        })
+    })
+    it('creates a data point', function(done) {
+        var dataPoint = {
+            number: 1
+        }
+        request.post('/api/projects/testUser1/testProject1/hubs/' + hubData[0].id + '/datapoints')
+            .send(dataPoint)
+            .expect(201)
+            .end(function(err, res) {
+                expect(err).to.not.exist
+                expect(res.body)
+                    .to.have.property('data')
+                    .that.is.an('object')
+                    .that.deep.equals(dataPoint)
+                expect(res.body).to.have.property('timeStamp')
+                done()
+            })
+    })
+    it('lists data points', function(done) {
+        var dataPoint = {
+            number: 1
+        }
+        async.waterfall([
+
+            function(next) {
+                request.post('/api/projects/testUser1/testProject1/hubs/' + hubData[0].id + '/datapoints')
+                    .send(dataPoint)
+                    .expect(201)
+                    .end(next)
+            },
+            function(dataPointRes, next) {
+                request.get('/api/projects/testUser1/testProject1/hubs/' + hubData[0].id + '/datapoints')
+                    .expect(200)
+                    .end(function(err, res) {
+                        next(err, dataPointRes.body, res.body)
+                    })
+            }
+        ], function(err, dataPoint, dataPointsList) {
+            expect(err).to.not.exist
+            expect(dataPointsList).to.have.length(1)
+            expect(dataPointsList).to.include(dataPoint)
             done()
         })
     })

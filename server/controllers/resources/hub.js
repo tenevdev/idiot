@@ -17,12 +17,17 @@ module.exports = {
             return next()
         })
     },
+    listDataPoints: function(req, res, next) {
+        res.status(200).json(req.hub.dataStream.dataPoints)
+        next()
+    },
     create: function(req, res, next) {
-        
+
         var hub = new Hub(req.body)
         hub.owner = req.user.id
 
         async.waterfall([
+
             function(callback) {
                 hub.save(callback)
             },
@@ -39,9 +44,17 @@ module.exports = {
             }
         ], next);
     },
+    createDataPoint: function(req, res, next) {
+        req.hub.addDataPoint(req.body, function(err, dataPoint) {
+            if (err)
+                return next(err)
+            res.status(201).json(dataPoint)
+            return next()
+        })
+    },
     load: function(req, res, next, hubId) {
-        var lean = req.method === 'GET'
-        Hub.findById(hubId, lean, function(err, hub) {
+        //var lean = req.method === 'GET'
+        Hub.findById(hubId, function(err, hub) {
             if (err) {
                 return next(err)
             }

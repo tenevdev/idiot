@@ -15,9 +15,8 @@ HubRouter.route('/:hub')
     .put(HubController.update)
     .delete(HubController.delete)
 
-// TODO:
-// HubRouter.route('/:hub/datapoints')
-//     .get(HubController.listDataPoints)
-//     .post(HubController.createDataPoint)
+HubRouter.route('/:hub/datapoints')
+    .get(HubController.listDataPoints)
+    .post(HubController.createDataPoint)
 
 module.exports = HubRouter
