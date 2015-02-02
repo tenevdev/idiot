@@ -1,4 +1,5 @@
-var User = require('../../models').Resources.User
+var User = require('../../models').Resources.User,
+    passport = require('passport')
 
 module.exports = {
     list: function(req, res, next) {
@@ -41,19 +42,24 @@ module.exports = {
         })
     },
     load: function(req, res, next, username) {
-        var lean = req.method === 'GET'
-        User.getByName(username, lean, function(err, user) {
-            if (err) {
-                res.status(500).json(err)
-                return next(err)
-            }
-            if (user) {
-                req.user = user
-                return next()
-            }
-            res.status(404).json('User not found')
-            return next(new Error('User not found'))
-        })
+        if (req.method === 'GET') {
+            User.getByName(username, true, function(err, user) {
+                if (err) {
+                    res.status(500).json(err)
+                    return next(err)
+                }
+                if (user) {
+                    req.user = user
+                    return next()
+                }
+                res.status(404).json('User not found')
+                return next(new Error('User not found'))
+            })
+        } else {
+            passport.authenticate('basic', {
+                session: false
+            })(req, res, next)
+        }
     },
     single: function(req, res, next) {
         res.status(200).json(req.user)

@@ -3,6 +3,7 @@ var app = require('express')(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     logger = require('morgan'),
+    passport = require('passport')
     getConfigurationValue = require('./config').getValueForEnvironment
 
 // TODO: Connect to database here
@@ -12,6 +13,9 @@ mongoose.connect(getConfigurationValue('/database', env))
 app.set('port', getConfigurationValue('/app/port', env))
 
 app.use(bodyParser.json())
+
+require('./controllers/passport')
+app.use(passport.initialize())
 
 if (env === 'development') {
     app.use(logger('dev'))

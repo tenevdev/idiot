@@ -8,7 +8,7 @@ module.exports = {
                 perPage: req.query.perPage || 30
             },
             conditions = {}
-            conditions.projectId = req.project._id
+        conditions.projectId = req.project._id
 
         Hub.findByProject(conditions, options, function(err, hubs) {
             if (err) {
@@ -54,41 +54,44 @@ module.exports = {
         })
     },
     load: function(req, res, next, hubId) {
-        //var lean = req.method === 'GET'
-        Hub.findById(hubId, function(err, hub) {
-            if (err) {
+        var isLean = req.method === 'GET'
+        Hub.findById(hubId)
+            .lean(isLean)
+            .populate('owner')
+            .exec(function(err, hub) {
+                if (err) {
+                    return next(err)
+                }
+                if (hub) {
+                    req.hub = hub
+                    return next()
+                }
+                // If we got here this means a hub with this id does not exist
+                var err = new Error('Hub not found')
+                err.status = 404
                 return next(err)
-            }
-            if (hub) {
-                req.hub = hub
-                return next()
-            }
-            // If we got here this means a hub with this id does not exist
-            var err = new Error('Hub not found')
-            err.status = 404
+            })
+},
+single: function(req, res, next) {
+    res.status(200).json(req.hub)
+    return next()
+},
+update: function(req, res, next) {
+    Hub.findByIdAndUpdate(req.hub.id, req.body, function(err, hub) {
+        if (err) {
             return next(err)
-        })
-    },
-    single: function(req, res, next) {
-        res.status(200).json(req.hub)
+        }
+        res.status(200).json(hub)
         return next()
-    },
-    update: function(req, res, next) {
-        Hub.findByIdAndUpdate(req.hub.id, req.body, function(err, hub) {
-            if (err) {
-                return next(err)
-            }
-            res.status(200).json(hub)
-            return next()
-        })
-    },
-    delete: function(req, res, next) {
-        req.hub.remove(function(err) {
-            if (err) {
-                return next(err)
-            }
-            res.status(204).json()
-            return next()
-        })
-    }
+    })
+},
+delete: function(req, res, next) {
+    req.hub.remove(function(err) {
+        if (err) {
+            return next(err)
+        }
+        res.status(204).json()
+        return next()
+    })
+}
 }

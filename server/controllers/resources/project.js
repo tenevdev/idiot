@@ -25,7 +25,9 @@ module.exports = {
                 page: req.query.page || 1,
                 perPage: req.query.perPage || 30
             },
-            conditions = {}
+            conditions = {
+                owner: req.user._id
+            }
         Project.getPage(conditions, options, function(err, projects) {
             if (err) {
                 res.status(500).json(err)
@@ -37,6 +39,7 @@ module.exports = {
     },
     create: function(req, res, next) {
         var project = new Project(req.body)
+        project.owner = req.user.id
 
         project.save(function(err, project) {
             if (err) {

@@ -10,7 +10,6 @@ ProjectRouter.param('owner', UserController.load)
 
 ProjectRouter.route('/')
     .get(ProjectController.list)
-    .post(ProjectController.create)
 
 ProjectRouter.route('/:owner')
     .get(ProjectController.listByOwner)

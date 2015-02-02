@@ -39,9 +39,9 @@ userSchema.virtual('password')
     .get(function() {
         return this._password
     })
-.set(function(password){
-    this._password = password
-})
+    .set(function(password) {
+        this._password = password
+    })
 
 userSchema.pre('save', function(next) {
 
