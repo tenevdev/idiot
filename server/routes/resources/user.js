@@ -15,4 +15,6 @@ UserRouter.route('/:user')
     .put(UserController.update)
     .delete(UserController.delete)
 
+UserRouter.route('/:user/projects', require('./project'))
+
 module.exports = UserRouter
