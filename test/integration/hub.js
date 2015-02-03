@@ -4,7 +4,7 @@ var request = require('supertest'),
     test = {}
 
 describe('hub.js', function() {
-    var user, project, hub, dataPoint, url
+    var user, project, hub, dataPoint, baseRoute
     before('create a user and a project', function(done) {
         request = request(require('../../server').app)
         async.waterfall([
@@ -24,8 +24,8 @@ describe('hub.js', function() {
             expect(err).to.not.exist
             project = createdProject
 
-            // Set base url for requests
-            url = '/api/projects/' + user.username + '/' + project.name + '/hubs'
+            // Set base baseRoute for requests
+            baseRoute = testUtils.buildRoute('api', user.username, project.name, 'hubs')
             done()
         })
     })
@@ -46,8 +46,6 @@ describe('hub.js', function() {
             expect(err).to.not.exist
             dataPoint = createdDataPoint
 
-            // Set base url for requests
-            url = '/api/projects/' + user.username + '/' + project.name + '/hubs'
             done()
         })
     })
@@ -60,7 +58,7 @@ describe('hub.js', function() {
     describe('when not authorized', function() {
         describe('when creating a hub', function() {
             beforeEach('send create request', function(done) {
-                request.post(url)
+                request.post(baseRoute)
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -70,7 +68,7 @@ describe('hub.js', function() {
         })
         describe('when updating a hub', function() {
             beforeEach('send update request', function(done) {
-                request.put(url + '/' + hub.id)
+                request.put(baseRoute + '/' + hub.id)
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -80,7 +78,7 @@ describe('hub.js', function() {
         })
         describe('when deleting a hub', function() {
             beforeEach('send delete request', function(done) {
-                request.delete(url + '/' + hub.id)
+                request.delete(baseRoute + '/' + hub.id)
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -92,7 +90,7 @@ describe('hub.js', function() {
     describe('when public', function() {
         describe('when listing hubs by project', function() {
             beforeEach('send read request', function(done) {
-                request.get(url)
+                request.get(baseRoute)
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -102,7 +100,7 @@ describe('hub.js', function() {
         })
         describe('when listing data points', function() {
             beforeEach('send read request', function(done) {
-                request.get(url + '/' + hub.id + '/datapoints')
+                request.get(testUtils.attachToRoute(baseRoute, hub.id, 'datapoints'))
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -113,7 +111,7 @@ describe('hub.js', function() {
         })
         describe('when getting a single hub', function() {
             beforeEach('send read request', function(done) {
-                request.get(url + '/' + hub.id)
+                request.get(baseRoute + hub.id)
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -131,7 +129,7 @@ describe('hub.js', function() {
         describe('when creating a new hub', function() {
             beforeEach('send create request', function(done) {
                 // Create a new hub
-                request.post(url)
+                request.post(baseRoute)
                     .set('Authorization', user.accessToken)
                     .send(testUtils.hubData('hub-creation'))
                     .expect(201)
@@ -149,7 +147,7 @@ describe('hub.js', function() {
         })
         describe('when creating a new data point', function() {
             beforeEach('send create request', function(done) {
-                request.post(url + '/' + hub.id + '/datapoints')
+                request.post(testUtils.attachToRoute(baseRoute, hub.id, 'datapoints'))
                     .set('Authorization', user.accessToken)
                     .expect(201)
                     .end(testUtils.getCallback(test, done))
@@ -160,7 +158,7 @@ describe('hub.js', function() {
         })
         describe('when updating an existing hub', function() {
             beforeEach('send update request', function(done) {
-                request.put(url + '/' + hub.id)
+                request.put(baseRoute + hub.id)
                     .set('Authorization', user.accessToken)
                     .send({
                         name: 'updated-test-hub'
@@ -175,13 +173,13 @@ describe('hub.js', function() {
         })
         describe('when deleting an exisiting hub', function() {
             beforeEach('send delete request', function(done) {
-                request.delete(url + '/' + hub.id)
+                request.delete(baseRoute + hub.id)
                     .set('Authorization', user.accessToken)
                     .expect(204)
                     .end(testUtils.getCallback(test, done))
             })
             it('should delete the hub', function(done) {
-                request.get(url + '/' + hub.id)
+                request.get(baseRoute + hub.id)
                     .expect(404, done)
             })
             it('should detach hub from project', function() {

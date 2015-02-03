@@ -4,10 +4,10 @@ var request = require('supertest'),
     test = {}
 
 describe('user.js', function() {
-    var user, url
+    var user, baseRoute
     before(function(done) {
         request = request(require('../../server').app)
-        url = '/api/users'
+        baseRoute = testUtils.buildRoute('api', 'users')
 
         done()
     })
@@ -30,7 +30,7 @@ describe('user.js', function() {
     describe('when not authorized', function() {
         describe('when updating a user', function() {
             beforeEach('send update request', function(done) {
-                request.put(testUtils.buildUrl(url, user.username))
+                request.put(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -40,7 +40,7 @@ describe('user.js', function() {
         })
         describe('when deleting a user', function() {
             beforeEach('send delete request', function(done) {
-                request.delete(testUtils.buildUrl(url, user.username))
+                request.delete(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -52,7 +52,7 @@ describe('user.js', function() {
     describe('when public', function() {
         describe('when listing users', function() {
             beforeEach('send read request', function(done) {
-                request.get(url)
+                request.get(baseRoute)
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -62,7 +62,7 @@ describe('user.js', function() {
         })
         describe('when getting a single user', function() {
             beforeEach('send read request', function(done) {
-                request.get(testUtils.buildUrl(url, user.username))
+                request.get(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -76,7 +76,7 @@ describe('user.js', function() {
         })
         describe('when creating a new user', function() {
             beforeEach('send create request', function(done) {
-                request.post(url)
+                request.post(baseRoute)
                     .send(testUtils.userData('user-creation'))
                     .expect(201)
                     .end(testUtils.getCallback(test, done))
@@ -87,7 +87,7 @@ describe('user.js', function() {
             })
             describe('and a duplicate name exists', function() {
                 beforeEach('send create request with the same name', function(done) {
-                    request.post(url)
+                    request.post(baseRoute)
                         .send(testUtils.hubData('user-creation'))
                         .expect(400)
                         .end(testUtils.getCallback(test, done))
@@ -101,7 +101,7 @@ describe('user.js', function() {
     describe('when authorized', function() {
         describe('when updating an existing user', function() {
             beforeEach('send update request', function(done) {
-                request.put(testUtils.buildUrl(url, user.username))
+                request.put(testUtils.attachToRoute(baseRoute, user.username))
                     .set('Authorization', user.accessToken)
                     .send({
                         username: 'updated-test-user'
@@ -116,13 +116,13 @@ describe('user.js', function() {
         })
         describe('when deleting an exisiting user', function() {
             beforeEach('send delete request', function(done) {
-                request.delete(testUtils.buildUrl(url, user.username))
+                request.delete(testUtils.attachToRoute(baseRoute, user.username))
                     .set('Authorization', user.accessToken)
                     .expect(204)
                     .end(testUtils.getCallback(test, done))
             })
             it('should delete the user', function(done) {
-                request.get(testUtils.buildUrl(url, user.username))
+                request.get(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(404, done)
             })
         })

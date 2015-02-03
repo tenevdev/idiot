@@ -12,9 +12,16 @@ exports.getCallback = function(test, next) {
     }
 }
 
-exports.buildUrl = function(){
-	var args = Array.prototype.slice.call(arguments);
-	return args.join('/')
+exports.buildRoute = function() {
+    var args = Array.prototype.slice.call(arguments);
+    return '/' + args.join('/') + '/'
+}
+
+exports.attachToRoute = function(route) {
+    for (var i = 1; i < arguments.length; i++) {
+        route += (arguments[i] + '/')
+    }
+    return route
 }
 
 exports.createUser = function(next) {

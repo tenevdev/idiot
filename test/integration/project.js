@@ -4,7 +4,7 @@ var request = require('supertest'),
     test = {}
 
 describe('project.js', function() {
-    var user, project, url
+    var user, project, baseRoute
     before('create a user', function(done) {
         request = request(require('../../server').app)
         // Create a user
@@ -14,7 +14,7 @@ describe('project.js', function() {
             user = createdUser
             user.accessToken = accessToken
 
-            url = '/api/projects'
+            baseRoute = testUtils.buildRoute('api', user.username, 'projects')
             done()
         })
     })
@@ -35,7 +35,7 @@ describe('project.js', function() {
     describe('when not authorized', function() {
         describe('when creating a project', function() {
             beforeEach('send create request', function(done) {
-                request.post(testUtils.buildUrl(url, user.username))
+                request.post(baseRoute)
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -45,7 +45,7 @@ describe('project.js', function() {
         })
         describe('when updating a project', function() {
             beforeEach('send update request', function(done) {
-                request.put(testUtils.buildUrl(url, user.username, project.id))
+                request.put(baseRoute + project.name)
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -55,7 +55,7 @@ describe('project.js', function() {
         })
         describe('when deleting a project', function() {
             beforeEach('send delete request', function(done) {
-                request.delete(testUtils.buildUrl(url, user.username, project.id))
+                request.delete(baseRoute + project.name)
                     .expect(401)
                     .end(testUtils.getCallback(test, done))
             })
@@ -67,7 +67,7 @@ describe('project.js', function() {
     describe('when public', function() {
         describe('when listing projects', function() {
             beforeEach('send read request', function(done) {
-                request.get(url)
+                request.get('/api/projects')
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -77,7 +77,7 @@ describe('project.js', function() {
         })
         describe('when listing projects by user', function() {
             beforeEach('send read request', function(done) {
-                request.get(testUtils.buildUrl(url, user.username))
+                request.get(baseRoute)
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -88,7 +88,7 @@ describe('project.js', function() {
         })
         describe('when getting a single project', function() {
             beforeEach('send read request', function(done) {
-                request.get(testUtils.buildUrl(url, user.username, project.name))
+                request.get(baseRoute + project.name)
                     .expect(200)
                     .end(testUtils.getCallback(test, done))
             })
@@ -105,7 +105,7 @@ describe('project.js', function() {
     describe('when authorized', function() {
         describe('when creating a new project', function() {
             beforeEach('send create request', function(done) {
-                request.post(testUtils.buildUrl(url, user.username))
+                request.post(baseRoute)
                     .set('Authorization', user.accessToken)
                     .send(testUtils.projectData('project-creation'))
                     .expect(201)
@@ -121,7 +121,7 @@ describe('project.js', function() {
             })
             describe('and a duplicate name exists', function() {
                 beforeEach('send create request with the same name', function(done) {
-                    request.post(testUtils.buildUrl(url, user.username))
+                    request.post(baseRoute)
                         .set('Authorization', user.accessToken)
                         .send(testUtils.hubData('project-creation'))
                         .expect(400)
@@ -134,7 +134,7 @@ describe('project.js', function() {
         })
         describe('when updating an existing project', function() {
             beforeEach('send update request', function(done) {
-                request.put(testUtils.buildUrl(url, user.username, project.name))
+                request.put(baseRoute + project.name)
                     .set('Authorization', user.accessToken)
                     .send({
                         name: 'updated-test-project'
@@ -149,13 +149,13 @@ describe('project.js', function() {
         })
         describe('when deleting an exisiting project', function() {
             beforeEach('send delete request', function(done) {
-                request.delete(testUtils.buildUrl(url, user.username, project.name))
+                request.delete(baseRoute + project.name)
                     .set('Authorization', user.accessToken)
                     .expect(204)
                     .end(testUtils.getCallback(test, done))
             })
             it('should delete the project', function(done) {
-                request.get(testUtils.buildUrl(url, user.username, project.name))
+                request.get(baseRoute + project.name)
                     .expect(404, done)
             })
         })
