@@ -1,5 +1,4 @@
-// Handle requests on route /projects/{owner}/{project}/matches
-var MatchController = require('../../controllers').Resources.MatchController,
+var MatchController = require('../../../controllers').Resources.MatchController,
     MatchRouter = require('express').Router({
         mergeParams: true
     })

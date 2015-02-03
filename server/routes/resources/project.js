@@ -1,5 +1,5 @@
-// Handle requests on route /projects
 var ProjectController = require('../../controllers').Resources.ProjectController,
+    ProjectStack = require('./projectStack'),
     ProjectRouter = require('express').Router({
         mergeParams: true
     })
@@ -17,8 +17,8 @@ ProjectRouter.route('/:project')
     .patch(ProjectController.patch)
 
 //Project stack
-ProjectRouter.route('/:project/hubs', require('./hub'))
-ProjectRouter.route('/:project/bundles', require('./bundle'))
-ProjectRouter.route('/:project/matches', require('./match'))
+ProjectRouter.route('/:project/hubs', ProjectStack.HubRouter)
+ProjectRouter.route('/:project/bundles', ProjectStack.BundleRouter)
+ProjectRouter.route('/:project/matches', ProjectStack.MatchRouter)
 
 module.exports = ProjectRouter

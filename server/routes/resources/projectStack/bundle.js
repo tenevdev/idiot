@@ -1,5 +1,4 @@
-// Handle requests on route /projects/{owner}/{project}/bundles
-var BundleController = require('../../controllers').Resources.BundleController,
+var BundleController = require('../../../controllers').Resources.BundleController,
     BundleRouter = require('express').Router({
         mergeParams: true
     })

@@ -1,4 +1,3 @@
-// Handle requests on route /users
 var UserController = require('../../controllers').Resources.UserController,
     UserRouter = require('express').Router({
         mergeParams: true

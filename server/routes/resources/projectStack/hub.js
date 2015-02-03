@@ -1,5 +1,4 @@
-// Handle requests on route /projects/{owner}/{project}/hubs
-var HubController = require('../../controllers').Resources.HubController,
+var HubController = require('../../../controllers').Resources.HubController,
     HubRouter = require('express').Router({
         mergeParams: true
     })
