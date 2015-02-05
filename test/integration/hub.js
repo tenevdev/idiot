@@ -1,7 +1,7 @@
 var request = require('supertest'),
     testUtils = require('../helpers/utils'),
     async = require('async'),
-    test = {}
+    testCase = {}
 
 describe('hub.js', function() {
     var user, project, hub, dataPoint, baseRoute
@@ -21,7 +21,7 @@ describe('hub.js', function() {
                 testUtils.createProject(user.id, next)
             }
         ], function(err, createdProject) {
-            expect(err).to.not.exist
+            expect(err).to.not.exist()
             project = createdProject
 
             // Set base baseRoute for requests
@@ -43,7 +43,7 @@ describe('hub.js', function() {
                 testUtils.createDataPoint(hub, next)
             }
         ], function(err, createdDataPoint) {
-            expect(err).to.not.exist
+            expect(err).to.not.exist()
             dataPoint = createdDataPoint
 
             done()
@@ -60,30 +60,30 @@ describe('hub.js', function() {
             beforeEach('send create request', function(done) {
                 request.post(baseRoute)
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
         describe('when updating a hub', function() {
             beforeEach('send update request', function(done) {
                 request.put(baseRoute + '/' + hub.id)
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
         describe('when deleting a hub', function() {
             beforeEach('send delete request', function(done) {
                 request.delete(baseRoute + '/' + hub.id)
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
     })
@@ -92,20 +92,20 @@ describe('hub.js', function() {
             beforeEach('send read request', function(done) {
                 request.get(baseRoute)
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should return an array', function() {
-                expect(test.result).to.be.an('array')
+                expect(testCase.result).to.be.an('array')
             })
         })
         describe('when listing data points', function() {
             beforeEach('send read request', function(done) {
                 request.get(testUtils.attachToRoute(baseRoute, hub.id, 'datapoints'))
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should return an array', function() {
-                expect(test.result).to.be.an('array')
+                expect(testCase.result).to.be.an('array')
             })
             it.skip('should contain data point', function() {})
         })
@@ -113,13 +113,13 @@ describe('hub.js', function() {
             beforeEach('send read request', function(done) {
                 request.get(baseRoute + hub.id)
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should have a name', function() {
-                expect(test.result).to.have.property('name')
+                expect(testCase.result).to.have.property('name')
             })
             it('should have a populated owner', function() {
-                expect(test.result)
+                expect(testCase.result)
                     .to.have.property('owner')
                     .that.is.an('object')
             })
@@ -133,15 +133,15 @@ describe('hub.js', function() {
                     .set('Authorization', user.accessToken)
                     .send(testUtils.hubData('hub-creation'))
                     .expect(201)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should create a new hub', function() {
-                expect(test.result.name).to.be.ok
-                expect(test.result.state).to.be.ok
-                expect(test.result._id).to.be.ok
+                expect(testCase.result.name).to.be.ok()
+                expect(testCase.result.state).to.be.ok()
+                expect(testCase.result._id).to.be.ok()
             })
             it('should have owner', function() {
-                expect(test.result.owner)
+                expect(testCase.result.owner)
                     .to.equal(user.id)
             })
         })
@@ -150,10 +150,10 @@ describe('hub.js', function() {
                 request.post(testUtils.attachToRoute(baseRoute, hub.id, 'datapoints'))
                     .set('Authorization', user.accessToken)
                     .expect(201)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should create a new data point', function() {
-                expect(test.result).to.have.property('timeStamp')
+                expect(testCase.result).to.have.property('timeStamp')
             })
         })
         describe('when updating an existing hub', function() {
@@ -164,11 +164,11 @@ describe('hub.js', function() {
                         name: 'updated-test-hub'
                     })
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
 
             })
             it('should update the hub', function() {
-                expect(test.result.name).to.equal('updated-test-hub')
+                expect(testCase.result.name).to.equal('updated-test-hub')
             })
         })
         describe('when deleting an exisiting hub', function() {
@@ -176,7 +176,7 @@ describe('hub.js', function() {
                 request.delete(baseRoute + hub.id)
                     .set('Authorization', user.accessToken)
                     .expect(204)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should delete the hub', function(done) {
                 request.get(baseRoute + hub.id)

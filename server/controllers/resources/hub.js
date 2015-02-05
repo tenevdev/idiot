@@ -67,9 +67,9 @@ module.exports = {
                     return next()
                 }
                 // If we got here this means a hub with this id does not exist
-                var err = new Error('Hub not found')
-                err.status = 404
-                return next(err)
+                var notFoundError = new Error('Hub not found')
+                notFoundError.status = 404
+                return next(notFoundError)
             })
 },
 single: function(req, res, next) {

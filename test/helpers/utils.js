@@ -3,9 +3,42 @@ var User = require('../../server/models').Resources.User,
     Hub = require('../../server/models').Resources.Hub,
     async = require('async')
 
+function hubData(name) {
+    return {
+        name: name,
+        state: 'active'
+    }
+}
+exports.hubData = hubData
+
+function userData(name, password) {
+    return {
+        username: name,
+        email: name + '@test.com',
+        password: password || 'password-test',
+        firstName: 'Test',
+        lastName: 'User'
+    }
+}
+exports.userData = userData
+
+function projectData(name) {
+    return {
+        name: name
+    }
+}
+exports.projectData = projectData
+
+function dataPointData() {
+    return {
+        test: 'data-test'
+    }
+}
+exports.dataPointData = dataPointData
+
 exports.getCallback = function(test, next) {
     return function callback(err, res) {
-        expect(err).to.not.exist
+        expect(err).to.not.exist()
         test.response = res
         test.result = res.body
         next()
@@ -85,42 +118,5 @@ exports.clear = function(modelsToClean, next) {
         }, next)
     } else {
         models[modelsToClean].remove(next)
-    }
-}
-
-exports.hubData = hubData
-
-function hubData(name) {
-    return {
-        name: name,
-        state: 'active'
-    }
-}
-
-exports.userData = userData
-
-function userData(name, password) {
-    return {
-        username: name,
-        email: name + '@test.com',
-        password: password || 'password-test',
-        firstName: 'Test',
-        lastName: 'User'
-    }
-}
-
-exports.projectData = projectData
-
-function projectData(name) {
-    return {
-        name: name
-    }
-}
-
-exports.dataPointData = dataPointData
-
-function dataPointData() {
-    return {
-        test: 'data-test'
     }
 }

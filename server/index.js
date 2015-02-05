@@ -3,7 +3,7 @@ var app = require('express')(),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
     logger = require('morgan'),
-    passport = require('passport')
+    passport = require('passport'),
     getConfigurationValue = require('./config').getValueForEnvironment
 
 // TODO: Connect to database here

@@ -1,7 +1,7 @@
 var request = require('supertest'),
     testUtils = require('../helpers/utils'),
     async = require('async'),
-    test = {}
+    testCase = {}
 
 describe('project.js', function() {
     var user, project, baseRoute
@@ -9,7 +9,7 @@ describe('project.js', function() {
         request = request(require('../../server').app)
         // Create a user
         testUtils.createUser(function(err, createdUser, accessToken) {
-            expect(err).to.not.exist
+            expect(err).to.not.exist()
 
             user = createdUser
             user.accessToken = accessToken
@@ -20,7 +20,7 @@ describe('project.js', function() {
     })
     beforeEach('create a project', function(done) {
         testUtils.createProject(user.id, function(err, createdProject) {
-            expect(err).to.not.exist
+            expect(err).to.not.exist()
 
             project = createdProject
             done()
@@ -37,30 +37,30 @@ describe('project.js', function() {
             beforeEach('send create request', function(done) {
                 request.post(baseRoute)
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
         describe('when updating a project', function() {
             beforeEach('send update request', function(done) {
                 request.put(baseRoute + project.name)
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
         describe('when deleting a project', function() {
             beforeEach('send delete request', function(done) {
                 request.delete(baseRoute + project.name)
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
     })
@@ -69,20 +69,20 @@ describe('project.js', function() {
             beforeEach('send read request', function(done) {
                 request.get('/api/projects')
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should return an array', function() {
-                expect(test.result).to.be.an('array')
+                expect(testCase.result).to.be.an('array')
             })
         })
         describe('when listing projects by user', function() {
             beforeEach('send read request', function(done) {
                 request.get(baseRoute)
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should return an array', function() {
-                expect(test.result).to.be.an('array')
+                expect(testCase.result).to.be.an('array')
             })
             it.skip('should contain project', function() {})
         })
@@ -90,13 +90,13 @@ describe('project.js', function() {
             beforeEach('send read request', function(done) {
                 request.get(baseRoute + project.name)
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should have a name', function() {
-                expect(test.result).to.have.property('name')
+                expect(testCase.result).to.have.property('name')
             })
             it('should have a populated owner', function() {
-                expect(test.result)
+                expect(testCase.result)
                     .to.have.property('owner')
                     .that.is.an('object')
             })
@@ -109,14 +109,14 @@ describe('project.js', function() {
                     .set('Authorization', user.accessToken)
                     .send(testUtils.projectData('project-creation'))
                     .expect(201)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should create a new project', function() {
-                expect(test.result.name).to.be.ok
-                expect(test.result._id).to.be.ok
+                expect(testCase.result.name).to.be.ok()
+                expect(testCase.result._id).to.be.ok()
             })
             it('should have owner', function() {
-                expect(test.result.owner)
+                expect(testCase.result.owner)
                     .to.equal(user.id)
             })
             describe('and a duplicate name exists', function() {
@@ -125,10 +125,10 @@ describe('project.js', function() {
                         .set('Authorization', user.accessToken)
                         .send(testUtils.hubData('project-creation'))
                         .expect(400)
-                        .end(testUtils.getCallback(test, done))
+                        .end(testUtils.getCallback(testCase, done))
                 })
                 it('should be a bad request', function() {
-                    expect(test.response.badRequest)
+                    expect(testCase.response.badRequest)
                 })
             })
         })
@@ -140,11 +140,11 @@ describe('project.js', function() {
                         name: 'updated-test-project'
                     })
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
 
             })
             it('should update the project', function() {
-                expect(test.result.name).to.equal('updated-test-project')
+                expect(testCase.result.name).to.equal('updated-test-project')
             })
         })
         describe('when deleting an exisiting project', function() {
@@ -152,7 +152,7 @@ describe('project.js', function() {
                 request.delete(baseRoute + project.name)
                     .set('Authorization', user.accessToken)
                     .expect(204)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should delete the project', function(done) {
                 request.get(baseRoute + project.name)

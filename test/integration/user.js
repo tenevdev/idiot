@@ -1,7 +1,7 @@
 var request = require('supertest'),
     testUtils = require('../helpers/utils'),
     async = require('async'),
-    test = {}
+    testCase = {}
 
 describe('user.js', function() {
     var user, baseRoute
@@ -13,7 +13,7 @@ describe('user.js', function() {
     })
     beforeEach('create a user', function(done) {
         testUtils.createUser(function(err, createdUser, accessToken) {
-            expect(err).to.not.exist
+            expect(err).to.not.exist()
 
             user = createdUser
             user.accessToken = accessToken
@@ -32,20 +32,20 @@ describe('user.js', function() {
             beforeEach('send update request', function(done) {
                 request.put(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
         describe('when deleting a user', function() {
             beforeEach('send delete request', function(done) {
                 request.delete(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(401)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should not be authorized', function() {
-                expect(test.response.unauthorized)
+                expect(testCase.response.unauthorized)
             })
         })
     })
@@ -54,24 +54,24 @@ describe('user.js', function() {
             beforeEach('send read request', function(done) {
                 request.get(baseRoute)
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should return an array', function() {
-                expect(test.result).to.be.an('array')
+                expect(testCase.result).to.be.an('array')
             })
         })
         describe('when getting a single user', function() {
             beforeEach('send read request', function(done) {
                 request.get(testUtils.attachToRoute(baseRoute, user.username))
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should have a name', function() {
-                expect(test.result).to.have.property('username')
+                expect(testCase.result).to.have.property('username')
             })
             it('should not have password', function() {
-                expect(test.result).to.not.have.property('password')
-                expect(test.result).to.not.have.property('hashedPassword')
+                expect(testCase.result).to.not.have.property('password')
+                expect(testCase.result).to.not.have.property('hashedPassword')
             })
         })
         describe('when creating a new user', function() {
@@ -79,21 +79,21 @@ describe('user.js', function() {
                 request.post(baseRoute)
                     .send(testUtils.userData('user-creation'))
                     .expect(201)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should create a new user', function() {
-                expect(test.result.username).to.be.ok
-                expect(test.result._id).to.be.ok
+                expect(testCase.result.username).to.be.ok()
+                expect(testCase.result._id).to.be.ok()
             })
             describe('and a duplicate name exists', function() {
                 beforeEach('send create request with the same name', function(done) {
                     request.post(baseRoute)
                         .send(testUtils.hubData('user-creation'))
                         .expect(400)
-                        .end(testUtils.getCallback(test, done))
+                        .end(testUtils.getCallback(testCase, done))
                 })
                 it('should be a bad request', function() {
-                    expect(test.response.badRequest)
+                    expect(testCase.response.badRequest)
                 })
             })
         })
@@ -107,11 +107,11 @@ describe('user.js', function() {
                         username: 'updated-test-user'
                     })
                     .expect(200)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
 
             })
             it('should update the user', function() {
-                expect(test.result.username).to.equal('updated-test-user')
+                expect(testCase.result.username).to.equal('updated-test-user')
             })
         })
         describe('when deleting an exisiting user', function() {
@@ -119,7 +119,7 @@ describe('user.js', function() {
                 request.delete(testUtils.attachToRoute(baseRoute, user.username))
                     .set('Authorization', user.accessToken)
                     .expect(204)
-                    .end(testUtils.getCallback(test, done))
+                    .end(testUtils.getCallback(testCase, done))
             })
             it('should delete the user', function(done) {
                 request.get(testUtils.attachToRoute(baseRoute, user.username))
