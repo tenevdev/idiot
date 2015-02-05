@@ -51,7 +51,7 @@ exports.buildRoute = function() {
 }
 
 exports.attachToRoute = function(route) {
-    for (var i = 1; i < arguments.length; i++) {
+    for (var i = 1; i < arguments.length; i += 1) {
         route += (arguments[i] + '/')
     }
     return route
