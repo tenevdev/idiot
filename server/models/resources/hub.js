@@ -46,11 +46,11 @@ hubSchema.methods = {
             return next(null, hub.dataStream.dataPoints[index])
         })
     },
-    removeDataPoint: function(id, next){
+    removeDataPoint: function(id, next) {
         this.dataStream.dataPoints.pull(id)
 
-        this.save(function(err, hub){
-            if(err)
+        this.save(function(err, hub) {
+            if (err)
                 return next(err)
             return next(null, hub)
         })
@@ -104,7 +104,7 @@ hubSchema.statics = {
         hub.save(function(err, hub) {
             if (err)
                 return next(err)
-            // Make sure there is a projectId before updating
+                    // Make sure there is a projectId before updating
             if (hubData.projectId) {
                 hub.attachToProject(hubData.projectId, next)
             }
@@ -116,7 +116,7 @@ hubSchema.statics = {
         Project.findById(conditions.projectId)
             .populate('hubs')
             .lean()
-            .exec(function(err, project){
+            .exec(function(err, project) {
                 next(err, project.hubs)
             })
     }

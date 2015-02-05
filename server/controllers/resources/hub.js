@@ -71,27 +71,27 @@ module.exports = {
                 notFoundError.status = 404
                 return next(notFoundError)
             })
-},
-single: function(req, res, next) {
-    res.status(200).json(req.hub)
-    return next()
-},
-update: function(req, res, next) {
-    Hub.findByIdAndUpdate(req.hub.id, req.body, function(err, hub) {
-        if (err) {
-            return next(err)
-        }
-        res.status(200).json(hub)
+    },
+    single: function(req, res, next) {
+        res.status(200).json(req.hub)
         return next()
-    })
-},
-delete: function(req, res, next) {
-    req.hub.remove(function(err) {
-        if (err) {
-            return next(err)
-        }
-        res.status(204).json()
-        return next()
-    })
-}
+    },
+    update: function(req, res, next) {
+        Hub.findByIdAndUpdate(req.hub.id, req.body, function(err, hub) {
+            if (err) {
+                return next(err)
+            }
+            res.status(200).json(hub)
+            return next()
+        })
+    },
+    delete: function(req, res, next) {
+        req.hub.remove(function(err) {
+            if (err) {
+                return next(err)
+            }
+            res.status(204).json()
+            return next()
+        })
+    }
 }

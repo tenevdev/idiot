@@ -1,3 +1,3 @@
 module.exports = {
-	Resources: require('./resources')
+    Resources: require('./resources')
 }

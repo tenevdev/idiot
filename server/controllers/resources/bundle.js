@@ -1,7 +1,7 @@
 var Bundle = require('../../models').Resources.Bundle
 
 module.exports = {
-	list: function(req, res, next) {
+    list: function(req, res, next) {
 
     },
     create: function(req, res, next) {
