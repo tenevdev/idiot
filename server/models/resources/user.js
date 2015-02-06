@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
-    validations = require('../validations')
+    validations = require('../validations'),
+    encryption = require('../helpers/encryption')
 
 var userSchema = new mongoose.Schema({
     username: {
@@ -51,32 +51,12 @@ userSchema.pre('save', function(next) {
     }
 
     //Password has changed or this is a new user
-    this.setPassword(this.password, next)
+    this.setPassword(this.password, 'hashedPassword', next)
 })
 
 userSchema.methods = {
-    verifyPassword: function(password, next) {
-        bcrypt.compare(password, this.hashedPassword, function(err, res) {
-            if (err)
-                return next(err)
-            return next(null, res)
-        })
-    },
-    setPassword: function(password, next) {
-        var self = this
-
-        bcrypt.genSalt(10, function(err, salt) {
-            if (err)
-                return next(err)
-            bcrypt.hash(password, salt, function(err, hashedPassword) {
-                if (err)
-                    return next(err)
-                        // Set new hash
-                self.hashedPassword = hashedPassword
-                return next()
-            })
-        })
-    }
+    verifyPassword: encryption.verifyValue,
+    setPassword: encryption.setValue
 }
 
 userSchema.statics = {
