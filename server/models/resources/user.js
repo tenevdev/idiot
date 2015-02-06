@@ -1,5 +1,5 @@
 var mongoose = require('mongoose'),
-    validations = require('../validations'),
+    validation = require('../helpers/validation'),
     encryption = require('../helpers/encryption')
 
 var userSchema = new mongoose.Schema({
@@ -24,10 +24,10 @@ var userSchema = new mongoose.Schema({
     passwordResetExpires: Date
 })
 
-userSchema.path('username').validate(validations.uniqueFieldInsensitive('User', 'username'),
+userSchema.path('username').validate(validation.uniqueFieldInsensitive('User', 'username'),
     'A user with the same username already exists')
 
-userSchema.path('email').validate(validations.uniqueFieldInsensitive('User', 'email'),
+userSchema.path('email').validate(validation.uniqueFieldInsensitive('User', 'email'),
     'A user with the same email already exists')
 
 userSchema.virtual('fullName')
