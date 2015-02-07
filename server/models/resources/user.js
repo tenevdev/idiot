@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     validation = require('../helpers/validation'),
-    encryption = require('../helpers/encryption')
+    encryption = require('bcrypt-schema').setEncryption
 
 var userSchema = new mongoose.Schema({
     username: {
@@ -51,13 +51,14 @@ userSchema.pre('save', function(next) {
     }
 
     //Password has changed or this is a new user
-    this.setPassword(this.password, 'hashedPassword', next)
+    this.setPassword(this.password, next)
 })
 
-userSchema.methods = {
-    verifyPassword: encryption.verifyValue,
-    setPassword: encryption.setValue
-}
+userSchema.plugin(encryption, {
+    field: 'hashedPassword',
+    verify: 'verifyPassword',
+    set: 'setPassword'
+})
 
 userSchema.statics = {
 

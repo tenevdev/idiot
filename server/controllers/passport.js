@@ -17,7 +17,7 @@ passport.use(new BasicStrategy(
             }
 
             // Make sure the password is correct
-            user.verifyPassword(password, user.hashedPassword, function(err, isMatch) {
+            user.verifyPassword(password, function(err, isMatch) {
                 if (err) {
                     return next(err)
                 }
