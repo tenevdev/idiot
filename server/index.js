@@ -6,10 +6,15 @@ var app = require('express')(),
     passport = require('passport'),
     getConfigurationValue = require('./config').getValueForEnvironment
 
-// TODO: Connect to database here
+// Connect to database
+mongoose.connection.on('error', function() {
+    console.error('Error connecting to database: %s\nShutting down...',
+        getConfigurationValue('/database', env))
+    process.exit()
+})
 mongoose.connect(getConfigurationValue('/database', env))
 
-// TODO: Setup express application here
+// Setup express application
 app.set('port', getConfigurationValue('/app/port', env))
 
 app.use(bodyParser.json())
