@@ -1,3 +1,4 @@
 module.exports = {
-    Resources: require('./resources')
+    Resources: require('./resources'),
+    OAuth: require('.oauth')
 }
