@@ -1,23 +1,30 @@
-var mongoose = require('mongoose')
+var mongoose = require('mongoose'),
+    ObjectId = mongoose.Schema.Types.ObjectId,
+    validation = require('../helpers/validation')
 
 var clientSchema = new mongoose.Schema({
     name: {
-        type: String,
-        unique: true,
-        required: true
-    },
-    id: {
         type: String,
         required: true
     },
     secret: {
         type: String,
-        required: true
+        required: true,
+        select: false
     },
-    userId: {
-        type: String,
+    owner: {
+        type: ObjectId,
+        ref: 'User',
         required: true
     }
+})
+
+clientSchema.path('name').validate(validation.uniqueFieldInsensitive('Client', 'name'),
+    'A client with this name already exists')
+
+// Will send plainSecret value to client-side
+clientSchema.set('toJSON', {
+    virtuals: true
 })
 
 clientSchema.virtual('plainSecret')
@@ -46,6 +53,7 @@ clientSchema.statics = {
         this.findOne({
             name: name
         })
+            .populate('owner')
             .lean(isLean)
             .exec(next)
     },
@@ -53,6 +61,7 @@ clientSchema.statics = {
         this.find(conditions)
             .skip((options.page - 1) * options.perPage)
             .limit(options.perPage)
+            .populate('owner')
             .lean()
             .exec(next)
     }
