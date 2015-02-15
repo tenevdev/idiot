@@ -1,6 +1,5 @@
 var ClientController = require('../../controllers').OAuth.ClientController,
     PassportController = require('../../controllers').PassportController,
-    AuthorizationController = require('../../controllers').AuthorizationController,
     ClientRouter = require('express').Router({
         mergeParams: true
     })
@@ -14,8 +13,8 @@ ClientRouter.route('/')
     .post(PassportController.isUserAuthenticated, ClientController.create)
 
 ClientRouter.route('/:client')
-    .get(AuthorizationController.isClientOwner, ClientController.single)
-    .put(AuthorizationController.isClientOwner, ClientController.update)
-    .delete(AuthorizationController.isClientOwner, ClientController.delete)
+    .get(ClientController.isOwnerAuthorized, ClientController.single)
+    .put(ClientController.isOwnerAuthorized, ClientController.update)
+    .delete(ClientController.isOwnerAuthorized, ClientController.delete)
 
 module.exports = ClientRouter

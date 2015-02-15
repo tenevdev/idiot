@@ -89,5 +89,12 @@ module.exports = {
             res.status(204).json('Client deleted')
             return next()
         })
+    },
+    isOwnerAuthorized: function(req, res, next) {
+        if (req.user._id === req.client.owner._id) {
+            return next()
+        }
+        res.status(401).json()
+        return next(new Error('Unauthorized'))
     }
 }
