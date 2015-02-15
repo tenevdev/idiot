@@ -7,7 +7,9 @@ module.exports = {
                 page: req.query.page || 1,
                 perPage: req.query.perPage || 30
             },
-            conditions = {}
+            conditions = {
+                userId: req.user._id
+            }
         Client.getPage(conditions, options, function(err, clients) {
             if (err) {
                 res.status(500).json(err)
