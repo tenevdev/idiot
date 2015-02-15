@@ -8,7 +8,7 @@ module.exports = {
                 perPage: req.query.perPage || 30
             },
             conditions = {
-                userId: req.user._id
+                owner: req.user._id
             }
         Client.getPage(conditions, options, function(err, clients) {
             if (err) {
@@ -44,24 +44,27 @@ module.exports = {
         })
     },
     load: function(req, res, next, clientName) {
-        if (req.method === 'GET') {
-            Client.getByName(clientName, true, function(err, client) {
-                if (err) {
-                    res.status(500).json(err)
-                    return next(err)
-                }
-                if (client) {
-                    req.client = client
-                    return next()
-                }
-                res.status(404).json('Client not found')
-                return next(new Error('Client not found'))
-            })
-        } else {
-            passport.authenticate('client-basic', {
-                session: false
-            })(req, res, next)
-        }
+        var isLean = req.method === 'GET'
+
+        // Load requested client
+        Client.getByName(clientName, isLean, function(err, client) {
+            if (err) {
+                res.status(500).json(err)
+                return next(err)
+            }
+            if (client) {
+                req.client = client
+                return next()
+            }
+            res.status(404).json('Client not found')
+            return next(new Error('Client not found'))
+        })
+
+        // Authenticate user
+        passport.authenticate('basic', {
+            session: false
+        })(req, res, next)
+
     },
     single: function(req, res, next) {
         res.status(200).json(req.client)
