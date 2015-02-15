@@ -41,4 +41,21 @@ clientSchema.pre('save', function(next) {
 
 clientSchema.plugin(encryption, 'secret')
 
+clientSchema.statics = {
+    getByName: function(name, isLean, next) {
+        this.findOne({
+            name: name
+        })
+            .lean(isLean)
+            .exec(next)
+    },
+    getPage: function(conditions, options, next) {
+        this.find(conditions)
+            .skip((options.page - 1) * options.perPage)
+            .limit(options.perPage)
+            .lean()
+            .exec(next)
+    }
+}
+
 module.exports = mongoose.model('Client', clientSchema)
