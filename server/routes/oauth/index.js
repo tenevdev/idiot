@@ -2,6 +2,6 @@ var OAuthRouter = require('express').Router({
     mergeParams: true
 })
 
-OAuthRouter.route('/clients', require('./client'))
+OAuthRouter.use('/clients', require('./client'))
 
 module.exports = OAuthRouter
