@@ -10,7 +10,7 @@ OAuthRouter.route('/authorize')
     .get(PassportController.isAuthenticated, OAuth2Controller.authorization)
     .post(PassportController.isAuthenticated, OAuth2Controller.decision)
 
-OAuth2Controller.route('/token')
+OAuthRouter.route('/token')
     .post(PassportController.isClientAuthenticated, OAuth2Controller.token)
 
 module.exports = OAuthRouter
