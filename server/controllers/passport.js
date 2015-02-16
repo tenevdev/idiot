@@ -1,6 +1,7 @@
 var passport = require('passport'),
     BasicStrategy = require('passport-http').BasicStrategy,
     BearerStrategy = require('passport-http-bearer').Strategy,
+    ClientPasswordStrategy = require('passport-oauth2-client-password').Strategy,
     User = require('../models').Resources.User,
     Client = require('../models').OAuth.Client,
     AccessToken = require('../models').OAuth.AccessToken
@@ -45,8 +46,8 @@ passport.use('client-basic',
     new BasicStrategy({
             realm: 'Clients'
         },
-        function(, secret, next) {
-            Client.findById(id, function(err, client) {
+        function(clientId, secret, next) {
+            Client.findById(clientId, function(err, client) {
                 if (err) {
                     return next(err)
                 }
@@ -73,6 +74,39 @@ passport.use('client-basic',
             })
         }
     ))
+
+// Alternative authentication for client applications
+// Client credentials are included in the request body
+// client_id - Client identifier
+// client_secret - Client secret
+passport.use(new ClientPasswordStrategy(
+    function(clientId, secret, next) {
+        Client.findById(clientId, function(err, client) {
+            if (err) {
+                return next(err)
+            }
+
+            // No client found with that id
+            if (!client) {
+                return next(null, false)
+            }
+
+            // Make sure the secret is correct
+            client.verifySecret(secret, function(err, isMatch) {
+                if (err) {
+                    return next(err)
+                }
+
+                // Secret did not match
+                if (!isMatch) {
+                    return next(null, false)
+                }
+
+                // Success
+                return next(null, client)
+            })
+        })
+    }))
 
 // Bearer authentication for client applications
 // requesting access to user resources
@@ -101,6 +135,6 @@ exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], {
 })
 
 // Authenticate a client
-exports.isClientAuthenticated = passport.authenticate('client-basic', {
+exports.isClientAuthenticated = passport.authenticate(['client-basic', 'oauth2-client-password'], {
     session: false
 })
