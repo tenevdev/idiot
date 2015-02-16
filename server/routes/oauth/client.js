@@ -9,8 +9,8 @@ var ClientController = require('../../controllers').OAuth.ClientController,
 ClientRouter.param('client', ClientController.load)
 
 ClientRouter.route('/')
-    .get(PassportController.isUserAuthenticated, ClientController.list)
-    .post(PassportController.isUserAuthenticated, ClientController.create)
+    .get(PassportController.isAuthenticated, ClientController.list)
+    .post(PassportController.isAuthenticated, ClientController.create)
 
 ClientRouter.route('/:client')
     .get(ClientController.isOwnerAuthorized, ClientController.single)

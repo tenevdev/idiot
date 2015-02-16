@@ -1,54 +1,57 @@
 {
-    "name": "idiot",
-    "version": "0.0.0",
-    "description": "Interactive data in the Internet of Things",
-    "main": "index.js",
-    "scripts": {
-        "test": "make test",
-        "test-cov": "make test-cov"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tenevdev/idiot.git"
-    },
-    "keywords": [
-        "IoT",
-        "Internet",
-        "data",
-        "interactive",
-        "visualisation",
-        "things",
-        "sensor"
-    ],
-    "author": "Tencho Tenev",
-    "contributors": [{
-        "name": "Alexander Zahariev"
-    }],
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/tenevdev/idiot/issues"
-    },
-    "homepage": "https://github.com/tenevdev/idiot",
-    "devDependencies": {
-        "mocha": "^2.1.0",
-        "chai": "^1.10.0",
-        "sinon": "^1.12.2",
-        "superagent": "^0.21.0",
-        "morgan": "^1.5.1",
-        "supertest": "^0.15.0",
-        "istanbul": "^0.3.5",
-        "coveralls": "^2.11.2"
-    },
-    "dependencies": {
-        "express": "^4.10.7",
-        "confidence": "^1.0.0",
-        "mongoose": "^3.8.21",
-        "bcrypt": "^0.8.0",
-        "fast-json-patch": "^0.5.0",
-        "body-parser": "^1.10.1",
-        "async": "^0.9.0",
-        "passport-http": "^0.2.2",
-        "passport": "^0.2.1",
-        "bcrypt-schema": "^0.1.0"
+  "name": "idiot",
+  "version": "0.0.0",
+  "description": "Interactive data in the Internet of Things",
+  "main": "index.js",
+  "scripts": {
+    "test": "make test",
+    "test-cov": "make test-cov"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tenevdev/idiot.git"
+  },
+  "keywords": [
+    "IoT",
+    "Internet",
+    "data",
+    "interactive",
+    "visualisation",
+    "things",
+    "sensor"
+  ],
+  "author": "Tencho Tenev",
+  "contributors": [
+    {
+      "name": "Alexander Zahariev"
     }
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tenevdev/idiot/issues"
+  },
+  "homepage": "https://github.com/tenevdev/idiot",
+  "devDependencies": {
+    "mocha": "^2.1.0",
+    "chai": "^1.10.0",
+    "sinon": "^1.12.2",
+    "superagent": "^0.21.0",
+    "morgan": "^1.5.1",
+    "supertest": "^0.15.0",
+    "istanbul": "^0.3.5",
+    "coveralls": "^2.11.2"
+  },
+  "dependencies": {
+    "async": "^0.9.0",
+    "bcrypt": "^0.8.0",
+    "bcrypt-schema": "^0.1.0",
+    "body-parser": "^1.10.1",
+    "confidence": "^1.0.0",
+    "express": "^4.10.7",
+    "fast-json-patch": "^0.5.0",
+    "mongoose": "^3.8.21",
+    "passport": "^0.2.1",
+    "passport-http": "^0.2.2",
+    "passport-http-bearer": "^1.0.1"
+  }
 }

@@ -1,3 +1,4 @@
 module.exports = {
-    ClientController: require('./client')
+    ClientController: require('./client'),
+    OAuth2Controller: require('./oauth2')
 }

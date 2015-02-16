@@ -60,7 +60,8 @@ module.exports = {
             return next(new Error('Client not found'))
         })
 
-        // Authenticate user
+        // Authenticate a user who will be
+        // later checked against the client owner
         passport.authenticate('basic', {
             session: false
         })(req, res, next)

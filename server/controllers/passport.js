@@ -1,8 +1,12 @@
 var passport = require('passport'),
     BasicStrategy = require('passport-http').BasicStrategy,
+    BearerStrategy = require('passport-http-bearer').Strategy,
     User = require('../models').Resources.User,
-    Client = require('../models').OAuth.Client
+    Client = require('../models').OAuth.Client,
+    AccessToken = require('../models').OAuth.AccessToken
 
+// Basic authentication for users
+// Requests should include Auhtorization: Basic <encoded username:password> header
 passport.use(new BasicStrategy(
     function(username, password, next) {
         User.findOne({
@@ -35,12 +39,13 @@ passport.use(new BasicStrategy(
     }
 ))
 
+// Basic authentication for client applications
+// Requests should include Authorization: Basic <encoded clientId:clientSecret> header
 passport.use('client-basic',
     new BasicStrategy({
-            usernameField: 'id',
-            passwordField: 'secret'
+            realm: 'Clients'
         },
-        function(id, secret, next) {
+        function(, secret, next) {
             Client.findById(id, function(err, client) {
                 if (err) {
                     return next(err)
@@ -69,10 +74,33 @@ passport.use('client-basic',
         }
     ))
 
-exports.isUserAuthenticated = passport.authenticate('basic', {
+// Bearer authentication for client applications
+// requesting access to user resources
+// using an access token
+// Requests should include Authorization: Bearer <access token> header
+passport.use(new BearerStrategy(
+    function(token, next) {
+        AccessToken.findOne({
+            token: token
+        }, function(err, accessToken) {
+            if (err)
+                return next(err)
+            if (!accessToken)
+                return next(null, false)
+            return next(null, accessToken, {
+                scope: 'all'
+            })
+        })
+    }))
+
+// Authenticate access to user resources
+// Basic user authentication or
+// Bearer authentication of a client using an access token
+exports.isAuthenticated = passport.authenticate(['basic', 'bearer'], {
     session: false
 })
 
+// Authenticate a client
 exports.isClientAuthenticated = passport.authenticate('client-basic', {
     session: false
 })
