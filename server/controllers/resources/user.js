@@ -1,5 +1,6 @@
 var User = require('../../models').Resources.User,
-    passport = require('passport')
+    passport = require('passport'),
+    HttpError = require('../../utils/errors/httpError')
 
 module.exports = {
     list: function(req, res, next) {
@@ -10,7 +11,6 @@ module.exports = {
             conditions = {}
         User.getPage(conditions, options, function(err, users) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(200).json(users)
@@ -23,16 +23,12 @@ module.exports = {
         user.save(function(err, user) {
             if (err) {
                 if (err.name === 'ValidationError') {
-                    res.status(400)
-                } else {
-                    res.status(500)
+                    err.status = 400
                 }
-                res.json(err)
                 return next(err)
             }
             User.findById(user.id, function(err, user) {
                 if (err) {
-                    res.status(500).json(err)
                     return next(err)
                 }
                 res.location(user.id)
@@ -45,15 +41,14 @@ module.exports = {
         if (req.method === 'GET') {
             User.getByName(username, true, function(err, user) {
                 if (err) {
-                    res.status(500).json(err)
                     return next(err)
                 }
                 if (user) {
                     req.user = user
                     return next()
                 }
-                res.status(404).json('User not found')
-                return next(new Error('User not found'))
+                err = new HttpError(404, 'A user with this username does not exist : ' + username)
+                return next(err)
             })
         } else {
             passport.authenticate('basic', {
@@ -68,12 +63,10 @@ module.exports = {
     update: function(req, res, next) {
         User.validateUpdate(req.body, function(err) {
             if (err) {
-                res.status(err.status).json(err)
                 return next(err)
             }
             User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
                 if (err) {
-                    res.status(500).json(err)
                     return next(err)
                 }
                 res.status(200).json(user)
@@ -84,7 +77,6 @@ module.exports = {
     delete: function(req, res, next) {
         req.user.remove(function(err) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(204).json('User deleted')

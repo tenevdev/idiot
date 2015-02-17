@@ -1,5 +1,6 @@
 var Project = require('../../models').Resources.Project,
-    jsonPatch = require('fast-json-patch')
+    jsonPatch = require('fast-json-patch'),
+    HttpError = require('../../utils/errors/httpError')
 
 module.exports = {
     list: function(req, res, next) {
@@ -10,7 +11,6 @@ module.exports = {
             conditions = {}
         Project.getPage(conditions, options, function(err, projects) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(200).json(projects)
@@ -30,7 +30,6 @@ module.exports = {
             }
         Project.getPage(conditions, options, function(err, projects) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(200).json(projects)
@@ -44,11 +43,8 @@ module.exports = {
         project.save(function(err, project) {
             if (err) {
                 if (err.name === 'ValidationError') {
-                    res.status(400)
-                } else {
-                    res.status(500)
+                    err.status = 400
                 }
-                res.json(err)
                 return next(err)
             }
             res.status(201).json(project)
@@ -60,15 +56,14 @@ module.exports = {
         var lean = req.method === 'GET'
         Project.getByName(projectName, lean, function(err, project) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             if (project) {
                 req.project = project
                 return next()
             }
-            res.status(404).json('Project not found')
-            return next(new Error('Project not found'))
+            err = new HttpError(404, 'A project with this name does not exist : ' + projectName)
+            return next(err)
         })
     },
     single: function(req, res, next) {
@@ -78,7 +73,6 @@ module.exports = {
     update: function(req, res, next) {
         Project.findByIdAndUpdate(req.project.id, req.body, function(err, project) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(200).json(project)
@@ -88,7 +82,6 @@ module.exports = {
     delete: function(req, res, next) {
         req.project.remove(function(err) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(204).json()
@@ -100,14 +93,12 @@ module.exports = {
             // The patch was applied successfully
             req.project.save(function(err, project) {
                 if (err) {
-                    res.status(500).json(err)
                     return next(err)
                 }
                 res.status(204)
                 return next()
             })
         }
-        res.status(400)
-        return next(new Error('Bad request'))
+        return next(new HttpError(400, 'Could not apply json patch'))
     }
 }

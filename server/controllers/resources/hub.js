@@ -1,5 +1,6 @@
 var Hub = require('../../models').Resources.Hub,
-    async = require('async')
+    async = require('async'),
+    HttpError = require('../../utils/errors/httpError')
 
 module.exports = {
     list: function(req, res, next) {
@@ -47,8 +48,9 @@ module.exports = {
     },
     createDataPoint: function(req, res, next) {
         req.hub.addDataPoint(req.body, function(err, dataPoint) {
-            if (err)
+            if (err) {
                 return next(err)
+            }
             res.status(201).json(dataPoint)
             return next()
         })
@@ -67,9 +69,8 @@ module.exports = {
                     return next()
                 }
                 // If we got here this means a hub with this id does not exist
-                var notFoundError = new Error('Hub not found')
-                notFoundError.status = 404
-                return next(notFoundError)
+                err = new HttpError(404, 'A hub with this id does not exist : ' + hubId)
+                return next(err)
             })
     },
     single: function(req, res, next) {

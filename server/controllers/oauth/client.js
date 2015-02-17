@@ -1,5 +1,6 @@
 var Client = require('../../models').OAuth.Client,
-    passport = require('passport')
+    passport = require('passport'),
+    HttpError = require('../../utils/errors/httpError')
 
 module.exports = {
     list: function(req, res, next) {
@@ -12,7 +13,6 @@ module.exports = {
             }
         Client.getPage(conditions, options, function(err, clients) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(200).json(clients)
@@ -27,16 +27,12 @@ module.exports = {
         client.save(function(err, client) {
             if (err) {
                 if (err.name === 'ValidationError') {
-                    res.status(400)
-                } else {
-                    res.status(500)
+                    err.status = 400
                 }
-                res.json(err)
                 return next(err)
             }
             Client.findById(client.id, function(err, client) {
                 if (err) {
-                    res.status(500).json(err)
                     return next(err)
                 }
                 res.location(client.id)
@@ -51,7 +47,6 @@ module.exports = {
         // Load requested client
         Client.getByName(clientName, isLean, function(err, client) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             if (client) {
@@ -62,8 +57,8 @@ module.exports = {
                     session: false
                 })(req, res, next)
             } else {
-                res.status(404).json('Client not found')
-                return next(new Error('Client not found'))
+                err = new HttpError(404, 'A client with this name does not exist : ' + clientName)
+                return next(err)
             }
         })
     },
@@ -76,12 +71,10 @@ module.exports = {
         // such as updating the hashed field
         Client.validateUpdate(req.body, function(err) {
             if (err) {
-                res.status(400).json(err)
                 return next(err)
             }
             Client.findByIdAndUpdate(req.client.id, req.body, function(err, client) {
                 if (err) {
-                    res.status(500).json(err)
                     return next(err)
                 }
                 res.status(200).json(client)
@@ -92,7 +85,6 @@ module.exports = {
     delete: function(req, res, next) {
         req.client.remove(function(err) {
             if (err) {
-                res.status(500).json(err)
                 return next(err)
             }
             res.status(204).json('Client deleted')
@@ -103,7 +95,6 @@ module.exports = {
         if (req.user._id.toString() == req.client.owner._id.toString()) {
             return next()
         }
-        res.status(401).json()
-        return next(new Error('Unauthorized'))
+        return next(new HttpError(401, 'Access denied'))
     }
 }

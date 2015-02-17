@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     ObjectId = mongoose.Schema.Types.ObjectId,
     validation = require('../helpers/validation'),
     encryption = require('bcrypt-schema').setEncryption,
-    HttpError = require('../../utils/httpError')
+    HttpError = require('../../utils/errors/httpError')
 
 var clientSchema = new mongoose.Schema({
     name: {

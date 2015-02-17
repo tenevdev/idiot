@@ -1,7 +1,7 @@
 var mongoose = require('mongoose'),
     validation = require('../helpers/validation'),
     encryption = require('bcrypt-schema').setEncryption,
-    HttpError = require('../../utils/httpError')
+    HttpError = require('../../utils/errors/httpError')
 
 var userSchema = new mongoose.Schema({
     username: {

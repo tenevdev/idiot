@@ -5,7 +5,7 @@ var app = require('express')(),
     logger = require('morgan'),
     passport = require('passport'),
     getConfigurationValue = require('./config').getValueForEnvironment,
-    errorHandler = require('./utils/errorHandler')
+    errorHandler = require('./utils/errors/errorHandler')
 
 // Connect to database
 mongoose.connection.on('error', function() {
