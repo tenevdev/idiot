@@ -78,7 +78,7 @@ userSchema.statics = {
             .exec(next)
     },
     validateUpdate: function(requestBody, next) {
-        if (requestBody.hashedPassword) {
+        if (requestBody.hasOwnProperty('hashedPassword')) {
             return next(new HttpError(400, 'Cannot modify field : hashedPassword'))
         }
         return next()
