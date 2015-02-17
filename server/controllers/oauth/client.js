@@ -72,13 +72,21 @@ module.exports = {
         return next()
     },
     update: function(req, res, next) {
-        Client.findByIdAndUpdate(req.client.id, req.body, function(err, client) {
+        // Check for unwanted updates
+        // such as updating the hashed field
+        Client.validateUpdate(req.body, function(err) {
             if (err) {
-                res.status(500).json(err)
+                res.status(400).json(err)
                 return next(err)
             }
-            res.status(200).json(client)
-            return next()
+            Client.findByIdAndUpdate(req.client.id, req.body, function(err, client) {
+                if (err) {
+                    res.status(500).json(err)
+                    return next(err)
+                }
+                res.status(200).json(client)
+                return next()
+            })
         })
     },
     delete: function(req, res, next) {

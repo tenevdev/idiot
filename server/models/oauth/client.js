@@ -10,7 +10,6 @@ var clientSchema = new mongoose.Schema({
     },
     secret: {
         type: String,
-        required: true,
         select: false
     },
     owner: {
@@ -44,7 +43,11 @@ clientSchema.pre('save', function(next) {
     }
 
     // Client secret has changed or this is a new client
-    this.setCode(this.plainSecret, next)
+    // Accept both plainSecret and secret parameters
+    // coming from request body
+    // PS: secret is only accepted on POST
+    var secret = this.plainSecret || this.secret
+    this.setSecret(secret, next)
 })
 
 clientSchema.plugin(encryption, 'secret')
@@ -65,6 +68,14 @@ clientSchema.statics = {
             .populate('owner')
             .lean()
             .exec(next)
+    },
+    // Should always be called before doing findByIdAndUpdate
+    // to protect from undesired modifications
+    validateUpdate: function(requestBody, next) {
+        if (requestBody.secret) {
+            return next(new Error('Cannot modify field : secret'))
+        }
+        return next()
     }
 }
 
