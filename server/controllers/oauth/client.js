@@ -22,6 +22,8 @@ module.exports = {
     create: function(req, res, next) {
         var client = new Client(req.body)
 
+        client.owner = req.user.id
+
         client.save(function(err, client) {
             if (err) {
                 if (err.name === 'ValidationError') {
@@ -54,18 +56,16 @@ module.exports = {
             }
             if (client) {
                 req.client = client
-                return next()
+                // Authenticate a user who will be
+                // later checked against the client owner
+                passport.authenticate('basic', {
+                    session: false
+                })(req, res, next)
+            } else {
+                res.status(404).json('Client not found')
+                return next(new Error('Client not found'))
             }
-            res.status(404).json('Client not found')
-            return next(new Error('Client not found'))
         })
-
-        // Authenticate a user who will be
-        // later checked against the client owner
-        passport.authenticate('basic', {
-            session: false
-        })(req, res, next)
-
     },
     single: function(req, res, next) {
         res.status(200).json(req.client)
@@ -92,7 +92,7 @@ module.exports = {
         })
     },
     isOwnerAuthorized: function(req, res, next) {
-        if (req.user._id === req.client.owner._id) {
+        if (req.user._id.toString() == req.client.owner._id.toString()) {
             return next()
         }
         res.status(401).json()
