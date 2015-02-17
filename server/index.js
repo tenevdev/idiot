@@ -4,7 +4,8 @@ var app = require('express')(),
     mongoose = require('mongoose'),
     logger = require('morgan'),
     passport = require('passport'),
-    getConfigurationValue = require('./config').getValueForEnvironment
+    getConfigurationValue = require('./config').getValueForEnvironment,
+    errorHandler = require('./utils/errorHandler')
 
 // Connect to database
 mongoose.connection.on('error', function() {
@@ -28,19 +29,7 @@ if (env === 'development') {
 app.use(require('./routes'))
 
 // Error middleware
-app.use(function(err, req, res, next) {
-    // Handles not found errors from all routes
-    // Maybe this should be used only on API calls and views should serve a 404 page
-    if (err.status !== 404)
-        return next()
-    res.status(404).json(err)
-
-})
-
-app.use(function(err, req, res, next) {
-    // TODO: log error and request and submit a bug
-    res.status(500).json(err)
-})
+app.use(errorHandler.all)
 
 function start() {
     app.listen(app.get('port'))
