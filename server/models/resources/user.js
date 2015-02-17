@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     validation = require('../helpers/validation'),
-    encryption = require('bcrypt-schema').setEncryption
+    encryption = require('bcrypt-schema').setEncryption,
+    HttpError = require('../../utils/httpError')
 
 var userSchema = new mongoose.Schema({
     username: {
@@ -69,13 +70,18 @@ userSchema.statics = {
             .lean(isLean)
             .exec(next)
     },
-
     getPage: function(conditions, options, next) {
         this.find(conditions)
             .skip((options.page - 1) * options.perPage)
             .limit(options.perPage)
             .lean()
             .exec(next)
+    },
+    validateUpdate: function(requestBody, next) {
+        if (requestBody.hashedPassword) {
+            return next(new HttpError(400, 'Cannot modify field : hashedPassword'))
+        }
+        return next()
     }
 }
 

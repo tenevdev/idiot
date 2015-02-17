@@ -66,13 +66,19 @@ module.exports = {
         return next()
     },
     update: function(req, res, next) {
-        User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+        User.validateUpdate(req.body, function(err) {
             if (err) {
-                res.status(500).json(err)
+                res.status(err.status).json(err)
                 return next(err)
             }
-            res.status(200).json(user)
-            return next()
+            User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+                if (err) {
+                    res.status(500).json(err)
+                    return next(err)
+                }
+                res.status(200).json(user)
+                return next()
+            })
         })
     },
     delete: function(req, res, next) {
