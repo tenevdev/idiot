@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
-    bcrypt = require('bcrypt'),
-    validations = require('../validations')
+    validation = require('../helpers/validation'),
+    encryption = require('bcrypt-schema').setEncryption
 
 var userSchema = new mongoose.Schema({
     username: {
@@ -24,10 +24,10 @@ var userSchema = new mongoose.Schema({
     passwordResetExpires: Date
 })
 
-userSchema.path('username').validate(validations.uniqueFieldInsensitive('User', 'username'),
+userSchema.path('username').validate(validation.uniqueFieldInsensitive('User', 'username'),
     'A user with the same username already exists')
 
-userSchema.path('email').validate(validations.uniqueFieldInsensitive('User', 'email'),
+userSchema.path('email').validate(validation.uniqueFieldInsensitive('User', 'email'),
     'A user with the same email already exists')
 
 userSchema.virtual('fullName')
@@ -54,30 +54,11 @@ userSchema.pre('save', function(next) {
     this.setPassword(this.password, next)
 })
 
-userSchema.methods = {
-    verifyPassword: function(password, next) {
-        bcrypt.compare(password, this.hashedPassword, function(err, res) {
-            if (err)
-                return next(err)
-            return next(null, res)
-        })
-    },
-    setPassword: function(password, next) {
-        var self = this
-
-        bcrypt.genSalt(10, function(err, salt) {
-            if (err)
-                return next(err)
-            bcrypt.hash(password, salt, function(err, hashedPassword) {
-                if (err)
-                    return next(err)
-                        // Set new hash
-                self.hashedPassword = hashedPassword
-                return next()
-            })
-        })
-    }
-}
+userSchema.plugin(encryption, {
+    field: 'hashedPassword',
+    verify: 'verifyPassword',
+    set: 'setPassword'
+})
 
 userSchema.statics = {
 

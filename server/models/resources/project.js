@@ -1,6 +1,6 @@
 var mongoose = require('mongoose'),
     ObjectId = mongoose.Schema.Types.ObjectId,
-    validations = require('../validations')
+    validation = require('../helpers/validation')
 
 var projectSchema = new mongoose.Schema({
     name: {
@@ -31,7 +31,7 @@ var projectSchema = new mongoose.Schema({
     }]
 })
 
-projectSchema.path('name').validate(validations.uniqueFieldInsensitive('Project', 'name'),
+projectSchema.path('name').validate(validation.uniqueFieldInsensitive('Project', 'name'),
     'A project with this name already exists')
 
 projectSchema.methods = {}
