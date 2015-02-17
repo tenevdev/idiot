@@ -1,7 +1,8 @@
 var mongoose = require('mongoose'),
     ObjectId = mongoose.Schema.Types.ObjectId,
     validation = require('../helpers/validation'),
-    encryption = require('bcrypt-schema').setEncryption
+    encryption = require('bcrypt-schema').setEncryption,
+    HttpError = require('../../utils/httpError')
 
 var clientSchema = new mongoose.Schema({
     name: {
@@ -72,8 +73,8 @@ clientSchema.statics = {
     // Should always be called before doing findByIdAndUpdate
     // to protect from undesired modifications
     validateUpdate: function(requestBody, next) {
-        if (requestBody.secret) {
-            return next(new Error('Cannot modify field : secret'))
+        if (requestBody.hasOwnProperty('secret')) {
+            return next(new HttpError(400, 'Cannot modify field : secret'))
         }
         return next()
     }
