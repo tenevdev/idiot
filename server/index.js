@@ -1,4 +1,5 @@
-var app = require('express')(),
+var express = require('express'),
+    app = express(),
     env = app.get('env'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
@@ -18,6 +19,10 @@ mongoose.connect(getConfigurationValue('/database', env))
 // Setup express application
 app.set('port', getConfigurationValue('/app/port', env))
 
+// View engine
+app.set('view engine', 'jade');
+app.set('views', getConfigurationValue('/rootPath', env) + '/server/views');
+
 app.use(bodyParser.json())
 
 require('./controllers/passport')
@@ -27,6 +32,9 @@ if (env === 'development') {
     app.use(logger('dev'))
 }
 app.use(require('./routes'))
+
+// Static files
+app.use(express.static('./public'))
 
 // Error middleware
 app.use(errorHandler.all)

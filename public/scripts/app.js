@@ -1,58 +1,52 @@
-'use strict';
+define(['angular', 'angularRoute', 'angularResource', 'services/routeResolver'], function() {
 
-/**
- * @ngdoc overview
- * @name idiotApp
- * @description
- * # idiotApp
- *
- * Main module of the application.
- */
+    var app = angular
+        .module('idiotApp', [
+            'ngResource',
+            'ngRoute',
+            'routeResolverServices'
+        ])
 
-angular
-  .module('idiotApp', [
-    'ngResource',
-    'ngRoute'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'partials/main',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/account', {
-        templateUrl: 'views/account.html',
-        controller: 'AccountCtrl'
-      })
-      .when('/project', {
-        templateUrl: 'views/project.html',
-        controller: 'ProjectCtrl'
-      })
-      .when('/blog', {
-        templateUrl: 'views/blog.html',
-        controller: 'BlogCtrl'
-      })
-      .when('/explore', {
-        templateUrl: 'views/explore.html',
-        controller: 'ExploreCtrl'
-      })
-      .when('/help', {
-        templateUrl: 'views/help.html',
-        controller: 'HelpCtrl'
-      })
-      .when('/signin', {
-        templateUrl: 'views/signin.html',
-        controller: 'SigninCtrl'
-      })
-      .when('/features', {
-        templateUrl: 'views/features.html',
-        controller: 'FeaturesCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+    app.config(['$routeProvider', '$controllerProvider', 'routeResolverProvider',
+
+        function($routeProvider, $controllerProvider, routeResolverProvider) {
+
+            app.register = {
+                controller: $controllerProvider.register
+            }
+
+            var route = routeResolverProvider.route
+
+            $routeProvider
+                .when('/', route.resolve('basic/home'))
+                .when('/about', route.resolve('basic/about'))
+                .when('/explore', route.resolve('basic/explore'))
+                .when('/projects/', route.resolve('project/list'))
+                .when('/projects/:projectId', route.resolve('project/single'))
+                .when('/login', route.resolve('user/login'))
+                .when('/register', route.resolve('user/register'))
+                .when('/profile', route.resolve('user/profile'))
+                .otherwise({
+                    redirectTo: '/'
+                })
+        }
+    ])
+
+    // app.run(['$rootScope', '$location', 'authService',
+    //     function($rootScope, $location, authService) {
+
+    //         //Client-side security
+    //         $rootScope.$on("$routeChangeStart", function(event, next, current) {
+    //             if (next && next.$$route && next.$$route.secure) {
+    //                 if (!authService.user.isAuthenticated) {
+    //                     $rootScope.$evalAsync(function() {
+    //                         authService.redirectToLogin()
+    //                     })
+    //                 }
+    //             }
+    //         })
+    //     }
+    // ])
+
+    return app
+})
