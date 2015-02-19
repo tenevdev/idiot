@@ -31,9 +31,5 @@ node_modules
 data
 db
 
-# Public folder
-public/node_modules
-public/dist
-public/.tmp
-public/.sass-cache
-public/bower_components
+# Front-end dependencies
+bower_components
