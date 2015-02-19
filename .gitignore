@@ -30,3 +30,10 @@ node_modules
 # Local database
 data
 db
+
+# Public folder
+public/node_modules
+public/dist
+public/.tmp
+public/.sass-cache
+public/bower_components
