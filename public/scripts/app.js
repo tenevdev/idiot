@@ -1,4 +1,4 @@
-define(['angular', 'angularRoute', 'angularResource', 'services/routeResolver'], function() {
+define(['angular', 'angularRoute', 'angularResource', 'angularAria', 'angularAnimate', 'hammer', 'angularMaterial', 'services/routeResolver'], function() {
 
     var app = angular
         .module('idiotApp', [

@@ -2,7 +2,12 @@ require.config({
     paths: {
         angular: '../lib/angular/angular',
         angularRoute: '../lib/angular-route/angular-route',
-        angularResource: '../lib/angular-resource/angular-resource'
+        angularResource: '../lib/angular-resource/angular-resource',
+        angularAria: '../lib/angular-aria/angular-aria',
+        angularAnimate: '../lib/angular-animate/angular-animate',
+        hammer: '../lib/hammerjs/hammer',
+        angularMaterial: '../lib/angular-material/angular-material'
+
     }
 })
 
