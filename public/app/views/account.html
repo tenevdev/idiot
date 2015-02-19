@@ -1,0 +1,31 @@
+<div class="container">
+	
+	<div class="row">
+		<div class="col-md-3">
+		<p class="lead">Alexander</p>
+			<img src="http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png" width="200">
+		</div>
+		
+		<div class="col-md-9 ">
+			<p class="lead ">Recent projects</p>
+			<ul ng-repeat="project in users">
+				<a href="">
+					<li class="list-group-item">{{project.id}} {{project.name}}</li>
+				</a>
+			</ul>
+		</div>
+	</div>
+
+
+<!-- 
+	<img src="http://www.clker.com/cliparts/5/7/4/8/13099629981030824019profile.svg.med.png" width="200">
+
+<ul ng-repeat="user in users">
+	<li>{{user.fname}} {{user.lname}}</li>
+	<li>{{user.tel}}</li>
+</ul>
+<div class="jumbotron">
+  <h1>Jumbotron</h1>
+  <p>This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <p><a class="btn btn-primary btn-lg">Learn more</a></p>
+</div> -->

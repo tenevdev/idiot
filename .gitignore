@@ -29,3 +29,4 @@ node_modules
 
 # Local database
 data
+db
