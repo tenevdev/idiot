@@ -31,5 +31,5 @@ node_modules
 data
 db
 
-# Front-end dependencies
-bower_components
+# Build directory
+dist
