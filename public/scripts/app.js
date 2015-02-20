@@ -4,7 +4,8 @@ define(['angular', 'angularRoute', 'angularResource', 'angularAria', 'angularAni
         .module('idiotApp', [
             'ngResource',
             'ngRoute',
-            'routeResolverServices'
+            'routeResolverServices',
+            'ngMaterial'
         ])
 
     app.config(['$routeProvider', '$controllerProvider', 'routeResolverProvider',
