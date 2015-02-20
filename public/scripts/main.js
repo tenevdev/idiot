@@ -8,18 +8,26 @@ require.config({
         hammer: '../lib/hammerjs/hammer',
         angularMaterial: '../lib/angular-material/angular-material'
 
-    }
+    },
+    shim: {
+        'angular': {
+            'exports': 'angular'
+        },
+        'angularRoute': ['angular'],
+    },
+    priority: [
+        'angular'
+    ]
 })
 
-window.name = "NG_DEFER_BOOTSTRAP!";
-
-require(['app',
-        'angular'
+require(['angular',
+        'app'
     ],
-    function(app) {
+    function(angular, app) {
         var $html = angular.element(document.getElementsByTagName('html')[0])
 
         angular.element().ready(function() {
-            angular.resumeBootstrap(['idiotApp'])
+            // Manual bootstrap
+            angular.bootstrap(document, ['idiotApp'])
         })
     })

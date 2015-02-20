@@ -1,6 +1,6 @@
 define(['app'], function(app) {
-    var injectParams = ['$scope'], 
-        HomeController = function($scope, ngMaterial) {
+    var injectParams = ['$scope'],
+        HomeController = function($scope) {
             this.message = 'Hello, idiot!'
         }
 

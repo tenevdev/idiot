@@ -1,13 +1,24 @@
-define(['angular', 'angularRoute', 'angularResource', 'angularAria', 'angularAnimate', 'hammer', 'angularMaterial', 'services/routeResolver'], function() {
+define([
+    'angular',
+    'angularRoute',
+    'angularResource',
+    'angularAria',
+    'angularAnimate',
+    'hammer',
+    'angularMaterial',
+    'services/routeResolver'
+], function(angular, angularRoute, angularResource, angularAria, angularAnimate, hammer, angularMaterial, routeResolver) {
 
+    // Create main application module
     var app = angular
         .module('idiotApp', [
             'ngResource',
+            'ngMaterial',
             'ngRoute',
             'routeResolverServices',
-            'ngMaterial'
         ])
 
+    // Configure routes
     app.config(['$routeProvider', '$controllerProvider', 'routeResolverProvider',
 
         function($routeProvider, $controllerProvider, routeResolverProvider) {
