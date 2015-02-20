@@ -14,6 +14,10 @@ require.config({
             'exports': 'angular'
         },
         'angularRoute': ['angular'],
+        'angularResource': ['angular'],
+        'angularAria': ['angular'],
+        'angularAnimate': ['angular'],
+        'angularMaterial': ['angular']
     },
     priority: [
         'angular'
