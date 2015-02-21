@@ -10,23 +10,4 @@ var matchSchema = new mongoose.Schema({
     matchType: String
 })
 
-matchSchema.methods = {
-
-}
-
-matchSchema.statics = {
-
-    getById: function(matchId, options, next) {
-
-    },
-
-    getAll: function(options, next) {
-
-    },
-
-    getHubs: function(matchId, options, next) {
-
-    }
-}
-
 module.exports = mongoose.model('Match', matchSchema)
