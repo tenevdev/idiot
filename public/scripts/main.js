@@ -6,7 +6,8 @@ require.config({
         angularAria: '../lib/angular-aria/angular-aria',
         angularAnimate: '../lib/angular-animate/angular-animate',
         hammer: '../lib/hammerjs/hammer',
-        angularMaterial: '../lib/angular-material/angular-material'
+        angularMaterial: '../lib/angular-material/angular-material',
+        angularCookies: '../lib/angular-cookies/angular-cookies'
 
     },
     shim: {
@@ -17,7 +18,8 @@ require.config({
         'angularResource': ['angular'],
         'angularAria': ['angular'],
         'angularAnimate': ['angular'],
-        'angularMaterial': ['angular']
+        'angularMaterial': ['angular'],
+        'angularCookies': ['angular']
     },
     priority: [
         'angular'
