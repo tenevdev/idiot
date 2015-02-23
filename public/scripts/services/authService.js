@@ -1,5 +1,6 @@
-define(['angular'], function() {
-    var authFactory = function(Base64, $http, $cookieStore, $rootScope, $timeout) {
+define(['app'], function(app) {
+    var injectParams = ['base64', '$http', '$cookieStore', '$rootScope', '$timeout'],
+     authFactory = function(base64, $http, $cookieStore, $rootScope, $timeout) {
 
         var service = {};
  
@@ -15,7 +16,6 @@ define(['angular'], function() {
                 callback(response);
             }, 1000);
  
- 
             /* Use this for real authentication
              ----------------------------------------------*/
             //$http.post('/api/authenticate', { username: username, password: password })
@@ -26,7 +26,7 @@ define(['angular'], function() {
         };
   
         service.SetCredentials = function (username, password) {
-            var authdata = Base64.encode(username + ':' + password);
+            var authdata = base64.encode(username + ':' + password);
   
             $rootScope.globals = {
                 currentUser: {
@@ -47,5 +47,8 @@ define(['angular'], function() {
   
         return service;
     }
-    app.factory('authService', authFactory)
+
+    authFactory.$inject = injectParams;
+
+    app.factory('authenticationService', authFactory);
 })

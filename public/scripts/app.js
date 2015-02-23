@@ -21,12 +21,13 @@ define([
         ])
 
     // Configure routes
-    app.config(['$routeProvider', '$controllerProvider', 'routeResolverProvider',
+    app.config(['$routeProvider', '$controllerProvider', '$provide','routeResolverProvider',
 
-        function($routeProvider, $controllerProvider, routeResolverProvider) {
+        function($routeProvider, $controllerProvider, $provide, routeResolverProvider) {
 
             app.register = {
-                controller: $controllerProvider.register
+                controller: $controllerProvider.register,
+                factory: $provide.factory
             }
 
             var route = routeResolverProvider.route
@@ -46,21 +47,12 @@ define([
         }
     ])
 
-    // app.run(['$rootScope', '$location', 'authService',
-    //     function($rootScope, $location, authService) {
-
-    //         //Client-side security
-    //         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-    //             if (next && next.$$route && next.$$route.secure) {
-    //                 if (!authService.user.isAuthenticated) {
-    //                     $rootScope.$evalAsync(function() {
-    //                         authService.redirectToLogin()
-    //                     })
-    //                 }
-    //             }
-    //         })
-    //     }
-    // ])
+    app.run(['$rootScope', '$location', 'authenticationService',
+        function($rootScope, $location, authService) {
+            //Client-side security
+            authService.ClearCredentials();
+        }
+    ])
 
 
     // AUTH

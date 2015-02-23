@@ -27,7 +27,10 @@ require.config({
 })
 
 require(['angular',
-        'app'
+        'app',
+        'services/authService',
+        'services/base64',
+        'controllers/user/login'
     ],
     function(angular, app) {
         var $html = angular.element(document.getElementsByTagName('html')[0])

@@ -1,20 +1,22 @@
 define(['app'], function(app) {
-  var injectParams = ['$scope', '$rootScope', '$location', 'AuthenticationService'],
+  var injectParams = ['$scope', '$rootScope', '$location', 'authenticationService'],
   
     LoginController = function($scope, $rootScope, $location, AuthenticationService) {
 
       // reset login status
       AuthenticationService.ClearCredentials();
 
-      $scope.login = function() {
-        $scope.dataLoading = true;
+      this.login = function() {
+        this.dataLoading = true;
         AuthenticationService.Login($scope.username, $scope.password, function(response) {
           if (response.success) {
             AuthenticationService.SetCredentials($scope.username, $scope.password);
             $location.path('/');
+            console.log('Hello ' + $scope.username);
           } else {
-            $scope.error = response.message;
-            $scope.dataLoading = false;
+            this.error = response.message;
+            this.dataLoading = false;
+            console.log('try again');
           }
         });
       };
@@ -22,5 +24,5 @@ define(['app'], function(app) {
 
   LoginController.$inject = injectParams
 
-  app.register.controller('LoginController', LoginController)
+  app.controller('LoginController', LoginController)
 })
