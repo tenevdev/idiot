@@ -7,7 +7,7 @@ var ProjectController = require('../../controllers').Resources.ProjectController
 ProjectRouter.param('project', ProjectController.load)
 
 ProjectRouter.route('/')
-    .get(ProjectController.listByOwner)
+    .get(ProjectController.list)
     .post(ProjectController.create)
 
 ProjectRouter.route('/:project')

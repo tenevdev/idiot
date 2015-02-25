@@ -12,15 +12,6 @@ module.exports = {
             return next()
         })
     },
-    listByOwner: function(req, res, next) {
-        Project.getPage(req.query, function(err, projects) {
-            if (err) {
-                return next(err)
-            }
-            res.status(200).json(projects)
-            return next()
-        })
-    },
     create: function(req, res, next) {
         var project = new Project(req.body)
         project.owner = req.user.id
