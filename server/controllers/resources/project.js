@@ -13,17 +13,7 @@ module.exports = {
         })
     },
     listByOwner: function(req, res, next) {
-        var options = {
-                user: {
-                    id: req.query.user
-                },
-                page: req.query.page || 1,
-                perPage: req.query.perPage || 30
-            },
-            conditions = {
-                owner: req.user._id
-            }
-        Project.getPage(conditions, options, function(err, projects) {
+        Project.getPage(req.query, function(err, projects) {
             if (err) {
                 return next(err)
             }

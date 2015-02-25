@@ -48,7 +48,15 @@ function formatRequestQueryForListing(query) {
     delete query.perPage
     delete query.tags
 
-    conditions = query
+    if (query.user) {
+        conditions.owner = req.user._id
+        delete query.user
+    }
+
+    for (var prop in query) {
+        if (query.hasOwnProperty(prop))
+            conditions[prop] = query[prop]
+    }
 
     return {
         conditions: conditions,
@@ -72,31 +80,23 @@ projectSchema.statics = {
     },
 
     getPage: function(query, next) {
-
-        // Remove tags from conditions
+        // Format query
         var formatted = formatRequestQueryForListing(query),
             options = formatted.options,
             conditions = formatted.conditions,
-
-            // Condiotions and pagination
+        // Conditions and pagination
             query = this.find(conditions)
             .skip((options.page - 1) * options.perPage)
             .limit(options.perPage)
-
-        // Contained tags
-        // Should be passed in the query string as
-        // tags[]=sometag&tags[]=anothertag&...
-        if (options.tags)
-            query = query.where('tags').elemMatch(function(tag) {
-                tag.or(options.tags)
-            })
-
-        // Populate references and continue
-        query.populate('owner')
+        // Filter by tags
+            .where('tags').in(options.tags)
+        // Populate references
+            .populate('owner')
             .populate('hubs')
             .populate('bundles')
             .populate('matches')
             .populate('collaborators')
+        // Read-only
             .lean()
             .exec(next)
     }
