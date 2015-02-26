@@ -5,12 +5,12 @@ legend Login
 		.form-group
 			label(for='username') Username
 			i.fa.fa-key
-			input#username.form-control(type='text', name='username', ng-model='username', required)
+			input#username.form-control(type='text', name='username', ng-model='login.username', required)
 			span.help-block(ng-show='form.username.$dirty && form.username.$error.required') Username is required
 		.form-group
 			label(for='password') Password
 			i.fa.fa-key
-			input#password.form-control(type='password', ng-model='password', required)
+			input#password.form-control(type='password', ng-model='login.password', required)
 			span.help-block(ng-show='form.password.$dirty && form.password.$error.required') Password is required
 		.form-actions
 			input.btn.btn-primary(type="submit", value="Login", ng-disabled='form.$invalid || dataLoading')

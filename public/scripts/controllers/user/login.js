@@ -11,9 +11,9 @@ define(['app', 'services/authService'], function(app) {
 
                 var self = this
 
-                AuthenticationService.login($scope.username, $scope.password)
+                AuthenticationService.login(this.username, this.password)
                     .success(function(userProfile, status) {
-                        AuthenticationService.setCredentials($scope.username, $scope.password);
+                        AuthenticationService.setCredentials(self.username, self.password);
                         $location.path('/');
                     })
                     .error(function(error, status) {
