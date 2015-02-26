@@ -1,54 +1,42 @@
-define(['app'], function(app) {
-    var injectParams = ['base64', '$http', '$cookieStore', '$rootScope', '$timeout'],
-     authFactory = function(base64, $http, $cookieStore, $rootScope, $timeout) {
+define(['app', 'services/base64'], function(app) {
+    var injectParams = ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout'],
+        authFactory = function(Base64, $http, $cookieStore, $rootScope, $timeout) {
 
-        var service = {};
- 
-        service.Login = function (username, password, callback) {
- 
-            /* Dummy authentication for testing, uses $timeout to simulate api call
-             ----------------------------------------------*/
-            $timeout(function(){
-                var response = { success: username === 'test' && password === 'test' };
-                if(!response.success) {
-                    response.message = 'Username or password is incorrect';
-                }
-                callback(response);
-            }, 1000);
- 
-            /* Use this for real authentication
-             ----------------------------------------------*/
-            //$http.post('/api/authenticate', { username: username, password: password })
-            //    .success(function (response) {
-            //        callback(response);
-            //    });
- 
-        };
-  
-        service.SetCredentials = function (username, password) {
-            var authdata = base64.encode(username + ':' + password);
-  
-            $rootScope.globals = {
-                currentUser: {
-                    username: username,
-                    authdata: authdata
-                }
+            var service = {};
+
+            service.login = function(username, password, callback) {
+
+                return $http.put('/api/users/' + username, {}, {
+                    headers: {
+                        'Authorization': 'Basic ' + Base64.encode(username + ':' + password)
+                    }
+                });
             };
-  
-            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
-            $cookieStore.put('globals', $rootScope.globals);
-        };
-  
-        service.ClearCredentials = function () {
-            $rootScope.globals = {};
-            $cookieStore.remove('globals');
-            $http.defaults.headers.common.Authorization = 'Basic ';
-        };
-  
-        return service;
-    }
+
+            service.setCredentials = function(username, password) {
+                var authdata = Base64.encode(username + ':' + password);
+
+                $rootScope.globals = {
+                    currentUser: {
+                        username: username,
+                        authdata: authdata
+                    }
+                };
+
+                $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
+                $cookieStore.put('globals', $rootScope.globals);
+            };
+
+            service.clearCredentials = function() {
+                $rootScope.globals = {};
+                $cookieStore.remove('globals');
+                $http.defaults.headers.common.Authorization = 'Basic ';
+            };
+
+            return service;
+        }
 
     authFactory.$inject = injectParams;
 
-    app.factory('authenticationService', authFactory);
+    app.register.factory('AuthenticationService', authFactory);
 })

@@ -59,5 +59,6 @@ define(['app'], function(app) {
             }
         };
     }
-    app.factory('base64', base64);
+
+    app.register.factory('Base64', base64);
 });
