@@ -11,6 +11,7 @@ UserRouter.route('/')
 
 UserRouter.route('/:user')
     .get(UserController.single)
+    .post(UserController.login)
     .put(UserController.update)
     .delete(UserController.delete)
 

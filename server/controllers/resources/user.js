@@ -38,7 +38,12 @@ module.exports = {
         })
     },
     load: function(req, res, next, username) {
-        if (req.method === 'GET') {
+        var isLogin = false
+        if (req.route) {
+            isLogin = req.route.path === '/:user' && req.method === 'POST'
+        }
+
+        if (req.method === 'GET' || isLogin) {
             User.getByName(username, true, function(err, user) {
                 if (err) {
                     return next(err)
@@ -82,5 +87,23 @@ module.exports = {
             res.status(204).json('User deleted')
             return next()
         })
+    },
+    login: function(req, res, next) {
+        passport.authenticate('basic', function(err, user, info) {
+            if (err) {
+                return next(err)
+            }
+
+            if (!user || req.user._id.toString() !== user._id.toString()) {
+                // Wrong username or password
+                err = new HttpError(400, 'Wrong username or password')
+                res.status(400).json(err)
+                return next(err)
+            }
+
+            res.status(200).json(req.user)
+            return next()
+
+        })(req, res, next)
     }
 }
