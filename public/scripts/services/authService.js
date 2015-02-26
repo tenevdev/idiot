@@ -1,6 +1,6 @@
 define(['app', 'services/base64'], function(app) {
-    var injectParams = ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout'],
-        authFactory = function(Base64, $http, $cookieStore, $rootScope, $timeout) {
+    var injectParams = ['Base64', '$http', '$window', '$rootScope'],
+        authFactory = function(Base64, $http, $window, $rootScope) {
 
             var service = {};
 
@@ -24,12 +24,15 @@ define(['app', 'services/base64'], function(app) {
                 };
 
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata;
-                $cookieStore.put('globals', $rootScope.globals);
+
+                $window.sessionStorage.currentUser = $rootScope.globals.currentUser;
             };
 
             service.clearCredentials = function() {
                 $rootScope.globals = {};
-                $cookieStore.remove('globals');
+
+                delete $window.sessionStorage.currentUser;
+
                 $http.defaults.headers.common.Authorization = 'Basic ';
             };
 

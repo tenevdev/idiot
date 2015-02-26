@@ -1,7 +1,7 @@
 define(['app', 'services/authService'], function(app) {
-    var injectParams = ['$scope', '$rootScope', '$location', 'AuthenticationService'],
+    var injectParams = ['$location', 'AuthenticationService'],
 
-        LoginController = function($scope, $rootScope, $location, AuthenticationService) {
+        LoginController = function($location, AuthenticationService) {
 
             // reset login status
             AuthenticationService.clearCredentials();
