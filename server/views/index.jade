@@ -13,9 +13,10 @@ block main-content
                     li
                         a(href="#/about") About
                     li
-                        a(href="#/login") Login
-                    li
                         a(href="#/register") Register
+                    li
+                        a(ng-if="!globals.currentUser" href="#/login") Login
+                        a(ng-if="globals.currentUser" href="#/profile") Signed in as {{globals.currentUser.username}}
                 //- div(ng-include="'/views/user/login'")
 
     section.container
