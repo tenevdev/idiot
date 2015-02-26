@@ -6,7 +6,7 @@ define(['app', 'services/base64'], function(app) {
 
             service.login = function(username, password, callback) {
 
-                return $http.put('/api/users/' + username, {}, {
+                return $http.post('/api/users/' + username, {}, {
                     headers: {
                         'Authorization': 'Basic ' + Base64.encode(username + ':' + password)
                     }

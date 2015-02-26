@@ -9,14 +9,16 @@ define(['app', 'services/authService'], function(app) {
             this.login = function() {
                 this.dataLoading = true;
 
+                var self = this
+
                 AuthenticationService.login($scope.username, $scope.password)
                     .success(function(userProfile, status) {
                         AuthenticationService.setCredentials($scope.username, $scope.password);
                         $location.path('/');
                     })
                     .error(function(error, status) {
-                        this.error = error;
-                        this.dataLoading = false;
+                        self.error = error.message;
+                        self.dataLoading = false;
                     });
             };
         }
