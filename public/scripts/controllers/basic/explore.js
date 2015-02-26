@@ -1,7 +1,8 @@
-define(['app'], function(app) {
-    var injectParams = ['$scope'],
-        ExploreController = function($scope, ngMaterial) {
+define(['app', 'resources/project'], function(app, ProjectResource) {
+    var injectParams = ['$scope', 'ProjectResource'],
+        ExploreController = function($scope, ProjectResource) {
             this.message = 'Hello, explore!'
+            this.featuredProjects = ProjectResource.list();
         }
 
     ExploreController.$inject = injectParams

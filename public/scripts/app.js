@@ -6,8 +6,9 @@ define([
     'angularAnimate',
     'hammer',
     'angularMaterial',
-    'services/routeResolver'
-], function(angular, angularRoute, angularResource, angularAria, angularAnimate, hammer, angularMaterial, routeResolver) {
+    'services/routeResolver',
+    'angularCookies'
+], function(angular, angularRoute, angularResource, angularAria, angularAnimate, hammer, angularMaterial, routeResolver, angularCookies) {
 
     // Create main application module
     var app = angular
@@ -16,15 +17,17 @@ define([
             'ngMaterial',
             'ngRoute',
             'routeResolverServices',
+            'ngCookies'
         ])
 
     // Configure routes
-    app.config(['$routeProvider', '$controllerProvider', 'routeResolverProvider',
+    app.config(['$routeProvider', '$controllerProvider', '$provide','routeResolverProvider',
 
-        function($routeProvider, $controllerProvider, routeResolverProvider) {
+        function($routeProvider, $controllerProvider, $provide, routeResolverProvider) {
 
             app.register = {
-                controller: $controllerProvider.register
+                controller: $controllerProvider.register,
+                factory: $provide.factory
             }
 
             var route = routeResolverProvider.route
@@ -43,22 +46,6 @@ define([
                 })
         }
     ])
-
-    // app.run(['$rootScope', '$location', 'authService',
-    //     function($rootScope, $location, authService) {
-
-    //         //Client-side security
-    //         $rootScope.$on("$routeChangeStart", function(event, next, current) {
-    //             if (next && next.$$route && next.$$route.secure) {
-    //                 if (!authService.user.isAuthenticated) {
-    //                     $rootScope.$evalAsync(function() {
-    //                         authService.redirectToLogin()
-    //                     })
-    //                 }
-    //             }
-    //         })
-    //     }
-    // ])
 
     return app
 })

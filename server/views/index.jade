@@ -14,9 +14,11 @@ block main-content
                         a(href="#/about") About
                     li
                         a(href="#/login") Login
-                div(ng-include="'/views/user/login'")
+                    li
+                        a(href="#/register") Register
+                //- div(ng-include="'/views/user/login'")
 
-    section
+    section.container
         div(ng-view)
 
     footer
