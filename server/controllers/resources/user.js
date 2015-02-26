@@ -96,9 +96,7 @@ module.exports = {
 
             if (!user || req.user._id.toString() !== user._id.toString()) {
                 // Wrong username or password
-                err = new HttpError(400, 'Wrong username or password')
-                res.status(400).json(err)
-                return next(err)
+                return next(new HttpError(400, 'Wrong username or password'))
             }
 
             res.status(200).json(req.user)
