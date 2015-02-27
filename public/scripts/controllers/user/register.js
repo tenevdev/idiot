@@ -1,6 +1,6 @@
-define(['app', 'directives/uniqueUsername', 'directives/matchPassword'], function(app) {
-    var injectParams = ['$http', '$location'],
-        RegisterController = function($http, $location, AuthenticationService) {
+define(['app', 'directives/uniqueUsername', 'directives/matchPassword', 'services/authService'], function(app) {
+    var injectParams = ['$http', '$location', 'AuthenticationService', '$mdDialog'],
+        RegisterController = function($http, $location, AuthenticationService, $mdDialog) {
             this.submit = function() {
                 var self = this
 
@@ -14,6 +14,13 @@ define(['app', 'directives/uniqueUsername', 'directives/matchPassword'], functio
                     $location.path('/')
                 }).error(function(response, status) {
                     // Display error
+                    var alert = $mdDialog.alert({
+                        title: 'Something went wrong!',
+                        content: 'An error has occured while creating your account. ' + response.message,
+                        ok: 'Try again'
+                    })
+
+                    $mdDialog.show(alert)
                 })
             }
         }
