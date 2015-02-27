@@ -1,43 +1,20 @@
-legend Register
-.well(ng-controller="RegisterController as register")
-  form(name="registrationForm", method="post", ng-submit="register.submit()" novalidate)
-    .form-group
-      label(for="username") Username
-      input.form-control(type="text", name="username", id="username", placeholder="Username", unique-username, required, ng-model="register.username", autofocus)
-      i.halflings-icon.refresh.rotating(ng-show="busy")
-      span.help-block(ng-show="form.username.$dirty && form.username.$error.required") Please choose a username
-      span.help-block(ng-show="form.username.$dirty && form.username.$error.isTaken") Username already taken
-      span.help-block(ng-show="form.username.$dirty && form.username.$error.invalidChars") Username may not contain any non-url-safe characters
-    div.form-group
-      label.control-label(for="email") Email
-      input.form-control(type="email", ng-model="register.email", name="email", id="email", placeholder="Email", required)
-      span.help-block(ng-show="form.email.$dirty && form.email.$error.email") Email is invalid
-    div.form-group
-      label.control-label(for="password") Password
-      input.form-control(type="password", name="password", id="password", ng-model="register.password", required, placeholder="Password" match="verification")
-      span.help-block(ng-show="form.password.$dirty && form.password.$error.required") Please enter a password
-    div.form-group
-      label.control-label(for="verification") Repeat password
-      input.form-control(type="password", name="verification", id="verification", ng-model="register.verification", required, placeholder="Repeat password" match="password")
-      span.help-block(ng-show="form.verification.$dirty && form.verification.$error.required") Please repeat your password
-      span.help-block(ng-show="form.verification.$dirty && form.verification.$error.match && !form.verification.$error.required") Passwords don't match
-    div.alert(ng-if="register.error" id="error")
-    input.btn.btn-primary(type="submit", value="Register", ng-disabled="form.$invalid")
-
-//- legend Login
-//- .well
-//- 	.alert.alert-danger(ng-show='error') {{error}}
-//- 	form(ng-controller="LoginController as login", name='form', ng-submit='login.login()', role='form')
-//- 		.form-group
-//- 			label(for='username') Username
-//- 			i.fa.fa-key
-//- 			input#username.form-control(type='text', name='username', ng-model='username', required)
-//- 			span.help-block(ng-show='form.username.$dirty && form.username.$error.required') Username is required
-//- 		.form-group
-//- 			label(for='password') Password
-//- 			i.fa.fa-key
-//- 			input#password.form-control(type='password', ng-model='password', required)
-//- 			span.help-block(ng-show='form.password.$dirty && form.password.$error.required') Password is required
-//- 		.form-actions
-//- 			button.btn.btn-danger(type='submit', ng-disabled='form.$invalid || dataLoading') Login
-//- 			img(src="", alt="")
+div(class='registerForm' ng-controller='RegisterController as register', layout='column', layout-align='center center', layout-fill)
+  form(class='registerBox md-whiteframe-z1' layout='column' name="registrationForm", method="post", ng-submit="register.submit()")
+    md-content(class='md-padding', layout='column')
+      md-input-container
+        label(for='username') Username
+        input(type="text" name="username" id="username" unique-username ng-model="register.username" required maxlength='10' minlength='4')
+      md-input-container
+        label(for='email') Email
+        input(type="email" name="email" id="email" ng-model="register.email" required)
+      md-input-container
+        label Password
+        input(type='password', ng-model='login.password' required)
+      md-input-container
+        label Repeat password
+        input(type='password' required)
+    md-toolbar(style='background-color: transparent')
+      div(class='md-toolbar-tools', layout='row')
+        md-button(flex, class='md-raised md-primary') Register
+        div(flex)
+        md-button(flex, href='#/login', md-no-ink, class='md-primary') Login
