@@ -1,6 +1,6 @@
 define(['app'], function(app) {
     var injectParams = ['$http', '$location'],
-        RegisterController = function($http, $location) {
+        RegisterController = function($http, $location, AuthenticationService) {
             this.submit = function() {
                 var self = this
 

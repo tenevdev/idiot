@@ -1,27 +1,27 @@
 extends includes/layout
 block main-content
-    header.nav.navbar-inverse.navbar-fixed-top
-        .container
-            .navbar-header
-                a.navbar-brand(href="#/") Idiot
-            .navbar-collapse.collapse
-                ul.nav.navbar-nav
-                    li
-                        a(href="#/") Home
-                    li
-                        a(href="#/explore") Explore
-                    li
-                        a(href="#/about") About
-                    li
-                        a(href="#/register") Register
-                    li
-                        a(ng-if="!globals.currentUser" href="#/login") Login
-                        a(ng-if="globals.currentUser" href="#/profile") Signed in as {{globals.currentUser.username}}
-                //- div(ng-include="'/views/user/login'")
+    md-toolbar
+        h2.md-toolbar-tools
+            div.md-padding Idiot
+            md-tabs(md-padding md-selected='data.selectedIndex')
+                a(href='#/')
+                    md-tab Home
+                a(href='#/explore')
+                    md-tab Explore
+                a(href='#/about')
+                    md-tab About
+                a(href='#/login' ng-hide='globals.currentUser')
+                    md-tab Login
+                a(href='#/register' ng-hide='globals.currentUser')
+                    md-tab Register
 
-    section.container
+    //- ng-switch.tabpanel-container(on='data.selectedIndex')
+    //-     div#tab1-content(role='tabpanel' arial-labelledby='tab1' ng-switch-when='0' md-swipe-left='next()' md-swipe-rigth='previous()')
+
+
+    md-content
         div(ng-view)
 
-    footer
-        p.text-center
-            | &copy; Idiot 2014
+    //- footer
+    //-     p.text-center
+    //-         | &copy; Idiot 2014

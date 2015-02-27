@@ -1,17 +1,14 @@
-legend Login
-.well(ng-controller="LoginController as login")
-	.alert.alert-danger(ng-show='login.error') {{login.error}}
-	form(name='form', ng-submit='login.login()', role='form')
-		.form-group
-			label(for='username') Username
-			i.fa.fa-key
-			input#username.form-control(type='text', name='username', ng-model='login.username', required)
-			span.help-block(ng-show='form.username.$dirty && form.username.$error.required') Username is required
-		.form-group
-			label(for='password') Password
-			i.fa.fa-key
-			input#password.form-control(type='password', ng-model='login.password', required)
-			span.help-block(ng-show='form.password.$dirty && form.password.$error.required') Password is required
-		.form-actions
-			input.btn.btn-primary(type="submit", value="Login", ng-disabled='form.$invalid || dataLoading')
-			img(ng-if='login.dataLoading', src='data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==')
+div(class='loginForm' ng-controller='LoginController as login', layout='column', layout-align='center center', layout-fill)
+	form(class='loginBox md-whiteframe-z1' layout='column' name='form' ng-submit='login.login()')
+		md-content(class='md-padding', layout='column')
+			md-input-container
+				label(for='username') Username
+				input#username(name='username' ng-model='login.username' required maxlength='10' minlength='4')
+			md-input-container
+				label Password
+				input#password(type='password', ng-model='login.password', required)
+		md-toolbar(style='background-color: transparent')
+			div(class='md-toolbar-tools', layout='row')
+				md-button(flex, class='md-raised md-primary') Login
+				div(flex)
+				md-button(flex, href='', md-no-ink, class='md-primary') Forgot Password
