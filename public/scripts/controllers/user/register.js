@@ -1,4 +1,4 @@
-define(['app', 'directives/uniqueUsername'], function(app) {
+define(['app', 'directives/uniqueUsername', 'directives/matchPassword'], function(app) {
     var injectParams = ['$http', '$location'],
         RegisterController = function($http, $location, AuthenticationService) {
             this.submit = function() {
