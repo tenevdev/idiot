@@ -1,4 +1,4 @@
-define(['app'], function(app) {
+define(['app', 'directives/uniqueUsername'], function(app) {
     var injectParams = ['$http', '$location'],
         RegisterController = function($http, $location, AuthenticationService) {
             this.submit = function() {
@@ -14,9 +14,6 @@ define(['app'], function(app) {
                     $location.path('/')
                 }).error(function(response, status) {
                     // Display error
-                    var errors = response.errors,
-                    message = response.message
-                    self.error = message
                 })
             }
         }

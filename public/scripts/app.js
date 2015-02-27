@@ -7,8 +7,9 @@ define([
     'hammer',
     'angularMaterial',
     'services/routeResolver',
-    'angularCookies'
-], function(angular, angularRoute, angularResource, angularAria, angularAnimate, hammer, angularMaterial, routeResolver, angularCookies) {
+    'angularCookies',
+    'angularMessages'
+], function(angular) {
 
     // Create main application module
     var app = angular
@@ -17,16 +18,18 @@ define([
             'ngMaterial',
             'ngRoute',
             'routeResolverServices',
-            'ngCookies'
+            'ngCookies',
+            'ngMessages'
         ])
 
     // Configure routes
-    app.config(['$routeProvider', '$controllerProvider', '$provide','routeResolverProvider',
+    app.config(['$routeProvider', '$compileProvider', '$controllerProvider', '$provide','routeResolverProvider',
 
-        function($routeProvider, $controllerProvider, $provide, routeResolverProvider) {
+        function($routeProvider, $compileProvider, $controllerProvider, $provide, routeResolverProvider) {
 
             app.register = {
                 controller: $controllerProvider.register,
+                directive: $compileProvider.directive,
                 factory: $provide.factory
             }
 
