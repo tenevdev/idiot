@@ -7,7 +7,7 @@ define(['angular'], function() {
         // Enable configuration of directiories
         this.routeConfig = function() {
             var viewsDirectory = '/views/',
-                controllersDirectory = '/scripts/controllers/',
+                controllersDirectory = 'assets/scripts/controllers/',
 
                 setBaseDirectories = function(viewsDir, controllersDir) {
                     viewsDirectory = viewsDir

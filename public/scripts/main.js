@@ -29,7 +29,8 @@ require.config({
 })
 
 require(['angular',
-        'app'
+        'app',
+        'controllers/basic/tabs'
     ],
     function(angular, app) {
         var $html = angular.element(document.getElementsByTagName('html')[0])

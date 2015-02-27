@@ -23,9 +23,13 @@ define([
         ])
 
     // Configure routes
-    app.config(['$routeProvider', '$compileProvider', '$controllerProvider', '$provide','routeResolverProvider',
-
-        function($routeProvider, $compileProvider, $controllerProvider, $provide, routeResolverProvider) {
+    app.config(['$routeProvider',
+        '$locationProvider',
+        '$compileProvider',
+        '$controllerProvider',
+        '$provide',
+        'routeResolverProvider',
+        function($routeProvider, $locationProvider, $compileProvider, $controllerProvider, $provide, routeResolverProvider) {
 
             app.register = {
                 controller: $controllerProvider.register,
@@ -33,8 +37,11 @@ define([
                 factory: $provide.factory
             }
 
-            var route = routeResolverProvider.route
+            // Enable HTML5 routing
+            $locationProvider.html5Mode(true)
 
+            // Setup routes
+            var route = routeResolverProvider.route
             $routeProvider
                 .when('/', route.resolve('basic/home'))
                 .when('/about', route.resolve('basic/about'))

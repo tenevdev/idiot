@@ -31,10 +31,11 @@ app.use(passport.initialize())
 if (env === 'development') {
     app.use(logger('dev'))
 }
-app.use(require('./routes'))
 
 // Static files
-app.use(express.static('./public'))
+app.use('/assets', express.static('./public'))
+
+app.use(require('./routes'))
 
 // Error middleware
 app.use(errorHandler.all)
