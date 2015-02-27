@@ -9,3 +9,16 @@ h2.md-toolbar-tools div{
 .loginForm{
   padding-top: 40px;
 }
+.registerBox {
+  max-width:  90%;
+  width: 500px
+}
+
+.registerForm{
+  padding-top: 40px;
+}
+
+md-toolbar.md-default-theme{
+  min-height: 48px;
+  max-height: 48px;
+}
