@@ -58,9 +58,6 @@ function formatRequestQueryForListing(req, params) {
             conditions[prop] = query[prop]
     }
 
-    console.log(conditions)
-    console.log(options)
-
     return {
         conditions: conditions,
         options: options

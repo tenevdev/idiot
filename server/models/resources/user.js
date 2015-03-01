@@ -62,11 +62,11 @@ userSchema.plugin(encryption, {
 })
 
 function formatRequestQueryForListing(query) {
-    var conditions, options
-    options = {
-        page: query.page || 1,
-        perPage: query.perPage || 30
-    }
+    var conditions = {},
+        options = {
+            page: query.page || 1,
+            perPage: query.perPage || 30
+        }
 
     delete query.page
     delete query.perPage
