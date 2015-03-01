@@ -4,7 +4,7 @@ var Project = require('../../models').Resources.Project,
 
 module.exports = {
     list: function(req, res, next) {
-        Project.getPage(req.query, function(err, projects) {
+        Project.getPage(req, function(err, projects) {
             if (err) {
                 return next(err)
             }

@@ -36,21 +36,21 @@ projectSchema.path('name').validate(validation.uniqueFieldInsensitive('Project',
 
 projectSchema.methods = {}
 
-function formatRequestQueryForListing(query) {
-    var conditions, options
-    options = {
-        page: query.page || 1,
-        perPage: query.perPage || 30,
-        tags: query.tags || []
-    }
+function formatRequestQueryForListing(req, params) {
+    var query = req.query,
+        conditions = {},
+        options = {
+            page: query.page || 1,
+            perPage: query.perPage || 30,
+            tags: query.tags || []
+        }
 
     delete query.page
     delete query.perPage
     delete query.tags
 
-    if (query.user) {
+    if (req.user) {
         conditions.owner = req.user._id
-        delete query.user
     }
 
     for (var prop in query) {
@@ -79,25 +79,28 @@ projectSchema.statics = {
             .exec(next)
     },
 
-    getPage: function(query, next) {
+    getPage: function(req, next) {
         // Format query
-        var formatted = formatRequestQueryForListing(query),
+        var formatted = formatRequestQueryForListing(req),
             options = formatted.options,
             conditions = formatted.conditions,
-        // Conditions and pagination
+            // Conditions and pagination
             query = this.find(conditions)
             .skip((options.page - 1) * options.perPage)
             .limit(options.perPage)
-        // Filter by tags
-            .where('tags').in(options.tags)
+            // Filter by tags
+        if (options.tags.length > 0) {
+            query = query.where('tags').in(options.tags)
+        }
+        //.where('tags').in(options.tags)
         // Populate references
-            .populate('owner')
+        query.populate('owner')
             .populate('hubs')
             .populate('bundles')
             .populate('matches')
             .populate('collaborators')
         // Read-only
-            .lean()
+        .lean()
             .exec(next)
     }
 }

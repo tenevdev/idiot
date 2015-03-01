@@ -4,12 +4,7 @@ var User = require('../../models').Resources.User,
 
 module.exports = {
     list: function(req, res, next) {
-        var options = {
-                page: req.query.page || 1,
-                perPage: req.query.perPage || 30
-            },
-            conditions = {}
-        User.getPage(conditions, options, function(err, users) {
+        User.getPage(req.query, function(err, users) {
             if (err) {
                 return next(err)
             }
@@ -96,9 +91,7 @@ module.exports = {
 
             if (!user || req.user._id.toString() !== user._id.toString()) {
                 // Wrong username or password
-                err = new HttpError(400, 'Wrong username or password')
-                res.status(400).json(err)
-                return next(err)
+                return next(new HttpError(400, 'Wrong username or password'))
             }
 
             res.status(200).json(req.user)

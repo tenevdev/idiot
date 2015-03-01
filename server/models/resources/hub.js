@@ -31,18 +31,28 @@ hubSchema.virtual('lastDataPoint')
     })
 
 hubSchema.methods = {
-    addDataPoint: function(data, next) {
+    addDataPoint: function(requestBody, next) {
         // TODO: Respect the store strategy and check availability
+
+        console.log(requestBody)
         // Check if data is of the defined data type for this data stream
-        // Check if data contains a time stamp
-        var index = this.dataStream.dataPoints.push(new DataPoint({
-            data: data,
-            timeStamp: Date.now()
-        })) - 1
+        if(requestBody.dataType !== this.dataStream.dataType){
+            return next(new Error())
+        }
+
+        // Create new data point
+        var dataPoint = new DataPoint({
+            data: requestBody.data,
+            timeStamp: requestBody.timeStamp || Date.now()
+        })
+
+        // Add data point and store its index
+        var index = this.dataStream.dataPoints.push(dataPoint) - 1
 
         this.save(function(err, hub) {
             if (err)
                 return next(err)
+            // Return the newly created data point
             return next(null, hub.dataStream.dataPoints[index])
         })
     },
