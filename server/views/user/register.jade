@@ -10,7 +10,9 @@ div(class='registerForm' ng-controller='RegisterController as register', layout=
             div(ng-message='minlength') Your username must be between 4 and 30 characters long
       md-input-container
         label(for='email') Email
-        input(type='email' name='email' id='email' ng-model='register.email' required)
+        input(type='email' name='email' id='email' unique-email ng-model='register.email' required)
+        div(ng-messages='registrationForm.email.$error')
+            div(ng-message='unique') This email is already taken
         div(ng-messages='registrationForm.email.$error' ng-show='registrationForm.email.$dirty')
             div(ng-message='email') This is not a valid email
       md-input-container

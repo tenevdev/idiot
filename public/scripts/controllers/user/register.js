@@ -1,4 +1,9 @@
-define(['app', 'directives/uniqueUsername', 'directives/matchPassword', 'services/authService'], function(app) {
+define(['app',
+    'directives/uniqueUsername',
+    'directives/matchPassword',
+    'directives/uniqueEmail',
+    'services/authService'
+], function(app) {
     var injectParams = ['$http', '$location', 'AuthenticationService', '$mdDialog'],
         RegisterController = function($http, $location, AuthenticationService, $mdDialog) {
             this.submit = function() {

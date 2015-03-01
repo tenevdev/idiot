@@ -38,7 +38,7 @@ define(['app'], function(app) {
             }
         }
 
-    uniqueUsernameDirective.$inject = injectParams
+    uniqueEmailDirective.$inject = injectParams
 
     app.register.directive('uniqueEmail', uniqueEmailDirective)
 })

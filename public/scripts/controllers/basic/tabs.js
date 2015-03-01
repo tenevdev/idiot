@@ -11,11 +11,19 @@ define(['app'], function(app) {
             }, {
                 title: 'About',
                 href: 'about'
+            },{
+                title: 'Register',
+                href: 'register',
+                hide: 'globals.currentUser || nav.isHome()'
             }, {
                 title: 'Login',
                 href: 'login',
                 hide: 'globals.currentUser'
             }, ]
+
+            this.isHome = function(){
+                return $location.url() === '/'
+            }
 
             this.findSelectedIndex = function() {
                 // Remove leading slash from url
