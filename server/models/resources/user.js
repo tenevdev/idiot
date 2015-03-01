@@ -61,6 +61,27 @@ userSchema.plugin(encryption, {
     set: 'setPassword'
 })
 
+function formatRequestQueryForListing(query) {
+    var conditions, options
+    options = {
+        page: query.page || 1,
+        perPage: query.perPage || 30
+    }
+
+    delete query.page
+    delete query.perPage
+
+    for (var prop in query) {
+        if (query.hasOwnProperty(prop))
+            conditions[prop] = query[prop]
+    }
+
+    return {
+        conditions: conditions,
+        options: options
+    }
+}
+
 userSchema.statics = {
 
     getByName: function(name, isLean, next) {
@@ -70,7 +91,11 @@ userSchema.statics = {
             .lean(isLean)
             .exec(next)
     },
-    getPage: function(conditions, options, next) {
+    getPage: function(query, next) {
+        var formatted = formatRequestQueryForListing(query),
+            options = formatted.options,
+            conditions = formatted.conditions
+
         this.find(conditions)
             .skip((options.page - 1) * options.perPage)
             .limit(options.perPage)
