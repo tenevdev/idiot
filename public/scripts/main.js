@@ -8,20 +8,38 @@ require.config({
         hammer: '../lib/hammerjs/hammer',
         angularMaterial: '../lib/angular-material/angular-material',
         angularCookies: '../lib/angular-cookies/angular-cookies',
-        angularMessages: '../lib/angular-messages/angular-messages'
-
+        angularMessages: '../lib/angular-messages/angular-messages',
+        angularIgnite: '../lib/ignite-ui/igniteui-angular',
+        ignite: '../lib/ignite-ui/infragistics',
+        jquery: [
+            '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min',
+            '../lib/jquery/dist/jquery'
+        ],
+        jqueryUi: [
+            '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min',
+            '../lib/jquery-ui/jquery-ui'
+        ]
     },
     shim: {
         'angular': {
             'exports': 'angular'
         },
+        'jqueryUi': {
+            'exports': '$',
+            'deps': ['jquery']
+        },
+        'igniteCore': ['jqueryUi'],
+        'igniteDv': ['jqueryUi'],
+        'igniteLob': ['jqueryUi'],
         'angularRoute': ['angular'],
         'angularResource': ['angular'],
         'angularAria': ['angular'],
         'angularAnimate': ['angular'],
         'angularMaterial': ['angular'],
         'angularCookies': ['angular'],
-        'angularMessages': ['angular']
+        'angularMessages': ['angular'],
+        'angularIgnite': ['angular', 'ignite'],
+        'ignite': ['jquery', 'jqueryUi']
     },
     priority: [
         'angular'

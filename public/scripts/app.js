@@ -8,7 +8,8 @@ define([
     'angularMaterial',
     'services/routeResolver',
     'angularCookies',
-    'angularMessages'
+    'angularMessages',
+    'angularIgnite'
 ], function(angular) {
 
     // Create main application module
@@ -19,7 +20,8 @@ define([
             'ngRoute',
             'routeResolverServices',
             'ngCookies',
-            'ngMessages'
+            'ngMessages',
+            'igniteui-directives'
         ])
 
     // Configure routes
@@ -51,6 +53,7 @@ define([
                 .when('/login', route.resolve('user/login'))
                 .when('/register', route.resolve('user/register'))
                 .when('/profile', route.resolve('user/profile'))
+                .when('/sample', route.resolve('visual/sample'))
                 .otherwise({
                     redirectTo: '/'
                 })

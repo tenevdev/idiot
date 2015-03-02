@@ -1,0 +1,8 @@
+.visual(ng-controller='SampleVisualController as sample')
+    ig-data-chart(id='dataChart1' data-source='sample.dataChart')
+        axes
+            axis(name='NameAxis' type='categoryX' title='Country' label='CountryName')
+            axis(name='PopulationAxis' type='numericY' minimumvalue='0' title='Milions of People')
+        series
+            series(name='2015Population' type='column' is-highlight-enabled='true' is-transition-in-enabled='true' x-axis='NameAxis' y-axis='PopulationAxis' value-member-path='Pop2015')
+    ig-zoombar(target='#dataChart1')
