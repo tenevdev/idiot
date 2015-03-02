@@ -14,7 +14,7 @@ define(['app'], function(app) {
             },{
                 title: 'Register',
                 href: 'register',
-                hide: 'globals.currentUser || nav.isHome()'
+                hide: 'globals.currentUser'
             }, {
                 title: 'Login',
                 href: 'login',
