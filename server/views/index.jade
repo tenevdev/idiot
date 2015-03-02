@@ -1,19 +1,24 @@
 extends includes/layout
 block main-content
-    md-toolbar(ng-controller="TabsController as nav" ng-cloak)
-        h2.md-toolbar-tools
-            div.md-padding Idiot
-            md-tabs(md-padding md-selected='nav.selectedIndex')
-                a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
-                    md-tab {{tab.title}}
+    md-sidenav(class='site-sidenav md-sidenav-left md-whiteframe-z2 md-closed ng-isolate-scope md-locked-open' md-component-id='left' md-is-locked-open='$media("gt-sm")' tabindex='-1')
+        md-toolbar.md-theme-indigo
+            h1.md-toolbar-tools IDIOT
+            md-content(flex role='navigation')
+    div(flex layout='column' role='main' tabindex='-1')
+        md-toolbar(ng-controller="TabsController as nav" ng-cloak)
+            h2.md-toolbar-tools
+                div.md-padding Idiot
+                md-tabs(md-padding md-selected='nav.selectedIndex')
+                    a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
+                        md-tab {{tab.title}}
+
+        md-content()
+            div(ng-view)
 
 
     //- ng-switch.tabpanel-container(on='data.selectedIndex')
     //-     div#tab1-content(role='tabpanel' arial-labelledby='tab1' ng-switch-when='0' md-swipe-left='next()' md-swipe-rigth='previous()')
 
-
-    md-content()
-        div(ng-view)
 
     //- footer
     //-     p.text-center
