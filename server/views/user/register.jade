@@ -26,7 +26,8 @@ div(class='registerForm' ng-controller='RegisterController as register', layout=
         input(type='password' name='repeat' ng-model='register.repeat' required match-password='password')
         div(ng-messages='registrationForm.repeat.$error' ng-show='registrationForm.repeat.$dirty || registrationForm.password.$dirty')
             div(ng-message='match') The two passwords do not match
-    md-toolbar(style='background-color: transparent')
+    //- md-toolbar(style='background-color: transparent')
+    md-divider
       div(class='md-toolbar-tools', layout='row')
         md-button(flex, class='md-raised md-primary') Register
         div(flex)
