@@ -20,5 +20,41 @@ h2.md-toolbar-tools div{
 
 md-toolbar.md-default-theme{
   min-height: 48px;
+
   max-height: 48px;
+  	overflow-x: hidden;
+	overflow-y: hidden;
+}
+
+md-tabs{
+	overflow: hidden;
+}
+
+body{
+	font-family: RobotoDraft, Roboto, Helvetica Neue, sans-serif;
+	font-weight: 400;
+	line-height: 40px;
+}
+
+.app-intro {
+	font-size: 4em;
+	line-height: 60px;
+	color: rgb(197,202,233);
+	padding: 70px 0;
+	display: block;
+	text-align: center;
+	background-color: rgb(63,81,181);
+}
+
+.home-register {
+	/*margin-top: 20px;*/
+
+}
+
+md-toolbar.home-register{
+	margin-bottom: -20px;
+}
+
+h1.md-toolbar-tools.home-register{
+	text-align: center;
 }

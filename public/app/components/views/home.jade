@@ -1,4 +1,10 @@
-.container
-    .jumbotron
-        h1 Welcome to our page
-        .well(ng-include="'/partials/project-list/project-list'")
+//- .container
+//-     .jumbotron
+//-         h1 Welcome to our page
+//-         .well(ng-include="'/partials/project-list/project-list'")
+.app-intro(tabindex='-1') Interactive data in the <br> Internet of Things
+md-divider
+md-toolbar.home-register.md-accent
+	h1.md-toolbar-tools.home-register(layout layout-align='center') Register
+md-content
+	.app-reg(tabindex='-3' ng-include="'/partials/user-account/user-register/user-register'")
