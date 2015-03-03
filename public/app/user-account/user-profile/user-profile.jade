@@ -6,5 +6,7 @@
 div(ng-controller='ProfileController as user' layout='row')
 	a(href='profile')
 		md-tab {{globals.currentUser.username}}
-	md-tab My Projects
-	md-tab(ng-click='user.logout()') Log out
+	a(href='projects')
+		md-tab My Projects
+	a(href='/') 
+		md-tab(ng-click='user.logout()') Log out

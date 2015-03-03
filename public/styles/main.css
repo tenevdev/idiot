@@ -19,10 +19,9 @@ h2.md-toolbar-tools div{
 }
 
 md-toolbar.md-default-theme{
-  min-height: 48px;
-
-  max-height: 48px;
-  	overflow-x: hidden;
+	min-height: 48px;
+	max-height: 48px;
+	overflow-x: hidden;
 	overflow-y: hidden;
 }
 
@@ -43,7 +42,7 @@ body{
 	padding: 70px 0;
 	display: block;
 	text-align: center;
-	background-color: rgb(63,81,181);
+	background-color: #5C6BC0;
 }
 
 .home-register {
@@ -57,9 +56,17 @@ md-toolbar.home-register{
 
 h1.md-toolbar-tools.home-register{
 	text-align: center;
+	background-color: #5C6BC0;
 }
 
 
 md-toolbar.header{
 	z-index: 61;
+}
+
+
+md-toolbar.home-sidenav{
+	background-color: #5C6BC0;
+
+
 }
