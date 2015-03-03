@@ -26,5 +26,21 @@ define([
         }
     ])
 
+    Application.run(function($rootScope, $window, $http) {
+        var username = $window.sessionStorage.getItem('username'),
+            authdata = $window.sessionStorage.getItem('authdata')
+        if (username && authdata) {
+
+            $rootScope.globals = {
+                currentUser: {
+                    username: username,
+                    authdata: authdata
+                }
+            }
+
+            $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata
+        }
+    })
+
     return Application
 })

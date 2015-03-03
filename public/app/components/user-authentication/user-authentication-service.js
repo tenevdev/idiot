@@ -21,12 +21,14 @@ define(function() {
 
                 $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata
 
-                $window.sessionStorage.currentUser = $rootScope.globals.currentUser
+                $window.sessionStorage.setItem('username', $rootScope.globals.currentUser.username)
+                $window.sessionStorage.setItem('authdata', $rootScope.globals.currentUser.authdata)
             },
             clearCredentials = function() {
                 $rootScope.globals = {}
 
-                delete $window.sessionStorage.currentUser
+                $window.sessionStorage.removeItem('username')
+                $window.sessionStorage.removeItem('authdata')
 
                 $http.defaults.headers.common.Authorization = 'Basic '
             }
