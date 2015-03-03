@@ -1,13 +1,11 @@
 define([
     'angular',
     './project-detail-controller',
-    './hub-creation/hub-creation-controller',
-    './data-visualization/data-visualization',
+    './hub/hub'
 ], function(angular, ProjectDetailController, HubCreationController) {
-    var ProjectDetail = angular.module('ProjectDetail', ['DataVisualization'])
+    var ProjectDetail = angular.module('ProjectDetail', ['Hub'])
 
     ProjectDetail.controller('ProjectDetailController', ProjectDetailController)
-    ProjectDetail.controller('HubCreationController', HubCreationController)
 
     ProjectDetail.config([
         '$routeProvider',
