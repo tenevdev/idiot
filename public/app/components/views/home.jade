@@ -2,9 +2,35 @@
 //-     .jumbotron
 //-         h1 Welcome to our page
 //-         .well(ng-include="'/partials/project-list/project-list'")
-.app-intro(tabindex='-1') Interactive data in the <br> Internet of Things
-md-divider
-md-toolbar.home-register.md-accent
-	h1.md-toolbar-tools.home-register(layout layout-align='center') Register
-md-content
-	.app-reg(tabindex='-3' ng-include="'/partials/user-account/user-register/user-register'")
+//- .app-intro(tabindex='-1') Interactive data in the <br> Internet of Things
+//- md-divider
+//- md-toolbar.home-register.md-accent
+//- 	h1.md-toolbar-tools.home-register(layout layout-align='center') Register
+//- md-content
+//- 	.app-reg(tabindex='-3' ng-include="'/partials/user-account/user-register/user-register'")
+
+
+//- md-sidenav(layout='column' class='site-sidenav md-sidenav-left md-whiteframe-z2 md-closed ng-isolate-scope md-locked-open' md-component-id='left' md-is-locked-open='$media("gt-md")' tabindex='-3')
+//- 	md-toolbar.md-theme-indigo
+//- 		h1.md-toolbar-tools Navbar - bottom
+//- 		md-content(flex role='navigation')
+md-sidenav(layout='column' class='site-sidenav md-sidenav-left md-whiteframe-z2 md-closed ng-isolate-scope md-locked-open' md-component-id='left' md-is-locked-open='$media("gt-md")' tabindex='0')
+	md-toolbar.md-theme-indigo
+		h1.md-toolbar-tools Toolbar
+	md-content(flex role='navigation')
+		ul
+			li 1
+			li 2
+			li 3
+
+
+
+div(flex layout-fill layout='column' role='main' tabindex='0')
+	.app-intro(tabindex='-1') Interactive data in the <br> Internet of Things
+	md-divider
+	md-toolbar.home-register.md-accent
+		h1.md-toolbar-tools.home-register(layout layout-align='center') Register
+	md-content
+		.app-reg(tabindex='-3' ng-include="'/partials/user-account/user-register/user-register'")
+
+//- div(flex layout='column' tabindex='0' md-is-locked-open='$media("gt-md")')
