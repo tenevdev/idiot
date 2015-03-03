@@ -1,15 +1,17 @@
 define(['angular',
     './user-login/user-login-controller',
     './user-register/user-register-controller',
+    './user-profile/user-profile-controller',
     'angularRoute',
     'angularMessages',
     'components/user-authentication/user-authentication',
     'components/user-register/user-register'
-], function(angular, LoginController, RegisterController) {
+], function(angular, LoginController, RegisterController, ProfileController) {
     var UserAccount = angular.module('UserAccount', ['ngMessages', 'UserAuthentication', 'UserRegisterDirectives'])
 
     UserAccount.controller('LoginController', LoginController)
     UserAccount.controller('RegisterController', RegisterController)
+    UserAccount.controller('ProfileController', ProfileController)
 
     UserAccount.config([
         '$routeProvider',

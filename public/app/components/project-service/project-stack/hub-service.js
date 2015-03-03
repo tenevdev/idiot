@@ -2,8 +2,8 @@ define([], function() {
 
     var HubResource = function($resource) {
         return $resource('/api/:user/:project/hubs/:hubId', {
-            user: '@username',
-            project: '@projectName',
+            user: '@use',
+            project: '@project',
             hubId: '@hubId'
         }, {
             'update': {

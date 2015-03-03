@@ -7,8 +7,8 @@ define(['angular',
         ProjectResource = function($resource) {
 
             return $resource('/api/:user/projects/:project', {
-                user: '@username',
-                project: '@projectName'
+                user: '@user',
+                project: '@project'
             }, {
                 'update': {
                     method: 'PUT'
