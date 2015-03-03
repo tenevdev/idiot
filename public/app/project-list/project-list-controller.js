@@ -1,6 +1,6 @@
 define(function() {
     var ProjectsListController = function(ProjectResource) {
-        this.projects = ProjectResource.list();
+        this.projects = ProjectResource.list()
     }
 
     ProjectsListController.$inject = ['ProjectResource']

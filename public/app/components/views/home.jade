@@ -1,6 +1,4 @@
 .container
     .jumbotron
         h1 Welcome to our page
-        .well(ng-controller='ProjectListController as projectCtrl')
-            div(ng-repeat="project in projectCtrl.projects")
-                a(href="#/projects/{{project.owner.username}}/{{project.name}}") {{project.name}}
+        .well(ng-include="'/partials/project-list/project-list'")

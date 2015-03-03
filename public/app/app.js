@@ -28,6 +28,7 @@ define([
             $routeProvider
             .when('/', {
                 controller: 'ProjectListController',
+                controllerAs: 'projectCtrl',
                 templateUrl: '/views/home'
             })
         }
