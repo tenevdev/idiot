@@ -21,7 +21,7 @@ app.set('port', getConfigurationValue('/app/port', env))
 
 // View engine
 app.set('view engine', 'jade');
-app.set('views', getConfigurationValue('/rootPath', env) + '/server/views');
+app.set('views', getConfigurationValue('/rootPath', env) + '/public/app');
 
 app.use(bodyParser.json())
 

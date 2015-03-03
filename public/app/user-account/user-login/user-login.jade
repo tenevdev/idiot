@@ -1,0 +1,18 @@
+div(class='loginForm' ng-controller='LoginController as login', layout='column', layout-align='center center', layout-fill)
+	form(class='loginBox md-whiteframe-z1' layout='column' name='form' ng-submit='login.login()')
+		md-content(class='md-padding', layout='column')
+			md-input-container
+				label(for='username') Username
+				input#username(name='username' ng-model='login.username' required maxlength='10' minlength='4')
+			md-input-container
+				label Password
+				input#password(type='password', ng-model='login.password', required)
+		//- md-toolbar(style='background-color: transparent')
+		md-divider
+			div(class='md-toolbar-tools', layout='row')
+				md-button(flex, class='md-raised md-primary') Login
+		md-divider
+			div(class='md-toolbar-tools', layout='row')
+				div(flex) Don't have an account?
+				md-button(flex href='register' md-no-ink class='md-primary') Register
+		md-divider
