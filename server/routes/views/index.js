@@ -2,8 +2,8 @@ var ViewsRouter = require('express').Router({
     mergeParams: true
 })
 
-ViewsRouter.get('/views/:area/:view', function(req, res, next) {
-    res.render(req.params.area + '/' + req.params.view)
+ViewsRouter.get('/views/:view', function(req, res, next) {
+    res.render('components/views/' + req.params.view)
 })
 
 ViewsRouter.get('/partials/*', function(req, res, next){

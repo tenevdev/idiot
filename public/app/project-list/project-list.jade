@@ -1,0 +1,3 @@
+div(ng-controller='ProjectListController as projectCtrl')
+    (ng-repeat="project in projectCtrl.projects")
+        a(href="#/projects/{{project.owner.username}}/{{project.name}}") {{project.name}}
