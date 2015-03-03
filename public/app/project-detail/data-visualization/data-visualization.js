@@ -5,7 +5,7 @@ define([
     'ignite',
     'angularIgnite'
 ], function(angular, DataChartController) {
-    var DataVisualization = angular.module('DataVisualization', ['ProjectStackService'])
+    var DataVisualization = angular.module('DataVisualization', ['ProjectStackService', 'igniteui-directives'])
 
     DataVisualization.controller('DataChartController', DataChartController)
 

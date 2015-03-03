@@ -7,11 +7,12 @@ define([
     'angularAnimate',
     'angularMaterial',
     './user-account/user-account',
-    './project-list/project-list'
+    './project-list/project-list',
+    './project-detail/project-detail'
 ], function(angular, TabsController, ProjectListController) {
 
     // Create main application module
-    var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectList'])
+    var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectList', 'ProjectDetail'])
 
     Application.controller('TabsController', TabsController)
 

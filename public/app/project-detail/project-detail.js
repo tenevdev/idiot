@@ -15,7 +15,10 @@ define([
             $routeProvider
                 .when('/projects/:user/:project', {
                     controller: 'ProjectDetailController',
-                    templateUrl: '/partials/project-detail/project-detail'
+                    templateUrl: '/partials/project-detail/project-detail',
+                    resolve: {
+
+                    }
                 })
         }
     ])

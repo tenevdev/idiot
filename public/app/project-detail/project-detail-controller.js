@@ -1,5 +1,5 @@
 define(function() {
-    var ProjectDetailController = function($routeParams, ProjectResource) {
+    var ProjectDetailController = function($rootScope, $routeParams, ProjectResource) {
         var self = this
 
         ProjectResource.get({
@@ -16,7 +16,7 @@ define(function() {
 
     }
 
-    ProjectDetailController.$inject = ['$routeParams', 'ProjectResource']
+    ProjectDetailController.$inject = ['$rootScope', '$routeParams', 'ProjectResource']
 
     return ProjectDetailController
 })
