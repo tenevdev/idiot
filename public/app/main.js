@@ -23,7 +23,8 @@ require.config({
     },
     shim: {
         'angular': {
-            'exports': 'angular'
+            'exports': 'angular',
+            'deps': ['jqueryUi']
         },
         'jqueryUi': {
             'exports': '$',

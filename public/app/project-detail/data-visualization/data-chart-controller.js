@@ -1,7 +1,13 @@
 define(function() {
-    var DataChartController(HubResource) {
+    var DataChartController = function(HubResource) {
         // Replace with real data from hub service
-        this.dataChart = [{
+        this.dataChart = HubResource.listDataPoints({
+            user: 'admin',
+            project: 'adminProject',
+            hubId: '54f239b1801d90881e9d15be',
+        })
+
+        this.dataChartSample = [{
             'CountryName': 'China',
             'Pop1995': 1216,
             'Pop2005': 1297,
