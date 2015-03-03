@@ -7,6 +7,7 @@ define([
     var ProjectDetail = angular.module('ProjectDetail', ['DataVisualization'])
 
     ProjectDetail.controller('ProjectDetailController', ProjectDetailController)
+    ProjectDetail.controller('HubCreationController', HubCreationController)
 
     ProjectDetail.config([
         '$routeProvider',
