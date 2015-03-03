@@ -3,3 +3,38 @@
 
 // Will add unique-project-directive once this form is ready
 // Will add ngMessages
+
+div(class='registerForm' ng-controller='RegisterController as register', layout='column', layout-align='center center', layout-fill)
+  form(class='registerBox md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='register.submit()')
+    md-content(class='md-padding', layout='column')
+      md-input-container
+        label(for='username') Username
+        input(type='text' name='username' id='username' unique-username ng-model='register.username' required maxlength='30' minlength='4')
+        div(ng-messages='registrationForm.username.$error')
+            div(ng-message='unique') This username is already taken
+        div(ng-messages='registrationForm.username.$error' ng-show='registrationForm.username.$dirty')
+            div(ng-message='minlength') Your username must be between 4 and 30 characters long
+      md-input-container
+        label(for='email') Email
+        input(type='email' name='email' id='email' unique-email ng-model='register.email' required)
+        div(ng-messages='registrationForm.email.$error')
+            div(ng-message='unique') This email is already taken
+        div(ng-messages='registrationForm.email.$error' ng-show='registrationForm.email.$dirty')
+            div(ng-message='email') This is not a valid email
+      md-input-container
+        label Password
+        input(type='password' name='password' ng-model='register.password' ng-pattern=/^\w+$/ required match-password='repeat' maxlength='30' minlength='6')
+        div(ng-messages='registrationForm.password.$error' ng-show='registrationForm.password.$dirty')
+            div(ng-message='minlength') Your password must be between 6 and 30 characters long
+            div(ng-message='pattern') Your password must contain digits and latin letters only
+      md-input-container
+        label Repeat password
+        input(type='password' name='repeat' ng-model='register.repeat' required match-password='password')
+        div(ng-messages='registrationForm.repeat.$error' ng-show='registrationForm.repeat.$dirty || registrationForm.password.$dirty')
+            div(ng-message='match') The two passwords do not match
+    //- md-toolbar(style='background-color: transparent')
+    md-divider
+      div(class='md-toolbar-tools', layout='row')
+        md-button(flex, class='md-raised md-primary') Register
+        div(flex)
+        md-button(flex, href='login', md-no-ink, class='md-primary') Login

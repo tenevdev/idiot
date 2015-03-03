@@ -15,7 +15,11 @@ define(['app'], function(app) {
                 title: 'Login',
                 href: 'login',
                 hide: 'globals.currentUser'
-            }, ]
+            },{
+                title: 'Projects',
+                href: 'projects',
+                hide: '!globals.currentUser'
+            },]
 
             this.isHome = function(){
                 return $location.url() === '/'

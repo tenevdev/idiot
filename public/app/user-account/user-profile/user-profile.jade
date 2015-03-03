@@ -2,3 +2,9 @@
 // Should include project-creation.jade and show it when a button is clicked to add a new project
 // Should include a link to projects by this user
 // Should include an action to logout
+
+div(ng-controller='ProfileController as user' layout='row')
+	a(href='profile')
+		md-tab {{globals.currentUser.username}}
+	md-tab My Projects
+	md-tab(ng-click='user.logout()') Log out

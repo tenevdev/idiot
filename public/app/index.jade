@@ -6,7 +6,11 @@ block main-content
                 div Idiot
                 md-tabs(md-padding md-selected='nav.selectedIndex')
                     a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
-                        md-tab {{tab.title}}
+                        md-tab(flex) {{tab.title}}
+                    div( flex align='right' layout='row' ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+                    
+
+    //- div(ng-hide='!globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
 
     md-content
         div(ng-view layout='row')

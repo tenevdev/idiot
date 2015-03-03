@@ -14,7 +14,7 @@ define(function() {
                 title: 'Login',
                 href: 'login',
                 hide: 'globals.currentUser'
-            }, ]
+            } ]
 
             this.isHome = function(){
                 return $location.url() === '/'
