@@ -7,7 +7,7 @@ define(function() {
             })
 
             newProject.$save({
-                username: $rootScope.globals.currentUser.username
+                user: $rootScope.globals.currentUser.username
             }, function success(project, headers) {
                 $location.path('/projects/' + $rootScope.globals.currentUser.username + '/' + project.name)
             }, function error(response) {
