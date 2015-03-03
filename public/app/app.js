@@ -7,14 +7,13 @@ define([
     'angularAnimate',
     'angularMaterial',
     './user-account/user-account',
-    'components/project-service/project-service'
+    './project-list/project-list'
 ], function(angular, TabsController, ProjectListController) {
 
     // Create main application module
-    var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectService'])
+    var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectList'])
 
     Application.controller('TabsController', TabsController)
-    Application.controller('ProjectListController', ProjectListController)
 
     // Configure routes
     Application.config([
@@ -24,13 +23,6 @@ define([
 
             // Enable HTML5 routing
             $locationProvider.html5Mode(true)
-
-            $routeProvider
-            .when('/', {
-                controller: 'ProjectListController',
-                controllerAs: 'projectCtrl',
-                templateUrl: '/views/home'
-            })
         }
     ])
 
