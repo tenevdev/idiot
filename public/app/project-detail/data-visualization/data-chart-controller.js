@@ -1,5 +1,5 @@
 define(function() {
-    var DataChartController(HubService) {
+    var DataChartController(HubResource) {
         // Replace with real data from hub service
         this.dataChart = [{
             'CountryName': 'China',
@@ -34,7 +34,7 @@ define(function() {
         }]
     }
 
-    DataChartController.$inject = ['HubService']
+    DataChartController.$inject = ['HubResource']
 
     return DataChartController
 })

@@ -4,7 +4,7 @@ define(['angular',
 ], function(angular, HubService) {
     var ProjectStackService = angular.module('ProjectStackService', ['ngResource'])
 
-    ProjectStackService.factory('HubService', HubService)
+    ProjectStackService.factory('HubResource', HubService)
 
     return ProjectStackService
 })
