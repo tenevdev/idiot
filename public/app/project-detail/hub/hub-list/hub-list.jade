@@ -3,8 +3,8 @@
 
 .container(ng-controller='HubListController as hubsCtrl')
 	div(ng-repeat='hub in hubsCtrl.hubs')
-		md-button {{hub.name}}
-		.container(ng-controller='HubDetailController as hubCtrl')
+		md-button(ng-click='hubsCtrl.selectedHub = hub._id') {{hub.name}}
+		.container(ng-show='hubsCtrl.selectedHub == hub._id' ng-controller='HubDetailController as hubCtrl')
 			p(ng-model='hubCtrl.hubId' ng-init='hub._id')
 			div(ng-include="'/partials/project-detail/data-visualization/data-chart'")
 	div(ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
