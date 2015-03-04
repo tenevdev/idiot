@@ -1,4 +1,11 @@
-.well(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")
 
-div(ng-repeat="project in projectCtrl.projects")
-    a(href="projects/{{project.owner.username}}/{{project.name}}") {{project.name}}
+//- .well(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")
+
+//- div(ng-repeat="project in projectCtrl.projects")
+//- 	md-button.md-primary(ng-href="projects/{{project.owner.username}}/{{project.name}}") {{project.name}}
+
+md-toolbar
+	h1.md-toolbar-tools Most popular
+md-content(ng-repeat="project in projectCtrl.projects")
+	md-button.md-primary(layout='column' ng-href="projects/{{project.owner.username}}/{{project.name}}") {{project.name}}
+	md-divider

@@ -5,7 +5,6 @@ define([
     'angularAria',
     'angularAnimate',
     'angularMaterial',
-    'ngMdIcons',
     './user-account/user-account',
     './project-list/project-list',
     './project-detail/project-detail',

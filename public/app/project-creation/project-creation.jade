@@ -4,8 +4,9 @@
 // Will add unique-project-directive once this form is ready
 // Will add ngMessages
 
-
-div(class='registerForm' ng-controller='ProjectCreationController as create', layout='column', layout-align='center center', layout-fill)
+md-toolbar
+  h1.md-toolbar-tools Create project
+md-content(class='registerForm' ng-controller='ProjectCreationController as create', layout='column', layout-align='center center', layout-fill)
   form(class='registerBox md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='create.submit()')
     md-content(class='md-padding', layout='column')
       md-input-container

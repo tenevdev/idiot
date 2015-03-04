@@ -31,11 +31,11 @@
 div(flex layout-fill layout='column' role='main' tabindex='0')
 	.app-intro(layout='row' tabindex='-1') Interactive data in the <br> Internet of Things <br>
 		.buttons(ng-show='!globals.currentUser' layout='row' tabindex='-1')
-			md-button.md-raised.md-primary(flex layout-align='center' ng-href='register') Register
-			md-button.md-raised.md-primary(flex layout-align='center' ng-href='explore') Explore
+			md-button.md-normal.md-raised.md-primary(flex layout-align='center' ng-href='register') Register
+			md-button.md-normal.md-raised.md-primary(flex layout-align='center' ng-href='explore') Explore
 
 
-	md-divider(ng-show='!globals.currentUser')
+	md-divider
 
 		div.features(layout='row')
 
