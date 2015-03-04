@@ -70,3 +70,28 @@ md-toolbar.home-sidenav{
 
 
 }
+
+a:hover{
+	text-decoration: none;
+}
+
+a.md-raised.md-primary.md-button.md-default-theme{
+	margin: 40px 10% 0 10%;
+}
+
+a.md-raised.md-primary.md-button.md-default-theme span {
+	font-size: 40px;
+}
+
+
+i.glyphicon {
+	margin-right: 15px;
+}
+
+md-card > md-content > p {
+	padding: 15px;
+}
+
+div.features {
+	margin: 0 2%;
+}

@@ -1,5 +1,7 @@
 div(class='loginForm' ng-controller='LoginController as login', layout='column', layout-align='center center', layout-fill)
 	form(class='loginBox md-whiteframe-z1' layout='column' name='form' ng-submit='login.login()')
+		md-toolbar
+			h1.md-toolbar-tools Login
 		md-content(class='md-padding', layout='column')
 			md-input-container
 				label(for='username') Username

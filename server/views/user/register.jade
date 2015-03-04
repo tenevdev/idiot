@@ -1,4 +1,6 @@
 div(class='registerForm' ng-controller='RegisterController as register', layout='column', layout-align='center center', layout-fill)
+  md-toolbar
+    h1.md-toolbar-tools Register
   form(class='registerBox md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='register.submit()')
     md-content(class='md-padding', layout='column')
       md-input-container

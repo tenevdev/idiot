@@ -29,11 +29,69 @@
 
 
 div(flex layout-fill layout='column' role='main' tabindex='0')
-	.app-intro(tabindex='-1') Interactive data in the <br> Internet of Things
-	md-divider(ng-show='!globals.currentUser')
-		md-toolbar.home-register.md-accent
-			h1.md-toolbar-tools.home-register(layout layout-align='center') Register
-		md-content
-			.app-reg(tabindex='-3' ng-include="'/partials/user-account/user-register/user-register'")
+	.app-intro(layout='row' tabindex='-1') Interactive data in the <br> Internet of Things <br>
+		.buttons(ng-show='!globals.currentUser' layout='row' tabindex='-1')
+			md-button.md-raised.md-primary(flex layout-align='center' ng-href='register') Register
+			md-button.md-raised.md-primary(flex layout-align='center' ng-href='explore') Explore
 
-//- div(flex layout='column' tabindex='0' md-is-locked-open='$media("gt-md")')
+
+	md-divider(ng-show='!globals.currentUser')
+
+		div.features(layout='row')
+
+			md-card(flex layout='column')
+				md-toolbar(flex)
+					h2.md-toolbar-tools
+						i.glyphicon.glyphicon-pencil
+						span Create
+				md-content(layout='row')
+					p Create your own projects, hubs and bundles inside IDIOT.
+
+			md-card(flex layout='column')
+				md-toolbar(flex)
+					h2.md-toolbar-tools
+						i.glyphicon.glyphicon-resize-full
+						span Expand
+				md-content(layout='row')
+					p Expand your projects to feature as many hubs and bundles as you like.
+
+			md-card(flex layout='column')
+				md-toolbar(flex)
+					h2.md-toolbar-tools
+						i.glyphicon.glyphicon-cloud
+						span Open Save
+				md-content(layout='row')
+					p Save all your projects on the cloud to access them anytime.
+
+		div.features(layout='row')
+
+			md-card(flex layout='column')
+				md-toolbar(flex)
+					h2.md-toolbar-tools
+						i.glyphicon.glyphicon-picture
+						span Visualize
+				md-content(layout='row')
+					p Visualize your hubs using dozens of premade themes.
+
+			md-card(flex layout='column')
+				md-toolbar(flex)
+					h2.md-toolbar-tools
+						i.glyphicon.glyphicon-search
+						span Explore
+				md-content(layout='row')
+					p Explore other people's projects to inspire youself.
+
+			md-card(flex layout='column')
+				md-toolbar(flex)
+					h2.md-toolbar-tools
+						i.glyphicon.glyphicon-open
+						span Open Source
+				md-content(layout='row')
+					p Open Source projects.
+						a(href="https://github.com/tenevdev/idiot") See the code in GitHub.
+			
+
+		//- md-toolbar.home-register.md-accent
+		//- 	h1.md-toolbar-tools.home-register(layout layout-align='center') Register
+		//- md-content
+		//- 	.app-reg(tabindex='-3' ng-include="'/partials/user-account/user-register/user-register'")
