@@ -1,2 +1,4 @@
+.well(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")
+
 div(ng-repeat="project in projectCtrl.projects")
-    a(href="#/projects/{{project.owner.username}}/{{project.name}}") {{project.name}}
+    a(href="projects/{{project.owner.username}}/{{project.name}}") {{project.name}}

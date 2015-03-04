@@ -1,2 +1,11 @@
 // Partial used in project-detail
 // Should list hubs by a given project with action to load hub-detail partial of selected hub
+
+.container(ng-controller='HubListController as hubsCtrl')
+	div(ng-repeat='hub in hubsCtrl.hubs')
+		md-button {{hub.name}}
+		.container(ng-controller='HubDetailController as hubCtrl')
+			p(ng-model='hubCtrl.hubId' ng-init='hub._id')
+			div(ng-include="'/partials/project-detail/data-visualization/data-chart'")
+	div(ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
+

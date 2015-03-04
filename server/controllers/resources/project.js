@@ -13,6 +13,7 @@ module.exports = {
         })
     },
     create: function(req, res, next) {
+        console.log(req.body)
         var project = new Project(req.body)
         project.owner = req.user.id
 

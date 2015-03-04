@@ -8,8 +8,8 @@ define(['angular',
     var Hub = angular.module('Hub', ['ProjectStackService', 'DataVisualization'])
 
     Hub.controller('HubCreationController', HubCreationController)
-    Hub.controller('HubDetailController', HubDetailController)
     Hub.controller('HubListController', HubListController)
+    Hub.controller('HubDetailController', HubDetailController)
 
     return Hub
 })

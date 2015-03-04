@@ -1,18 +1,18 @@
 define([
     'angular',
     './tabs/tabs-controller',
-    './project-list/project-list-controller',
     'angularRoute',
     'angularAria',
     'angularAnimate',
     'angularMaterial',
     './user-account/user-account',
     './project-list/project-list',
-    './project-detail/project-detail'
-], function(angular, TabsController, ProjectListController) {
+    './project-detail/project-detail',
+    './project-creation/project-creation'
+], function(angular, TabsController) {
 
     // Create main application module
-    var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectList', 'ProjectDetail'])
+    var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectList', 'ProjectDetail', 'ProjectCreation'])
 
     Application.controller('TabsController', TabsController)
 

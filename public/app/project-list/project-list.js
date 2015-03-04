@@ -2,12 +2,14 @@ define([
     'angular',
     './project-list-controller',
     './project-featured-controller',
+    './projects-user-controller',
     'components/project-service/project-service'
-], function(angular, ProjectListController, ProjectFeaturedController) {
+], function(angular, ProjectListController, ProjectFeaturedController, ProjectsUserController) {
     var ProjectList = angular.module('ProjectList', ['ProjectService'])
 
     ProjectList.controller('ProjectListController', ProjectListController)
     ProjectList.controller('ProjectFeaturedController', ProjectFeaturedController)
+    ProjectList.controller('ProjectsUserController', ProjectsUserController)
 
     // Configure routes
     ProjectList.config([
@@ -28,6 +30,11 @@ define([
                     controller: 'ProjectFeaturedController',
                     controllerAs: 'projectCtrl',
                     templateUrl: '/views/explore'
+                })
+                .when('/projects/:user', {
+                    controller:  'ProjectsUserController',
+                    controllerAs: 'projectCtrl',
+                    templateUrl: '/views/user-projects'
                 })
         }
     ])
