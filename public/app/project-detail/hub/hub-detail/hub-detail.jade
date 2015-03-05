@@ -1,6 +1,6 @@
 // Partial used in project-detail
 // Should include data-visualization partial
 
-.container(ng-controller='HubDetailController as hubCtrl')
+md-card(ng-controller='HubDetailController as hubCtrl')
 	p(ng-model='hubCtrl.hubId' ng-value='globals.selectedHub')
 	div(ng-include="'/partials/project-detail/data-visualization/data-chart'")

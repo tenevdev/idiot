@@ -7,9 +7,6 @@ define(function() {
             title: 'Explore',
             href: 'explore'
         }, {
-            title: 'About',
-            href: 'about'
-        }, {
             title: 'Login',
             href: 'login',
             hide: 'globals.currentUser'

@@ -8,9 +8,6 @@ define(['app'], function(app) {
             }, {
                 title: 'Explore',
                 href: 'explore'
-            }, {
-                title: 'About',
-                href: 'about'
             },{
                 title: 'Login',
                 href: 'login',

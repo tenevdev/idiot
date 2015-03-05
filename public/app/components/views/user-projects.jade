@@ -1,4 +1,2 @@
-.container
-    .jumbotron
-        h1 Explore some interesting projects
-        .well(ng-include="'/partials/project-list/project-list'")
+div(layout-align='center' layout='row')
+	div(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")

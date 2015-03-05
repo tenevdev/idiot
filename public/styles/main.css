@@ -99,3 +99,7 @@ div.features {
 a.md-normal {
 	font-size: 22px;
 }
+
+.user-control{
+	float: right;
+}

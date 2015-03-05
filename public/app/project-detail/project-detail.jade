@@ -4,6 +4,6 @@
 // Should include partial views hub-list -> hub-detail (hub-name, data-chart),
 // When user is owner should show add hub button and show hub-creation partial view
 
-.container(ng-controller='ProjectDetailController as projectCtrl')
+md-content(ng-controller='ProjectDetailController as projectCtrl')
 	h1 {{projectCtrl.name}}
 	div(ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
