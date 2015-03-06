@@ -1,46 +1,24 @@
 define(function() {
-    var DataChartController = function(HubResource) {
-        // Replace with real data from hub service
-        this.dataChart = HubResource.listDataPoints({
-            user: 'admin',
-            project: 'adminProject',
-            hubId: '54f239b1801d90881e9d15be',
-        })
+    var DataChartController = function($rootScope, $q, HubResource) {
+        var self = this
+        this.isLoaded = false
 
-        this.dataChartSample = [{
-            'CountryName': 'China',
-            'Pop1995': 1216,
-            'Pop2005': 1297,
-            'Pop2015': 1361,
-            'Pop2025': 1394
-        }, {
-            'CountryName': 'India',
-            'Pop1995': 920,
-            'Pop2005': 1090,
-            'Pop2015': 1251,
-            'Pop2025': 1396
-        }, {
-            'CountryName': 'United States',
-            'Pop1995': 266,
-            'Pop2005': 295,
-            'Pop2015': 322,
-            'Pop2025': 351
-        }, {
-            'CountryName': 'Indonesia',
-            'Pop1995': 197,
-            'Pop2005': 229,
-            'Pop2015': 256,
-            'Pop2025': 277
-        }, {
-            'CountryName': 'Brazil',
-            'Pop1995': 161,
-            'Pop2005': 186,
-            'Pop2015': 204,
-            'Pop2025': 218
-        }]
+        // Fake promise to get around ig data source
+        this.dataChart = HubResource.listDataPoints()
+
+        // Load data on selection change
+        $rootScope.$on('HubIdSelection', function(e, hubId) {
+                self.dataChart = HubResource.listDataPoints({
+                    user: 'admin',
+                    project: 'adminProject',
+                    hubId: hubId,
+                }, function success(dataPoints, headers) {
+                    self.isLoaded = true
+                })
+            })
     }
 
-    DataChartController.$inject = ['HubResource']
+    DataChartController.$inject = ['$rootScope', '$q', 'HubResource']
 
     return DataChartController
 })

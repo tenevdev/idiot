@@ -1,6 +1,6 @@
 .well
-    .visual(ng-controller='DataChartController as data')
-        ig-data-chart(id='dataChart1' data-source='data.dataChart')
+    .visual(ng-controller='DataChartController as data' ng-show='data.isLoaded')
+        ig-data-chart(id='dataChart1' data-source='data.dataChart' data-source-type='json')
             axes
                 axis(name='NameAxis' type='categoryX' title='Country' label='timeStamp')
                 axis(name='PopulationAxis' type='numericY' minimumvalue='0' title='Milions of People')

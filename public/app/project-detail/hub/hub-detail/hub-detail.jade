@@ -2,5 +2,5 @@
 // Should include data-visualization partial
 
 md-card(ng-controller='HubDetailController as hubCtrl')
-	p(ng-model='hubCtrl.hubId' ng-value='globals.selectedHub')
-	div(ng-include="'/partials/project-detail/data-visualization/data-chart'")
+	h1 {{hubCtrl.hub.name}}
+	div(ng-show='hubCtrl.isLoaded' ng-include="'/partials/project-detail/data-visualization/data-chart'")
