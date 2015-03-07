@@ -1,5 +1,5 @@
 define(function() {
-    var HubCreationController = function($rootScope, $routeParams, HubResource) {
+    var HubCreationController = function($rootScope, $routeParams, $route, HubResource) {
         this.shouldHide = false
 
         this.submit = function() {
@@ -18,13 +18,15 @@ define(function() {
             }, function success(hub, headers) {
                 // Use to hide view after hub is created
                 this.shouldHide = true
+                // Reload page to display new hub
+                $route.reload()
             }, function error(response) {
                 // Show dialog
             })
         }
     }
 
-    HubCreationController.$inject = ['$rootScope', '$routeParams', 'HubResource']
+    HubCreationController.$inject = ['$rootScope', '$routeParams', '$route', 'HubResource']
 
     return HubCreationController
 })
