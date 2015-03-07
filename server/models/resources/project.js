@@ -41,7 +41,7 @@ projectSchema.path('name').validate(validation.uniqueFieldInsensitive('Project',
 
 projectSchema.methods = {}
 
-function formatRequestQueryForListing(req, params) {
+function formatRequestQueryForListing(req) {
     var query = req.query,
         conditions = {},
         options = {
@@ -54,10 +54,20 @@ function formatRequestQueryForListing(req, params) {
     delete query.perPage
     delete query.tags
 
+    if (query.q) {
+        // Search query
+        conditions.$text = {
+            $search: query.q
+        }
+        delete query.q
+    }
+
+    // The authenticated user is the owner by default
     if (req.user) {
         conditions.owner = req.user._id
     }
 
+    // Set other conditions
     for (var prop in query) {
         if (query.hasOwnProperty(prop))
             conditions[prop] = query[prop]
