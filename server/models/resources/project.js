@@ -31,6 +31,11 @@ var projectSchema = new mongoose.Schema({
     }]
 })
 
+projectSchema.index({
+    name: 'text',
+    tags: 'text'
+})
+
 projectSchema.path('name').validate(validation.uniqueFieldInsensitive('Project', 'name'),
     'A project with this name already exists')
 
