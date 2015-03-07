@@ -8,14 +8,14 @@ define(function() {
 
         // Load data on selection change
         $rootScope.$on('HubIdSelection', function(e, hubId) {
-                self.dataChart = HubResource.listDataPoints({
-                    user: 'admin',
-                    project: 'adminProject',
-                    hubId: hubId,
-                }, function success(dataPoints, headers) {
-                    self.isLoaded = true
-                })
+            self.dataChart = HubResource.listDataPoints({
+                user: 'admin',
+                project: 'adminProject',
+                hubId: hubId,
+            }, function success(dataPoints, headers) {
+                self.isLoaded = true
             })
+        })
     }
 
     DataChartController.$inject = ['$rootScope', '$q', 'HubResource']
