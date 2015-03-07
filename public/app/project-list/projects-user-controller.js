@@ -1,6 +1,6 @@
 define(function() {
     var ProjectsUserController = function($routeParams, ProjectResource) {
-        this.projects = ProjectResource.get({
+        this.projects = ProjectResource.query({
             user: $routeParams.user
         })
     }
