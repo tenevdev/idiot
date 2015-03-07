@@ -1,2 +1,3 @@
-div(layout-align='center' layout='row')
-	div(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")
+div(layout-align='center' layout='column')
+	md-card(ng-include="'/partials/project-list/project-list'")
+	md-card(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")
