@@ -9,7 +9,10 @@ define(function() {
             self.project = project
             // This property should be used to show partial views for edditing
             // such as hub-creation
-            self.isOwner = $rootScope.globals.currentUser.username === project.owner.username
+            if ($rootScope.globals) {
+                self.isOwner = $rootScope.globals.currentUser.username === project.owner.username
+            }
+            self.isOwner = false
         }, function error(response) {
             // Handle error - maybe redirect to not found view
         })

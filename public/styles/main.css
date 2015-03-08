@@ -104,3 +104,18 @@ a.md-normal {
 	width: 300px;
     margin-right: 100px;
 }
+
+.state-circle {
+    border-radius: 50%;
+    width: 10px;
+    height: 10px;
+    margin-right: 10px;
+}
+
+.hub-active {
+    background-color: green
+}
+
+.hub-suspended {
+    background-color: yellow
+}

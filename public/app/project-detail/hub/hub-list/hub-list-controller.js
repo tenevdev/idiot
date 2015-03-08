@@ -2,7 +2,7 @@ define(function() {
     var HubListController = function($routeParams, HubResource, HubSelectionService) {
         var self = this
 
-        this.isHubSelected = false
+        this.selectedHub = {}
 
         this.hubs = HubResource.query({
             user: $routeParams.user,
@@ -10,13 +10,13 @@ define(function() {
         }, function success(hubs, headers) {
             if (hubs.length > 0) {
                 // Select the first hub
-                self.select(hubs[0]._id)
+                self.select(hubs[0])
             }
         })
 
-        this.select = function(hubId) {
-            HubSelectionService.select(hubId)
-            this.isHubSelected = true
+        this.select = function(hub) {
+            HubSelectionService.select(hub)
+            this.selectedHub = hub
         }
 
     }

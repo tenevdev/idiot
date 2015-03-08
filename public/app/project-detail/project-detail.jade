@@ -5,5 +5,5 @@
 // When user is owner should show add hub button and show hub-creation partial view
 
 md-content(ng-controller='ProjectDetailController as projectCtrl')
-	h1 {{projectCtrl.name}}
+	h1 {{projectCtrl.project.name}}
 	div(ng-include="'/partials/project-detail/hub/hub-list/hub-list'")

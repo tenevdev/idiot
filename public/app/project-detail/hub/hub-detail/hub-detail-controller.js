@@ -1,19 +1,13 @@
 define(function() {
-    var HubDetailController = function($scope, $rootScope, $routeParams, HubResource) {
+    var HubDetailController = function($rootScope, $routeParams, HubResource, HubSelectionService) {
         var self = this
 
-        this.isLoaded = false
-
-        $rootScope.$on('HubIdSelection', function(e, hubId) {
-            self.hub = HubResource.get({
-                user: $routeParams.user,
-                project: $routeParams.project,
-                hubId: hubId
-            }, function success(hub, headers){
-                self.isLoaded = true
-            })
+        $rootScope.$on('HubSelection', function(e, hub) {
+            self.hub = hub
         })
     }
-    HubDetailController.$inject = ['$scope', '$rootScope', '$routeParams', 'HubResource']
+
+    HubDetailController.$inject = ['$rootScope', '$routeParams', 'HubResource', 'HubSelectionService']
+
     return HubDetailController
 })
