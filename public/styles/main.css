@@ -101,5 +101,6 @@ a.md-normal {
 }
 
 .user-control{
-	float: right;
+	width: 300px;
+    margin-right: 100px;
 }
