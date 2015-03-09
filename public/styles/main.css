@@ -132,3 +132,7 @@ a.md-normal {
 .chart {
     margin-top: 40px;
 }
+
+h4 {
+	font-weight: 400;
+}
