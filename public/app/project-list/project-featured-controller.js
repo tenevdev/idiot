@@ -2,7 +2,7 @@ define(function() {
     var ProjectsFeaturedController = function(ProjectResource) {
         this.projects = ProjectResource.list({
             // Add feature tags here
-            'tags[]': []
+            'tags[]': ['noit', 'explore']
         })
     }
 
