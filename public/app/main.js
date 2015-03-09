@@ -19,6 +19,7 @@ require.config({
             '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min',
             '../lib/jquery-ui/jquery-ui'
         ],
+        modernizr: '../lib/modernizr/modernizr',
         components: './components'
     },
     shim: {
@@ -48,10 +49,11 @@ require.config({
     ]
 })
 
-require(['angular',
+require(['modernizr',
+        'angular',
         'app'
     ],
-    function(angular, app) {
+    function(modernizr, angular, app) {
         var $html = angular.element(document.getElementsByTagName('html')[0])
 
         angular.element().ready(function() {
