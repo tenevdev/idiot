@@ -20,7 +20,7 @@ h2.md-toolbar-tools div{
 
 md-toolbar.md-default-theme{
 	min-height: 48px;
-	max-height: 48px;
+	max-height: 256px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
@@ -118,4 +118,8 @@ a.md-normal {
 
 .hub-suspended {
     background-color: yellow
+}
+
+.chart {
+    margin-top: 40px;
 }

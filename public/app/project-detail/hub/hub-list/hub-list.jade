@@ -1,8 +1,11 @@
 // Partial used in project-detail
 // Should list hubs by a given project with action to load hub-detail partial of selected hub
 
-md-list(ng-controller='HubListController as hubsCtrl')
-    md-item(ng-repeat='hub in hubsCtrl.hubs')
-        md-item-content(ng-include="'/partials/project-detail/hub/hub-detail/hub-detail'")
-        md-divider(ng-if='!$last')
-div(ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
+md-content
+    md-toolbar
+        h2.md-toolbar-tools
+            span Hubs
+    md-list(ng-controller='HubListController as hubsCtrl')
+        md-item(ng-repeat='hub in hubsCtrl.hubs')
+            md-item-content(ng-include="'/partials/project-detail/hub/hub-detail/hub-detail'")
+            md-divider(ng-if='!$last')

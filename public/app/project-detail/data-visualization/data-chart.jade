@@ -1,4 +1,4 @@
-div(ng-controller='DataChartController as data')
+.chart(ng-controller='DataChartController as data')
     ig-data-chart(ng-show='data.isLoaded' id='dataChart1' data-source='data.dataChart' data-source-type='json')
         axes
             axis(name='TimeAxis' type='categoryX' title='Time' label='timeStamp')
