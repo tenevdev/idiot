@@ -18,6 +18,11 @@ h2.md-toolbar-tools div{
   padding-top: 40px;
 }
 
+.projectCreate{
+	min-width: 400px;
+	height: 350px;
+}
+
 md-toolbar.md-default-theme{
 	min-height: 48px;
 	max-height: 256px;
