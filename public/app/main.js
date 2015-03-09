@@ -1,4 +1,5 @@
 require.config({
+    waitSeconds: 20,
     paths: {
         angular: '../lib/angular/angular',
         angularRoute: '../lib/angular-route/angular-route',
