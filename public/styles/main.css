@@ -1,3 +1,7 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+
 h2.md-toolbar-tools div{
   padding-right: 20px;
 }
@@ -25,7 +29,7 @@ h2.md-toolbar-tools div{
 
 md-toolbar.md-default-theme{
 	min-height: 48px;
-	max-height: 256px;
+	max-height: 48px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
