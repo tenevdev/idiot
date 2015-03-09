@@ -1,3 +1,10 @@
-div(layout-align='center' layout='column')
+layout='column')
 	md-card(ng-include="'/partials/project-list/project-list'")
 	md-card(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")
+=======
+md-content(flex layout-fill ng-controller='ProjectsUserController as userProjects')
+    md-toolbar
+        h2.md-toolbar-tools
+            span Recent projects by {{userProjects.username}}
+    div(ng-include="'/partials/project-list/project-list'")
+div(ng-show='globals.currentUser' ng-include="'/partials/project-creation/project-creation'")

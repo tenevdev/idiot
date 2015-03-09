@@ -1,14 +1,14 @@
 require.config({
+    waitSeconds: 20,
     paths: {
-        angular: '../lib/angular/angular',
-        angularRoute: '../lib/angular-route/angular-route',
-        angularResource: '../lib/angular-resource/angular-resource',
-        angularAria: '../lib/angular-aria/angular-aria',
-        angularAnimate: '../lib/angular-animate/angular-animate',
-        hammer: '../lib/hammerjs/hammer',
-        angularMaterial: '../lib/angular-material/angular-material',
-        angularCookies: '../lib/angular-cookies/angular-cookies',
-        angularMessages: '../lib/angular-messages/angular-messages',
+        angular: '../lib/angular/angular.min',
+        angularRoute: '../lib/angular-route/angular-route.min',
+        angularResource: '../lib/angular-resource/angular-resource.min',
+        angularAria: '../lib/angular-aria/angular-aria.min',
+        angularAnimate: '../lib/angular-animate/angular-animate.min',
+        angularMaterial: '../lib/angular-material/angular-material.min',
+        angularCookies: '../lib/angular-cookies/angular-cookies.min',
+        angularMessages: '../lib/angular-messages/angular-messages.min',
         angularIgnite: '../lib/ignite-ui/igniteui-angular',
         ignite: '../lib/ignite-ui/infragistics',
         jquery: [
@@ -19,6 +19,7 @@ require.config({
             '//ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min',
             '../lib/jquery-ui/jquery-ui'
         ],
+        modernizr: '../lib/modernizr/modernizr',
         components: './components'
     },
     shim: {
@@ -48,10 +49,11 @@ require.config({
     ]
 })
 
-require(['angular',
+require(['modernizr',
+        'angular',
         'app'
     ],
-    function(angular, app) {
+    function(modernizr, angular, app) {
         var $html = angular.element(document.getElementsByTagName('html')[0])
 
         angular.element().ready(function() {

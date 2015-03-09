@@ -1,6 +1,15 @@
 // Partial used in project-detail
 // Should include data-visualization partial
 
-md-card(ng-controller='HubDetailController as hubCtrl')
-	h1 {{hubCtrl.hub.name}}
-	div(ng-show='hubCtrl.isLoaded' ng-include="'/partials/project-detail/data-visualization/data-chart'")
+.md-tile-left
+    // Image icon
+.md-tile-content.md-padding
+    h2
+        md-button(ng-click='hubsCtrl.select(hub)' layout='row' layout-align='start center')
+            .state-circle(ng-class='\'hub-\' + hub.state')
+            | {{hub.name}}
+    h2 This hub accepts {{hub.dataStream.dataType}} data type
+    h3
+        a ID : {{hub._id}}
+            md-tooltip Copy for use in SDK
+    div(ng-show='hub._id == hubsCtrl.selectedHub._id' ng-include="'/partials/project-detail/data-visualization/data-chart'")
