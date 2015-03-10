@@ -2,8 +2,8 @@
 // Should include name, state(one of 'active', 'stopped', 'suspended'), dataType(Number...)
 md-toolbar
   h1.md-toolbar-tools Create hub
-md-content(class='registerForm' ng-controller='HubCreationController as hub', layout='column', layout-align='center center', layout-fill)
-  form(class='registerBox md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
+md-content(class='hubCreate' ng-controller='HubCreationController as hub', layout='column', layout-align='center center', layout-fill)
+  form(class='hubCreate md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
     md-content(class='md-padding', layout='column')
       md-input-container
         label(for='projectName') Name
