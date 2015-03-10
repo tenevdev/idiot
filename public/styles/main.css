@@ -5,6 +5,7 @@
 h2.md-toolbar-tools div{
   padding-right: 20px;
 }
+
 .loginBox {
   max-width:  90%;
   width: 500px
@@ -23,6 +24,10 @@ h2.md-toolbar-tools div{
 }
 
 .projectCreate{
+	min-width: 400px;
+	height: 350px;
+}
+.hubCreate{
 	min-width: 400px;
 	height: 350px;
 }

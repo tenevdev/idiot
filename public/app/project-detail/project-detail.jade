@@ -4,10 +4,26 @@
 // Should include partial views hub-list -> hub-detail (hub-name, data-chart),
 // When user is owner should show add hub button and show hub-creation partial view
 
-md-content(flex layout='column' ng-controller='ProjectDetailController as projectCtrl')
-    md-toolbar.md-accent
-        .md-toolbar-tools
-            h1 {{projectCtrl.project.name}}
-    div(layout='row')
-        div(flex ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
-        div(ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
+md-card(flex layout='column' layout-fill ng-controller='ProjectDetailController as projectCtrl')
+	md-toolbar.md-accent
+		h2.md-toolbar-tools
+			span {{projectCtrl.project.name}}
+
+	section(layout='row')
+		md-button.md-raised.md-primary(ng-click='show=true' ng-show='!show') Create hub
+	section(layout='row' layout-md='column' layout-sm='column')
+		md-content(layout='column' ng-show='show' ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
+		md-content(layout='column' flex layout-fill)
+			div(flex ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
+
+
+//- md-card(layout='column' layout-fill)
+//- 	section(layout='row')
+//- 		md-button.md-raised.md-primary(ng-click='show=true' ng-show='!show') Create project
+//- 	section(layout='row' layout-md='column' layout-sm='column')
+//- 		md-content(layout='column' ng-show='globals.currentUser && show' ng-include="'/partials/project-creation/project-creation'")
+//- 		md-content(layout='column' flex layout-fill ng-controller='ProjectsUserController as userProjects')
+//- 			md-toolbar
+//- 				h2.md-toolbar-tools
+//- 					span Recent projects by {{userProjects.username}}
+//- 			div(ng-include="'/partials/project-list/project-list'")
