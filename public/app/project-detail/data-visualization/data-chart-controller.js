@@ -1,5 +1,5 @@
 define(function() {
-    var DataChartController = function($rootScope, $q, HubResource, HubSelectionService) {
+    var DataChartController = function($rootScope, $routeParams, HubResource, HubSelectionService) {
         var self = this
         this.isLoaded = false
 
@@ -9,8 +9,8 @@ define(function() {
         // Load data on selection change
         $rootScope.$on('HubSelection', function(e, hub) {
             self.dataChart = HubResource.listDataPoints({
-                user: 'admin',
-                project: 'adminProject',
+                user: $routeParams.user,
+                project: $routeParams.project,
                 hubId: hub._id,
             }, function success(dataPoints, headers) {
                 self.isLoaded = true
@@ -18,7 +18,7 @@ define(function() {
         })
     }
 
-    DataChartController.$inject = ['$rootScope', '$q', 'HubResource', 'HubSelectionService']
+    DataChartController.$inject = ['$rootScope', '$routeParams', 'HubResource', 'HubSelectionService']
 
     return DataChartController
 })
