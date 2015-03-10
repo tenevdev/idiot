@@ -1,6 +1,11 @@
+[ng\:cloak], [ng-cloak], .ng-cloak {
+    display: none;
+}
+
 h2.md-toolbar-tools div{
   padding-right: 20px;
 }
+
 .loginBox {
   max-width:  90%;
   width: 500px
@@ -18,9 +23,18 @@ h2.md-toolbar-tools div{
   padding-top: 40px;
 }
 
+.projectCreate{
+	min-width: 400px;
+	height: 350px;
+}
+.hubCreate{
+	min-width: 500px;
+	height: 450px;
+}
+
 md-toolbar.md-default-theme{
 	min-height: 48px;
-	max-height: 256px;
+	max-height: 48px;
 	overflow-x: hidden;
 	overflow-y: hidden;
 }
@@ -122,4 +136,8 @@ a.md-normal {
 
 .chart {
     margin-top: 40px;
+}
+
+h4 {
+	font-weight: 400;
 }

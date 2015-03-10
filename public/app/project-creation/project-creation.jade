@@ -6,8 +6,8 @@
 
 md-toolbar
   h1.md-toolbar-tools Create project
-md-content(class='registerForm' ng-controller='ProjectCreationController as create' layout-fill)
-  form(class='registerBox md-whiteframe-z1' name='registrationForm' method='post' ng-submit='create.submit()')
+md-content(class='projectCreate' ng-controller='ProjectCreationController as create' layout-fill layout-align='center start')
+  form(class='projectCreate md-whiteframe-z1' name='registrationForm' method='post' ng-submit='create.submit()')
     md-content.md-padding(layout='column')
       md-input-container
         label(for='projectName') Name
@@ -17,3 +17,4 @@ md-content(class='registerForm' ng-controller='ProjectCreationController as crea
         input(type='tags' name='tags' id='tags' ng-model='create.tags' required)
       .md-toolbar-tools
         md-button.md-raised.md-primary(flex) Create
+    md-divider

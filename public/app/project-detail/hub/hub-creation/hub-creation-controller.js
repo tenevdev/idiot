@@ -24,6 +24,9 @@ define(function() {
                 // Show dialog
             })
         }
+
+        // this.state=['active', 'inactive']
+        // this.type=['Number', 'String']
     }
 
     HubCreationController.$inject = ['$rootScope', '$routeParams', '$route', 'HubResource']

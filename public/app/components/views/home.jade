@@ -1,13 +1,13 @@
 div(flex layout-fill layout='column' role='main' tabindex='0')
 	.app-intro(layout='row' tabindex='-1') Interactive data in the <br> Internet of Things <br>
-		.buttons(ng-show='!globals.currentUser' layout='row' tabindex='-1')
+		.buttons(ng-show='!globals.currentUser' layout='row' layout-md='column' layout-sm='column' tabindex='-1')
 			md-button.md-normal.md-raised.md-primary(flex layout-align='center' ng-href='register') Register
 			md-button.md-normal.md-raised.md-primary(flex layout-align='center' ng-href='explore') Explore
 
 
 	md-divider
 
-		div.features(layout='row')
+		div.features(layout='row' layout-md='column' layout-sm='column')
 
 			md-card(flex layout='column')
 				md-toolbar(flex)
@@ -33,7 +33,7 @@ div(flex layout-fill layout='column' role='main' tabindex='0')
 				md-content(layout='row')
 					p Save all your projects on the cloud to access them anytime.
 
-		div.features(layout='row')
+		div.features(layout='row' layout-md='column' layout-sm='column')
 
 			md-card(flex layout='column')
 				md-toolbar(flex)
