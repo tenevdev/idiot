@@ -1,6 +1,18 @@
+//- md-card(layout='column' layout-fill)
+//- 	section(layout='row')
+//- 		md-button.md-raised.md-primary(ng-click='show=true' ng-show='!show') Create project
+//- 	section(layout='row' layout-md='column' layout-sm='column')
+//- 		md-content(layout='column' ng-show='globals.currentUser && show' ng-include="'/partials/project-creation/project-creation'")
+//- 		md-content(layout='column' flex layout-fill ng-controller='ProjectsUserController as userProjects')
+//- 			md-toolbar
+//- 				h2.md-toolbar-tools
+//- 					span Recent projects by {{userProjects.username}}
+//- 			div(ng-include="'/partials/project-list/project-list'")
 md-card(layout='column' layout-fill)
 	section(layout='row')
-		md-button.md-raised.md-primary(ng-click='show=true' ng-show='!show') Create project
+		md-button.md-fab.md-fab-top-right.right(ng-click='show=true' ng-show='!show') +
+			md-icon(md-svg-src='https://material.angularjs.org/img/icons/ic_insert_drive_file_24px.svg' style='width: 24px; height: 24px;')
+			md-tooltip Create project
 	section(layout='row' layout-md='column' layout-sm='column')
 		md-content(layout='column' ng-show='globals.currentUser && show' ng-include="'/partials/project-creation/project-creation'")
 		md-content(layout='column' flex layout-fill ng-controller='ProjectsUserController as userProjects')

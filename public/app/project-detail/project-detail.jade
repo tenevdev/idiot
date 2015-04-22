@@ -10,7 +10,10 @@ md-card(flex layout='column' layout-fill ng-controller='ProjectDetailController 
 			span {{projectCtrl.project.name}}
 
 	section(layout='row')
-		md-button.md-raised.md-primary(ng-click='show=true' ng-show='!show') Create hub
+		md-button.md-fab.md-fab-top-right.right(ng-click='show=true' ng-show='!show') Create hub
+			md-icon(md-svg-src='https://material.angularjs.org/img/icons/ic_insert_drive_file_24px.svg' style='width: 24px; height: 24px;')
+			md-tooltip Create hub
+
 	section(layout='row' layout-md='column' layout-sm='column')
 		md-content(layout='column' ng-show='show' ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
 		md-content(layout='column' flex layout-fill)
