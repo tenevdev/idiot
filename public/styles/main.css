@@ -141,3 +141,7 @@ a.md-normal {
 h4 {
 	font-weight: 400;
 }
+
+button.md-button.md-default-theme.md-fab span{
+	font-size: 20px;
+}
