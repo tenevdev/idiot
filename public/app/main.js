@@ -1,5 +1,5 @@
 require.config({
-    waitSeconds: 60
+    waitSeconds: 60,
     paths: {
         angular: '../lib/angular/angular.min',
         angularRoute: '../lib/angular-route/angular-route.min',
