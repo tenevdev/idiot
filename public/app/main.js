@@ -10,7 +10,7 @@ require.config({
         angularCookies: '../lib/angular-cookies/angular-cookies.min',
         angularMessages: '../lib/angular-messages/angular-messages.min',
         angularIgnite: '../lib/ignite-ui/igniteui-angular',
-        ignite: '../lib/ignite-ui/ig.min'
+        ignite: '../lib/ignite-ui/ig.min',
         jquery: [
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min',
             '../lib/jquery/dist/jquery'
