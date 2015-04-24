@@ -8,16 +8,14 @@ md-card(flex layout='column' layout-fill ng-controller='ProjectDetailController 
 	md-toolbar.md-accent
 		h2.md-toolbar-tools
 			span {{projectCtrl.project.name}}
-
-	section(layout='row')
-	md-button.md-fab.md-fab-top-right.right(ng-click='show=true' ng-show='!show') +
-		md-icon(style='width: 24px; height: 24px;')
-		md-tooltip Create hub
-
 	section(layout='row' layout-md='column' layout-sm='column')
 		md-content(layout='column' ng-show='show' ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
 		md-content(layout='column' flex layout-fill)
 			div(flex ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
+			md-button.md-fab.md-fab-top-right.right(ng-click='show=true' ng-show='!show') +
+				md-icon(style='width: 24px; height: 24px;')
+				md-tooltip Create hub
+
 
 
 //- md-card(layout='column' layout-fill)

@@ -1,4 +1,4 @@
-// Should be a form which can be used as a partial view on user profile
+// partial view on user profile
 // fields are name - String and tags - Array (see how array is parsed correctly in the controller)
 
 md-toolbar
@@ -9,7 +9,7 @@ md-content(class='projectCreate' ng-controller='ProjectCreationController as cre
       md-input-container
         label(for='projectName') Name
         input(type='text' name='projectName' id='projectName' ng-model='create.name' required maxlength='30' minlength='4')
-      md-input`-container
+      md-input-container
         label(for='tags') Tag
         input(type='tags' name='tags' id='tags' ng-model='create.tags' required)
       .md-toolbar-tools
