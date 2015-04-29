@@ -38,7 +38,9 @@ app.use('/assets', express.static('./public'))
 app.use(require('./routes'))
 
 // Error middleware
-app.use(errorHandler.all)
+if (env !== 'test') {
+    app.use(errorHandler.all)
+}
 
 function start() {
     app.listen(app.get('port'))

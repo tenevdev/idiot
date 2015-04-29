@@ -13,7 +13,6 @@ module.exports = {
         })
     },
     create: function(req, res, next) {
-        console.log(req.body)
         var project = new Project(req.body)
         project.owner = req.user.id
 
@@ -48,7 +47,7 @@ module.exports = {
         return next()
     },
     update: function(req, res, next) {
-        Project.findByIdAndUpdate(req.project.id, req.body, function(err, project) {
+        Project.findByIdAndUpdate(req.project.id, req.body, {new: true}, function(err, project) {
             if (err) {
                 return next(err)
             }

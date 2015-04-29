@@ -65,7 +65,7 @@ module.exports = {
             if (err) {
                 return next(err)
             }
-            User.findByIdAndUpdate(req.user.id, req.body, function(err, user) {
+            User.findByIdAndUpdate(req.user.id, req.body, {new: true}, function(err, user) {
                 if (err) {
                     return next(err)
                 }

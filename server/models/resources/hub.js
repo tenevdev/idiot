@@ -34,7 +34,6 @@ hubSchema.methods = {
     addDataPoint: function(requestBody, next) {
         // TODO: Respect the store strategy and check availability
 
-        console.log(requestBody)
         // Check if data is of the defined data type for this data stream
         if(requestBody.dataType !== this.dataStream.dataType){
             return next(new Error())

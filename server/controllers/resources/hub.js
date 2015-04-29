@@ -78,7 +78,7 @@ module.exports = {
         return next()
     },
     update: function(req, res, next) {
-        Hub.findByIdAndUpdate(req.hub.id, req.body, function(err, hub) {
+        Hub.findByIdAndUpdate(req.hub.id, req.body, {new: true}, function(err, hub) {
             if (err) {
                 return next(err)
             }
