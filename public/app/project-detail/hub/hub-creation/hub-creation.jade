@@ -1,26 +1,29 @@
 // Partial used in project-detail
 // Should include name, state(one of 'active', 'stopped', 'suspended'), dataType(Number...)
 md-toolbar
-  h1.md-toolbar-tools Create hub
+	h1.md-toolbar-tools Create hub
 md-content(class='hubCreate' ng-controller='HubCreationController as hub', layout='column', layout-align='center center', layout-fill)
-  form(class='hubCreate md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
-    md-content(class='md-padding', layout='column')
-      md-input-container
-        label(for='projectName') Name
-        input(type='text' name='projectName' id='projectName' ng-model='hub.name' required maxlength='30' minlength='4')
-      md-input-container
-        label(for='state') State
-        input(type='state' name='state' id='state' ng-model='hub.state' required)
-      md-input-container
-        label(for='type') Data type
-        input(type='type' name='type' id='type' ng-model='hub.dataType' required)
-    md-divider
-      div(class='md-toolbar-tools', layout='row')
-        md-button(flex, class='md-raised md-primary') Create
-    md-divider
+	form(class='hubCreate md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
+		md-content(class='md-padding', layout='column')
+			md-input-container
+				label(for='projectName') Name
+				input(type='text' name='projectName' id='projectName' ng-model='hub.name' required maxlength='30' minlength='4')
+			//- md-input-container
+				//- label(for='state') State
+				//- input(type='state' name='state' id='state' ng-model='hub.state' required)
+			//- md-select
+			//- 	md-option One
+			//- 	md-option Two
+			md-input-container
+				label(for='type') Data type
+				input(type='type' name='type' id='type' ng-model='hub.dataType' required)
+		md-divider
+			div(class='md-toolbar-tools', layout='row')
+				md-button(flex, class='md-raised md-primary') Create
+		md-divider
 
-        //- md-select
-        //-   md-select-label State
-        //-     md-option(value="1") One
-        //-     md-option(value="2") Two
-        //- md-option(ng-value='state' ng-repeat='state in hub.state') {{hub.state}}
+				//- md-select
+				//-   md-select-label State
+				//-     md-option(value="1") One
+				//-     md-option(value="2") Two
+				//- md-option(ng-value='state' ng-repeat='state in hub.state') {{hub.state}}

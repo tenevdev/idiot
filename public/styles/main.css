@@ -2,9 +2,9 @@
     display: none;
 }
 
-h2.md-toolbar-tools div{
+/*h2.md-toolbar-tools div{
   padding-right: 20px;
-}
+}*/
 
 .loginBox {
   max-width:  90%;
@@ -14,6 +14,7 @@ h2.md-toolbar-tools div{
 .loginForm{
   padding-top: 40px;
 }
+
 .registerBox {
   max-width:  90%;
   width: 500px
@@ -23,10 +24,10 @@ h2.md-toolbar-tools div{
   padding-top: 40px;
 }
 
-.projectCreate{
+/*.projectCreate{
 	min-width: 400px;
 	height: 350px;
-}
+}*/
 .hubCreate{
 	min-width: 500px;
 	height: 450px;
@@ -42,13 +43,13 @@ md-toolbar.md-default-theme{
 md-tabs{
 	overflow: hidden;
 }
-
+/*
 body{
 
 	font-family: RobotoDraft, Roboto, Helvetica Neue, sans-serif;
 	font-weight: 400;
 	line-height: 40px;
-}
+}*/
 
 .app-intro {
 	font-size: 4em;
@@ -66,8 +67,8 @@ md-toolbar.home-register{
 
 h1.md-toolbar-tools.home-register{
 	text-align: center;
-/*	background-color: #5C6BC0;
-*/}
+	background-color: #5C6BC0;
+}
 
 
 md-toolbar.header{
@@ -91,11 +92,6 @@ a:hover{
 a.md-raised.md-primary.md-button.md-default-theme{
 	margin: 40px 10% 0 10%;
 }
-
-a.md-raised.md-primary.md-button.md-default-theme span {
-
-}
-
 
 i.glyphicon {
 	margin-right: 15px;
