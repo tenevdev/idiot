@@ -11,5 +11,6 @@ define(['angular',
     Hub.controller('HubListController', HubListController)
     Hub.controller('HubDetailController', HubDetailController)
 
+
     return Hub
 })

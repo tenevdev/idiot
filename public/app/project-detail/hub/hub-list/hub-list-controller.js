@@ -1,5 +1,5 @@
 define(function() {
-    var HubListController = function($routeParams, HubResource, HubSelectionService) {
+    var HubListController = function($scope, $routeParams, HubResource) {
         var self = this
 
         this.selectedHub = {}
@@ -8,20 +8,18 @@ define(function() {
             user: $routeParams.user,
             project: $routeParams.project
         }, function success(hubs, headers) {
-            if (hubs.length > 0) {
-                // Select the first hub
-                self.select(hubs[0])
-            }
         })
 
         this.select = function(hub) {
-            HubSelectionService.select(hub)
-            this.selectedHub = hub
+            if (hub != this.selectedHub) {
+                this.selectedHub = hub
+                $scope.$broadcast('HubSelectionChange', this.selectedHub)
+            }
         }
 
     }
 
-    HubListController.$inject = ['$routeParams', 'HubResource', 'HubSelectionService']
+    HubListController.$inject = ['$scope', '$routeParams', 'HubResource']
 
     return HubListController
 })

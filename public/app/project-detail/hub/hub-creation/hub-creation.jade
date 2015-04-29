@@ -6,8 +6,8 @@ md-content(class='hubCreate' ng-controller='HubCreationController as hub', layou
   form(class='hubCreate md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
     md-content(class='md-padding', layout='column')
       md-input-container
-        label(for='projectName') Name
-        input(type='text' name='projectName' id='projectName' ng-model='hub.name' required maxlength='30' minlength='4')
+        label(for='hubName') Name
+        input(type='text' name='hubName' id='hubName' ng-model='hub.name' required maxlength='30' minlength='4')
       md-input-container
         label(for='state') State
         input(type='state' name='state' id='state' ng-model='hub.state' required)

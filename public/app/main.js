@@ -11,6 +11,8 @@ require.config({
         angularMessages: '../lib/angular-messages/angular-messages.min',
         angularIgnite: '../lib/ignite-ui/igniteui-angular',
         ignite: '../lib/ignite-ui/ig.min',
+        igniteCore: '//cdn-na.infragistics.com/igniteui/2015.1/latest/js/infragistics.core',
+        igniteDataVisualization: '//cdn-na.infragistics.com/igniteui/2015.1/latest/js/infragistics.dv',
         jquery: [
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min',
             '../lib/jquery/dist/jquery'
@@ -31,9 +33,6 @@ require.config({
             'exports': '$',
             'deps': ['jquery']
         },
-        'igniteCore': ['jqueryUi'],
-        'igniteDv': ['jqueryUi'],
-        'igniteLob': ['jqueryUi'],
         'angularRoute': ['angular'],
         'angularResource': ['angular'],
         'angularAria': ['angular'],
@@ -41,8 +40,9 @@ require.config({
         'angularMaterial': ['angular'],
         'angularCookies': ['angular'],
         'angularMessages': ['angular'],
-        'angularIgnite': ['angular', 'ignite'],
-        'ignite': ['jquery', 'jqueryUi']
+        'ignite': ['jquery', 'jqueryUi', 'angular'],
+        'igniteCore': ['jquery', 'jqueryUi'],
+        'igniteDataVisualization': ['igniteCore']
     },
     priority: [
         'angular'

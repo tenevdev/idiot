@@ -3,13 +3,13 @@
 
 .md-tile-left
     // Image icon
-.md-tile-content.md-padding
+.md-tile-content.md-padding(ng-controller='HubDetailController as hubDetail')
     h2
-        md-button(ng-click='hubsCtrl.select(hub)' layout='row' layout-align='start center')
+        md-button(ng-click='hubDetail.select(hub)' layout='row' layout-align='start center')
             .state-circle(ng-class='\'hub-\' + hub.state')
             | {{hub.name}}
     h2 This hub accepts {{hub.dataStream.dataType}} data type
     h3
         a ID : {{hub._id}}
             md-tooltip Copy for use in SDK
-    div(ng-show='hub._id == hubsCtrl.selectedHub._id' ng-include="'/partials/project-detail/data-visualization/data-chart'")
+    div(flex ng-include="'/partials/project-detail/data-visualization/data-chart'")

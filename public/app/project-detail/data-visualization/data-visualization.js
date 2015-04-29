@@ -2,10 +2,9 @@ define([
     'angular',
     './data-chart-controller',
     'components/project-service/project-stack/project-stack-service',
-    'ignite',
-    'angularIgnite'
+    'igniteDataVisualization'
 ], function(angular, DataChartController) {
-    var DataVisualization = angular.module('DataVisualization', ['ProjectStackService', 'igniteui-directives'])
+    var DataVisualization = angular.module('DataVisualization', ['ProjectStackService'])
 
     DataVisualization.controller('DataChartController', DataChartController)
 

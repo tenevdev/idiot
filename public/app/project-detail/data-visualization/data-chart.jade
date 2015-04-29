@@ -1,8 +1,3 @@
-.chart(ng-controller='DataChartController as data')
-    ig-data-chart(ng-show='data.isLoaded' id='dataChart1' data-source='data.dataChart' data-source-type='json')
-        axes
-            axis(name='TimeAxis' type='categoryX' title='Time' label='timeStamp')
-            axis(name='ValueAxis' type='numericY' minimumvalue='0' title='Value')
-        series
-            series(name='2015Population' type='line' is-highlight-enabled='true' is-transition-in-enabled='true' x-axis='TimeAxis' y-axis='ValueAxis' value-member-path='data')
-    ig-zoombar(ng-show='data.isLoaded' target='#dataChart1' clone='none')
+.chart(ng-controller='DataChartController as dataChart')
+    div(ng-attr-id="{{'data-chart-' + hub._id}}")
+    div(ng-attr-id="{{'zoombar-' + hub._id}}")
