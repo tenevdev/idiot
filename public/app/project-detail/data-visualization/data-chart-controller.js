@@ -1,4 +1,4 @@
-define(function() {
+    define(function() {
     var DataChartController = function($rootScope, $q, HubResource, HubSelectionService) {
         var self = this
         this.isLoaded = false
@@ -9,8 +9,8 @@ define(function() {
         // Load data on selection change
         $rootScope.$on('HubSelection', function(e, hub) {
             self.dataChart = HubResource.listDataPoints({
-                user: 'admin',
-                project: 'adminProject',
+                user: 'alexander',
+                project: 'Potentiometer',
                 hubId: hub._id,
             }, function success(dataPoints, headers) {
                 self.isLoaded = true

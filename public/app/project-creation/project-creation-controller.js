@@ -11,6 +11,7 @@ define(function() {
             }, function success(project, headers) {
                 $location.path('/projects/' + $rootScope.globals.currentUser.username + '/' + project.name)
             }, function error(response) {
+                console.log(response);
                 // Handle error with dialog
             })
         }
