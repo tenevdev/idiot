@@ -1,7 +1,0 @@
-.container(ng-controller="ExploreController as explore")
-    .jumbotron
-        h1 {{explore.message}}
-        div(ng-repeat="project in explore.featuredProjects")
-            a(href="#/projects/{{project._id}}") {{project.name}}
-        div
-            a(href="#/projects") View more projects
