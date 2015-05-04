@@ -32,24 +32,6 @@ h2.md-toolbar-tools div{
 	height: 450px;
 }
 
-md-toolbar.md-default-theme{
-	min-height: 48px;
-	max-height: 48px;
-	overflow-x: hidden;
-	overflow-y: hidden;
-}
-
-md-tabs{
-	overflow: hidden;
-}
-
-body{
-
-	font-family: RobotoDraft, Roboto, Helvetica Neue, sans-serif;
-	font-weight: 400;
-	line-height: 40px;
-}
-
 .app-intro {
 	font-size: 4em;
 	line-height: 60px;
@@ -60,43 +42,6 @@ body{
 	background-color: #5C6BC0;
 }
 
-md-toolbar.home-register{
-	margin-bottom: -20px;
-}
-
-h1.md-toolbar-tools.home-register{
-	text-align: center;
-/*	background-color: #5C6BC0;
-*/}
-
-
-md-toolbar.header{
-	z-index: 61;
-}
-
-
-md-toolbar.home-sidenav{
-	background-color: #5C6BC0;
-
-
-}
-span:hover{
-	text-decoration: none;
-}
-
-a:hover{
-	text-decoration: none;
-}
-
-a.md-raised.md-primary.md-button.md-default-theme{
-	margin: 40px 10% 0 10%;
-}
-
-a.md-raised.md-primary.md-button.md-default-theme span {
-
-}
-
-
 i.glyphicon {
 	margin-right: 15px;
 }
@@ -105,14 +50,6 @@ md-card > md-content > p {
 	padding: 15px;
 }
 
-div.features {
-	margin: 0 2%;
-}
-
-
-a.md-normal {
-	font-size: 22px;
-}
 
 .user-control{
 	width: 300px;
@@ -136,8 +73,4 @@ a.md-normal {
 
 .chart {
     margin-top: 40px;
-}
-
-h4 {
-	font-weight: 400;
 }
