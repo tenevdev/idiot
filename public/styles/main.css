@@ -68,3 +68,6 @@ md-card > md-content > p {
 .user-controls{
     margin-left: 60%;
 }
+.new-item{
+    font-size: 2em;
+}
