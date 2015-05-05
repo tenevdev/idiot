@@ -1,76 +1,66 @@
-[ng\:cloak], [ng-cloak], .ng-cloak {
+[ng\: cloak], [ng-cloak], .ng-cloak {
     display: none;
 }
-
-h2.md-toolbar-tools div{
-  padding-right: 20px;
+h2.md-toolbar-tools div {
+    padding-right: 20px;
 }
-
 .loginBox {
-  max-width:  90%;
-  width: 500px
+    max-width: 90%;
+    width: 500px
 }
-
-.loginForm{
-  padding-top: 40px;
+.loginForm {
+    padding-top: 40px;
 }
 .registerBox {
-  max-width:  90%;
-  width: 500px
+    max-width: 90%;
+    width: 500px
 }
-
-.registerForm{
-  padding-top: 40px;
+.registerForm {
+    padding-top: 40px;
 }
-
-.projectCreate{
-	min-width: 400px;
-	height: 350px;
+.projectCreate {
+    min-width: 400px;
+    height: 350px;
 }
-.hubCreate{
-	min-width: 500px;
-	height: 450px;
+.hubCreate {
+    min-width: 500px;
+    height: 450px;
 }
-
 .app-intro {
-	font-size: 4em;
-	line-height: 60px;
-	color: rgb(197,202,233);
-	padding: 70px 0;
-	display: block;
-	text-align: center;
-	background-color: #5C6BC0;
+    font-size: 4em;
+    line-height: 60px;
+    color: rgb(197, 202, 233);
+    padding: 70px 0 30px 0;
+    display: block;
+    text-align: center;
+    background-color: #5C6BC0;
 }
-
 i.glyphicon {
-	margin-right: 15px;
+    margin-right: 15px;
 }
-
 md-card > md-content > p {
-	padding: 15px;
+    padding: 15px;
 }
-
-
-.user-control{
-	width: 300px;
+.user-control {
+    width: 300px;
     margin-right: 100px;
 }
-
 .state-circle {
     border-radius: 50%;
     width: 10px;
     height: 10px;
     margin-right: 10px;
 }
-
 .hub-active {
     background-color: green
 }
-
 .hub-suspended {
     background-color: yellow
 }
-
 .chart {
     margin-top: 40px;
+}
+.start-screen {
+    padding: 10px 30px;
+    margin: 40px 20px;
 }
