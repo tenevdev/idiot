@@ -1,7 +1,6 @@
 define(function() {
     var HubCreationController = function($rootScope, $routeParams, $route, HubResource) {
         this.shouldHide = false
-
         this.submit = function() {
             var newHub = new HubResource({
                 name: this.name,

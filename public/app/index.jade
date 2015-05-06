@@ -1,41 +1,38 @@
-//- TODO: IMPLEMENT SIDENAV
 extends includes/layout
 block main-content
-		div(layout='row' flex)
-				md-toolbar.header(ng-controller="TabsController as nav")
-						h2.md-toolbar-tools
-								.md-padding Idiot
-								md-tabs.md-padding(md-selected='nav.selectedIndex')
-										a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
-												md-tab(flex) {{tab.title}}
-								div.user-controls(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
-
-
-		//- div(ng-hide='!globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
-
+	section(layout='row' flex)
+		md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-md')")
+			md-toolbar
+				h1.md-toolbar-tools IDIOT
 		md-content
-				div(ng-view layout='row')
+			div(layout='row' flex)
+				md-toolbar.header
+					h2.md-toolbar-tools
+						div.user-controls(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
 
-		//- ng-switch.tabpanel-container(on='data.selectedIndex')
-		//-     div#tab1-content(role='tabpanel' arial-labelledby='tab1' ng-switch-when='0' md-swipe-left='next()' md-swipe-rigth='previous()')
-
-
-		//- footer
-		//-     p.text-center
-		//-         | &copy; Idiot 2014
-
-//-  SIDENAV
+			div(ng-view layout='row')
 //- extends includes/layout
 //- block main-content
-//- 	section(layout='row' flex)
-//- 		md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-md')")
-//- 			md-toolbar
-//- 				h1.md-toolbar-tools IDIOT
-//- 		md-content
-//- 			div(layout='row' flex)
-//- 				md-toolbar.header
-//- 					h2.md-toolbar-tools
-//- 						div.user-controls(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+//- 		div(layout='row' flex)
+//- 				md-toolbar.header(ng-controller="TabsController as nav")
+//- 						h2.md-toolbar-tools
+//- 								.md-padding Idiot
+//- 								md-tabs.md-padding(md-selected='nav.selectedIndex')
+//- 										a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
+//- 												md-tab(flex) {{tab.title}}
+//- 								div(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+//- div(ng-hide='!globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
 
-//- 			div(ng-view layout='row')
+//- md-content
+//- 		div(ng-view layout='row')
+
+//- ng-switch.tabpanel-container(on='data.selectedIndex')
+//-     div#tab1-content(role='tabpanel' arial-labelledby='tab1' ng-switch-when='0' md-swipe-left='next()' md-swipe-rigth='previous()')
+
+
+//- footer
+//-     p.text-center
+//-         | &copy; Idiot 2014
+
+//- SIDENAV
 
