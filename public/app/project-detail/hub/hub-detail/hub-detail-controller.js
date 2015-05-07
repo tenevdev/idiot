@@ -1,18 +1,16 @@
 define(function() {
-    var HubDetailController = function($scope, $routeParams, HubResource) {
+    var HubDetailController = function($scope, $routeParams, HubResource, HubSelectionService) {
         var self = this
 
-        this.selectedHub = {}
-
         this.select = function(hub) {
-            if (hub != this.selectedHub) {
-                this.selectedHub = hub
-                $scope.$broadcast('HubSelectionChange', this.selectedHub)
+            if (hub != HubSelectionService.selectedHub) {
+                $scope.$broadcast('HubSelectionChange', hub)
+                HubSelectionService.select(hub)
             }
         }
     }
 
-    HubDetailController.$inject = ['$scope', '$routeParams', 'HubResource']
+    HubDetailController.$inject = ['$scope', '$routeParams', 'HubResource', 'HubSelectionService']
 
     return HubDetailController
 })

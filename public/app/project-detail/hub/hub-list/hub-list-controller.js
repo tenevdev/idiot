@@ -9,14 +9,6 @@ define(function() {
             project: $routeParams.project
         }, function success(hubs, headers) {
         })
-
-        this.select = function(hub) {
-            if (hub != this.selectedHub) {
-                this.selectedHub = hub
-                $scope.$broadcast('HubSelectionChange', this.selectedHub)
-            }
-        }
-
     }
 
     HubListController.$inject = ['$scope', '$routeParams', 'HubResource']

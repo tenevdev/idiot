@@ -5,7 +5,6 @@ define([], function() {
 
         this.select = function(hub) {
             this.selectedHub = hub
-            $rootScope.$broadcast('HubSelection', hub)
         }
     }
 
