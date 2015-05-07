@@ -7,6 +7,7 @@ block main-content
 			md-content(role='navigation')
 				md-list
 					md-item
+						md-button(layout-fill flex ng-href='/') Home
 						md-button(layout-fill flex ng-href='/explore') Explore
 				md-divider
 				md-list(layout='column' ng-show='globals.currentUser' ng-controller='ProfileController as user' ng-include="'/partials/user-account/user-profile/user-profile'")
