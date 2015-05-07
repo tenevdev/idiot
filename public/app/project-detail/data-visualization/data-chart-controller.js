@@ -1,5 +1,5 @@
 define(['jquery', 'ignite'], function($) {
-    var DataChartController = function($scope, $routeParams, HubResource, HubSelectionService) {
+    var DataChartController = function($scope, $routeParams, HubResource) {
         var self = this
         self.seriesType = 'line'
         self.show = false;
@@ -99,7 +99,7 @@ define(['jquery', 'ignite'], function($) {
         })
     }
 
-    DataChartController.$inject = ['$scope', '$routeParams', 'HubResource', 'HubSelectionService']
+    DataChartController.$inject = ['$scope', '$routeParams', 'HubResource']
 
     return DataChartController
 })
