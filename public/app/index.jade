@@ -8,7 +8,7 @@ block main-content
 				md-list
 					md-item
 						md-button(ng-href='/explore') Explore
-					div(layout='column' ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+				md-list(layout='column' ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
 		div.site-content(layout-fill flex layout='column')
 			div(layout-fill ng-view)
 //- extends includes/layout

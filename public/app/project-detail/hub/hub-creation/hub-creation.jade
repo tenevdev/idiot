@@ -1,6 +1,6 @@
 // Partial used in project-detail
 // Should include name, state(one of 'active', 'stopped', 'suspended'), dataType(Number...)
-md-toolbar
+md-toolbar.md-accent
 	h1.md-toolbar-tools Create hub
 md-content(class='hubCreate' ng-controller='HubCreationController as hub', layout='column', layout-align='center center', layout-fill)
 	form(class='hubCreate md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
