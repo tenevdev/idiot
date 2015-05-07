@@ -7,8 +7,9 @@ block main-content
 			md-content(role='navigation')
 				md-list
 					md-item
-						md-button(ng-href='/explore') Explore
-				md-list(layout='column' ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+						md-button(layout-fill flex ng-href='/explore') Explore
+				md-divider
+				md-list(layout='column' ng-show='globals.currentUser' ng-controller='ProfileController as user' ng-include="'/partials/user-account/user-profile/user-profile'")
 		div.site-content(layout-fill flex layout='column')
 			div(layout-fill ng-view)
 //- extends includes/layout

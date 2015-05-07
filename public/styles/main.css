@@ -71,3 +71,14 @@ md-card > md-content > p {
 .new-item{
     font-size: 2em;
 }
+
+md-list {
+    overflow: hidden;
+}
+
+md-list.projects{
+    padding-left: 5%;
+}
+md-list.hubs{
+    padding-left: 5%;
+}
