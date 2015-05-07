@@ -1,6 +1,6 @@
 extends includes/layout
 block main-content
-	section(layout='row' flex)
+	section(layout='row' flex layout-fill)
 		md-sidenav.site-sidenav.md-sidenav-left.md-whiteframe-z2(layout ='column' md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"  )
 			md-toolbar
 				h1.md-toolbar-tools IDIOT
@@ -8,8 +8,10 @@ block main-content
 				md-list
 					md-item
 						md-button(layout-fill flex ng-href='/') Home
+					md-item
 						md-button(layout-fill flex ng-href='/explore') Explore
-						md-button(layout-fill flex ng-href='/login') Login
+					md-item(ng-show='!globals.currentUser')
+						md-button(layout-fill flex ng-href='login') Login
 				md-divider
 				md-list(layout='column' ng-show='globals.currentUser' ng-controller='ProfileController as user' ng-include="'/partials/user-account/user-profile/user-profile'")
 		div.site-content(layout-fill flex layout='column')

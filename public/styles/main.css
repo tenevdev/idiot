@@ -6,14 +6,17 @@ h2.md-toolbar-tools div {
 }
 .loginBox {
     max-width: 90%;
-    width: 500px
+    width: 500px;
+    margin-top: -40%
 }
 .loginForm {
     padding-top: 40px;
 }
 .registerBox {
     max-width: 90%;
-    width: 500px
+    width: 500px;
+    margin-top: -40%
+
 }
 .registerForm {
     padding-top: 40px;
@@ -81,4 +84,20 @@ md-list.projects{
 }
 md-list.hubs{
     padding-left: 5%;
+}
+
+md-sidenav{
+    background-color: #e8eaf6;
+}
+
+md-sidenav md-content.md-default-theme{
+     background-color: #e8eaf6;
+
+}
+
+html{
+  height: 100%;
+}
+body {
+  min-height: 100%;
 }
