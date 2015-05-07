@@ -108,7 +108,8 @@ span.docs-menu-separator-icon img{
     padding: 10px;
 }*/
 
-a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary{
+a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary span{
     font-size: 18px;
     font-weight: 500;
+    float: left;
 }

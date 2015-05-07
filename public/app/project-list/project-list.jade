@@ -9,9 +9,8 @@ md-list.projects
         md-item-content
             .md-tile-left
                 //Image
-            .md-tile-content
+            .md-tile-content(layout='column' layout-align='left left')
                 md-button.md-primary(md-no-ink ng-href='projects/{{project.owner.username}}/{{project.name}}') {{project.name}}
-                h3
-                    a(ng-href='projects/{{project.owner.username}}') by {{project.owner.username}}
+                md-button.md-primary.md-hue-1(ng-href='projects/{{project.owner.username}}') by {{project.owner.username}}
                 p tags: {{project.tags.toString()}}
         md-divider(ng-if='!$last')
