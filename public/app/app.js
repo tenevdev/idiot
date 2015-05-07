@@ -9,7 +9,7 @@ define([
     './project-list/project-list',
     './project-detail/project-detail',
     './project-creation/project-creation'
-], function(angular, TabsController) {
+],function(angular, TabsController) {
 
     // Create main application module
     var Application = angular.module('Application', ['ngRoute', 'ngMaterial', 'UserAccount', 'ProjectList', 'ProjectDetail', 'ProjectCreation'])
@@ -26,6 +26,12 @@ define([
             $locationProvider.html5Mode(true)
         }
     ])
+
+//     Application.config(function ($mdThemingProvider) {
+//     $mdThemingProvider.theme('default')
+//         .primaryPalette('teal')
+//         .accentPalette('lime');
+// });
 
     Application.run(function($rootScope, $window, $http) {
         var username = $window.sessionStorage.getItem('username'),
