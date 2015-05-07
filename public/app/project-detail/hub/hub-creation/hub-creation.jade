@@ -8,14 +8,17 @@ md-content(class='hubCreate' ng-controller='HubCreationController as hub', layou
 			md-input-container
 				label(for='hubName') Name
 				input(type='text' name='hubName' id='hubName' ng-model='hub.name' required maxlength='30' minlength='4')
-			md-content(flex layout-margin)
-				md-select(placeholder='State', ng-model='hub.state' value='' required)
-					md-option(ng-value='suspended' ) Suspended
-					md-option(ng-value='active' selected='unselected') Active
-			md-content(flex layout-margin)
-				md-select(placeholder='State', ng-model='hub.dataType' required)
-					md-option(ng-value='Number') Number
-					md-option(ng-value='Vector') Vector
+			md-input-container
+				label(for='hubType') Data type
+				input(type='text' name='hubType' id='hubType' ng-model='hub.dataType' required maxlength='30' minlength='4')
+			//- md-content(flex layout-margin)
+			//- 	md-select(placeholder='State', ng-model='hub.state' required)
+			//- 		md-option(ng-value='suspended') Suspended
+			//- 		md-option(ng-value='active') Active
+			//- md-content(flex layout-margin)
+			//- 	md-select(placeholder='State', ng-model='hub.dataType' required)
+			//- 		md-option(ng-value='Number') Number
+			//- 		md-option(ng-value='Vector') Vector
 		md-divider
 			div(class='md-toolbar-tools', layout='row')
 				md-button(flex, class='md-raised md-primary') Create

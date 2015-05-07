@@ -1,11 +1,12 @@
 md-card(layout='column' layout-fill)
 	section(layout='row')
-		md-button.new-item.md-primary.md-accent.md-fab.md-fab-bottom-right(ng-click='show=true' ng-show='!show') +
-			md-tooltip  Create project
-	section(layout='row' layout-md='column' layout-sm='column')
-		md-content(layout='column' ng-show='globals.currentUser && show' ng-include="'/partials/project-creation/project-creation'")
-		md-content(layout='column' flex layout-fill ng-controller='ProjectsUserController as userProjects')
+
+	section(layout='row' layout-md='column' layout-sm='column' ng-controller='ProjectsUserController as userProjects')
+		md-content(layout='column' flex layout-fill)
 			md-toolbar
 				h2.md-toolbar-tools
 					span Recent projects by {{userProjects.username}}
+					md-button.new-item.md-primary.md-fab.md-fab-top-right(ng-click='show=true' ng-show='globals.currentUser') +
 			div(ng-include="'/partials/project-list/project-list'")
+		md-content(layout='column' ng-show='globals.currentUser && show' ng-include="'/partials/project-creation/project-creation'")
+

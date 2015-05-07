@@ -4,7 +4,7 @@ define(function() {
         this.submit = function() {
             var newHub = new HubResource({
                 name: this.name,
-                state: this.state,
+                state: 'active',
                 dataStream: {
                     dataType: this.dataType,
                     storeStrategy: 'none'
@@ -23,9 +23,6 @@ define(function() {
                 // Show dialog
             })
         }
-
-        // this.state=['active', 'inactive']
-        // this.type=['Number', 'String']
     }
 
     HubCreationController.$inject = ['$rootScope', '$routeParams', '$route', 'HubResource']

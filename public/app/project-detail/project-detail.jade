@@ -10,13 +10,11 @@ md-card(flex layout='column' layout-fill ng-controller='ProjectDetailController 
 			span {{projectCtrl.project.name}}
 
 	section(layout='row')
-		md-button.new-item.md-primary.md-accent.md-fab.md-fab-bottom-right(ng-click='show=true' ng-show='!show') +
-			md-tooltip Create hub
+		md-button.new-item.md-primary.md-accent.md-fab.md-fab-top-right(ng-click='show=true' ng-show='globals.currentUser') +
 	section(layout='row' layout-md='column' layout-sm='column')
-		md-content(layout='column' ng-show='show' ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
 		md-content(layout='column' flex layout-fill)
 			div(flex ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
-
+		md-content(layout='column' ng-show='show' ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
 
 //- md-card(layout='column' layout-fill)
 //- 	section(layout='row')
