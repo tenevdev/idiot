@@ -9,24 +9,25 @@ block main-content
 					md-item
 						md-button(layout-fill flex ng-href='/') Home
 						md-button(layout-fill flex ng-href='/explore') Explore
+						md-button(layout-fill flex ng-href='/login') Login
 				md-divider
 				md-list(layout='column' ng-show='globals.currentUser' ng-controller='ProfileController as user' ng-include="'/partials/user-account/user-profile/user-profile'")
 		div.site-content(layout-fill flex layout='column')
 			div(layout-fill ng-view)
 //- extends includes/layout
 //- block main-content
-//- 		div(layout='row' flex)
-//- 				md-toolbar.header(ng-controller="TabsController as nav")
-//- 						h2.md-toolbar-tools
-//- 								.md-padding Idiot
-//- 								md-tabs.md-padding(md-selected='nav.selectedIndex')
-//- 										a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
-//- 												md-tab(flex) {{tab.title}}
-//- 								div(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+//-         div(layout='row' flex)
+//-                 md-toolbar.header(ng-controller="TabsController as nav")
+//-                         h2.md-toolbar-tools
+//-                                 .md-padding Idiot
+//-                                 md-tabs.md-padding(md-selected='nav.selectedIndex')
+//-                                         a(ng-repeat='tab in nav.tabs' href='{{tab.href}}' ng-hide='{{tab.hide}}')
+//-                                                 md-tab(flex) {{tab.title}}
+//-                                 div(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
 //- div(ng-hide='!globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
 
 //- md-content
-//- 		div(ng-view layout='row')
+//-         div(ng-view layout='row')
 
 //- ng-switch.tabpanel-container(on='data.selectedIndex')
 //-     div#tab1-content(role='tabpanel' arial-labelledby='tab1' ng-switch-when='0' md-swipe-left='next()' md-swipe-rigth='previous()')
