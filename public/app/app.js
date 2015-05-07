@@ -27,11 +27,11 @@ define([
         }
     ])
 
-//     Application.config(function ($mdThemingProvider) {
-//     $mdThemingProvider.theme('default')
-//         .primaryPalette('teal')
-//         .accentPalette('lime');
-// });
+    Application.config(function ($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryPalette('teal')
+        .accentPalette('indigo');
+});
 
     Application.run(function($rootScope, $window, $http) {
         var username = $window.sessionStorage.getItem('username'),
