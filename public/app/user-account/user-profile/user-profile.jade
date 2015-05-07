@@ -3,7 +3,14 @@
 // Should include a link to projects by this user
 // Should include an action to logout
 
-section.user-control(flex ng-controller='ProfileController as user' layout='row' layout-align='space-around center')
-	h4 {{globals.currentUser.username}}
-	md-button(ng-click='user.projects()') My Projects
-	md-button(ng-click='user.logout()') Log out
+md-item
+    md-button(ng-click='user.projects()') Projects
+md-item
+    md-button(ng-click='user.projects()') Projects
+md-item
+    md-button(ng-click='user.projects()') Projects
+
+//- section.user-control(flex ng-controller='ProfileController as user' layout='row' layout-align='space-around center')
+//- 	h4 {{globals.currentUser.username}}
+//- 	md-button(ng-click='user.projects()') My Projects
+//- 	md-button(ng-click='user.logout()') Log out

@@ -1,16 +1,16 @@
 extends includes/layout
 block main-content
 	section(layout='row' flex)
-		md-sidenav.md-sidenav-left.md-whiteframe-z2(md-component-id="left" md-is-locked-open="$mdMedia('gt-md')")
+		md-sidenav.site-sidenav.md-sidenav-left.md-whiteframe-z2(layout ='column' md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')"  )
 			md-toolbar
 				h1.md-toolbar-tools IDIOT
-		md-content
-			div(layout='row' flex)
-				md-toolbar.header
-					h2.md-toolbar-tools
-						div.user-controls(ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
-
-			div(ng-view layout='row')
+			md-content(role='navigation')
+				md-list
+					md-item
+						md-button(ng-href='/explore') Explore
+					div(layout='column' ng-show='globals.currentUser' ng-include="'/partials/user-account/user-profile/user-profile'")
+		div.site-content(layout-fill flex layout='column')
+			div(layout-fill ng-view)
 //- extends includes/layout
 //- block main-content
 //- 		div(layout='row' flex)
