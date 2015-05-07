@@ -10,8 +10,7 @@ md-list.projects
             .md-tile-left
                 //Image
             .md-tile-content
-                h2
-                    a(ng-href='projects/{{project.owner.username}}/{{project.name}}') {{project.name}}
+                md-button.md-primary(md-no-ink ng-href='projects/{{project.owner.username}}/{{project.name}}') {{project.name}}
                 h3
                     a(ng-href='projects/{{project.owner.username}}') by {{project.owner.username}}
                 p tags: {{project.tags.toString()}}
