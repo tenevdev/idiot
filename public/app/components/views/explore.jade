@@ -1,6 +1,17 @@
 md-toolbar
+  h1.md-toolbar-tools Explore
 div(layout='column' role='main' tabindex='0')
     .app-intro(layout='row' tabindex='-1') Explore some interesting projects
     md-toolbar
         h1.md-toolbar-tools Most popular
     md-card(ng-include="'/partials/project-list/project-list'")
+
+//- md-toolbar(layout='row')
+//-   div.md-toolbar-tools.docs-toolbar-tools Explore
+//-   img(ng-src='https://material.angularjs.org/img/docArrow.png')
+//-   h1.md-toolbar-tools Most interesting
+//- div(layout='column' role='main' tabindex='0')
+//-     .app-intro(layout='row' tabindex='-1') Explore some interesting projects
+//-     md-toolbar
+//-         h1.md-toolbar-tools Most popular
+//-     md-card(ng-include="'/partials/project-list/project-list'")

@@ -1,13 +1,14 @@
-[ng\: cloak], [ng-cloak], .ng-cloak {
-    display: none;
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+  display: none !important;
 }
+
 h2.md-toolbar-tools div {
     padding-right: 20px;
 }
 .loginBox {
     max-width: 90%;
     width: 500px;
-    margin-top: -40%
+    margin-top: -40%;
 }
 .loginForm {
     padding-top: 40px;
@@ -15,8 +16,7 @@ h2.md-toolbar-tools div {
 .registerBox {
     max-width: 90%;
     width: 500px;
-    margin-top: -40%
-
+    margin-top: -40%;
 }
 .registerForm {
     padding-top: 40px;
@@ -98,6 +98,12 @@ md-sidenav md-content.md-default-theme{
 html{
   height: 100%;
 }
+
 body {
   min-height: 100%;
 }
+/*
+span.docs-menu-separator-icon img{
+    width: 25%;
+    padding: 10px;
+}*/
