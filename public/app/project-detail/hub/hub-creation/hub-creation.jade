@@ -1,10 +1,11 @@
 // Partial used in project-detail
 // Should include name, state(one of 'active', 'stopped', 'suspended'), dataType(Number...)
-md-toolbar.md-accent
-	h1.md-toolbar-tools Create hub
-md-content(class='hubCreate' ng-controller='HubCreationController as hub', layout='column', layout-align='center center', layout-fill)
-	form(class='hubCreate md-whiteframe-z1' layout='column' name='registrationForm', method='post', ng-submit='hub.submit()')
-		md-content(class='md-padding', layout='column')
+
+md-toolbar
+	h2.md-toolbar-tools Create hub
+md-content(class='projectCreate' ng-controller='HubCreationController as hub' layout-fill layout-align='center start')
+	form(class='projectCreate md-whiteframe-z1' name='registrationForm' method='post' ng-submit='hub.submit()')
+		md-content.md-padding(layout='column')
 			md-input-container
 				label(for='hubName') Name
 				input(type='text' name='hubName' id='hubName' ng-model='hub.name' required maxlength='30' minlength='4')
@@ -20,8 +21,11 @@ md-content(class='hubCreate' ng-controller='HubCreationController as hub', layou
 			//- 		md-option(ng-value='Number') Number
 			//- 		md-option(ng-value='Vector') Vector
 		md-divider
-			div(class='md-toolbar-tools', layout='row')
-				md-button(flex, class='md-raised md-primary') Create
+			.md-toolbar-tools(flex layout='row')
+				md-button.md-raised.md-primary(flex) Create
+				div(flex)
+				md-button(flex, href='', md-no-ink, class='md-primary' ng-click='projectCtrl.show=false') Cancel
+
 		md-divider
 
 				//- md-select(placeholder='State' ng-mode='hub.state' required)
