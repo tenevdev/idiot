@@ -2,15 +2,18 @@
 // Should include data-visualization partial
 
 .md-tile-left
-    // Image icon
+	// Image icon
 .md-tile-content.md-padding(ng-controller='HubDetailController as hubDetail')
-    h2
-        md-button(ng-click='hubDetail.select(hub)' layout='row' layout-align='start center')
-            .state-circle(ng-class='\'hub-\' + hub.state')
-            | {{hub.name}}
-    h2 This hub accepts {{hub.dataStream.dataType}} data type
-    h3
-        a ID : {{hub._id}}
-            md-tooltip Copy for use in SDK
-    div(flex ng-if='hub.dataStream.dataType == \'Number\'' ng-include="'/partials/project-detail/data-visualization/data-chart'")
-    div(flex ng-if='hub.dataStream.dataType == \'Vector\'' ng-include="'/partials/project-detail/data-visualization/polar-chart'")
+	h2
+		md-button.md-primary(ng-click='hubDetail.select(hub)' layout='row' layout-align='start center')
+			.state-circle(ng-class='\'hub-\' + hub.state')
+			| {{hub.name}}
+	div(layout)
+		div(flex='20')
+			span.md-body-2 {{hub.dataStream.dataType.toLowerCase()}}
+	div(layout)
+		div(flex='20')
+			span.md-body-2 ID : {{hub._id}}
+				md-tooltip Copy for use in SDK
+	div(flex ng-if='hub.dataStream.dataType == \'Number\'' ng-include="'/partials/project-detail/data-visualization/data-chart'")
+	div(flex ng-if='hub.dataStream.dataType == \'Vector\'' ng-include="'/partials/project-detail/data-visualization/polar-chart'")

@@ -1,14 +1,17 @@
 .chart(ng-controller='DataChartController as dataChart' ng-show='dataChart.show')
-	md-select(ng-model='dataChart.seriesType')
-		md-option(value="area") Area
-		md-option(value="column") Column
-		md-option(value="line" selected="selected") Line
-		md-option(value="splineArea") Spline Area
-		md-option(value="spline") Spline
-		md-option(value="stepArea") Step Area
-		md-option(value="stepLine") Step Line
-		md-option(value="waterfall") Waterfall
-		md-option(value="point") Point
+	div(layout)
+		div(flex='10' layout layout-align='center center')
+			span.md-body-1 Chart type
+		md-select(ng-model='dataChart.seriesType')
+			md-option(value="area") Area
+			md-option(value="column") Column
+			md-option(value="line" selected="selected") Line
+			md-option(value="splineArea") Spline Area
+			md-option(value="spline") Spline
+			md-option(value="stepArea") Step Area
+			md-option(value="stepLine") Step Line
+			md-option(value="waterfall") Waterfall
+			md-option(value="point") Point
 	div(ng-attr-id="{{'data-chart-' + hub._id}}")
 	div(ng-attr-id="{{'zoombar-' + hub._id}}")
 	md-button(ng-click='dataChart.show = false')
