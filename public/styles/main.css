@@ -145,3 +145,11 @@ md-chip div{
 md-chips{
     margin-left: 14px;
 }
+
+.fixed-toolbar, button.new-item.md-primary.md-fab.md-fab-top-right{
+    position: fixed;
+}
+
+.moving{
+    padding-top: 64px;
+}
