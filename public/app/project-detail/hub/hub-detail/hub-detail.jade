@@ -8,12 +8,11 @@
 		md-button.md-primary(ng-click='hubDetail.select(hub)' layout='row' layout-align='start center')
 			.state-circle(ng-class='\'hub-\' + hub.state')
 			| {{hub.name}}
-	div(layout)
+		md-button.md-icon-button(ng-click='hubDetail.showId=!hubDetail.showId')
+			md-icon(md-svg-src='assets/images/settings.svg')
+	div(layout ng-show='hubDetail.showId')
 		div(flex='20')
-			span.md-body-2 {{hub.dataStream.dataType.toLowerCase()}}
-	div(layout)
-		div(flex='20')
-			span.md-body-2 ID : {{hub._id}}
+			span.md-body-1 ID : {{hub._id}}
 				md-tooltip Copy for use in SDK
 	div(flex ng-if='hub.dataStream.dataType == \'Number\'' ng-include="'/partials/project-detail/data-visualization/data-chart'")
 	div(flex ng-if='hub.dataStream.dataType == \'Vector\'' ng-include="'/partials/project-detail/data-visualization/polar-chart'")
