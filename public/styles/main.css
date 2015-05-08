@@ -8,7 +8,7 @@ h2.md-toolbar-tools div {
 .loginBox {
     max-width: 90%;
     width: 500px;
-    margin-top: -40%;
+    /*margin-top: -40%;*/
 }
 .loginForm {
     padding-top: 40px;
@@ -16,7 +16,7 @@ h2.md-toolbar-tools div {
 .registerBox {
     max-width: 90%;
     width: 500px;
-    margin-top: -40%;
+    /*margin-top: -40%;*/
 }
 .registerForm {
     padding-top: 40px;
@@ -87,6 +87,7 @@ md-list.hubs{
 }
 
 md-sidenav{
+    /*min-height: 100%;*/
     background-color: #e0f2f1;
 }
 
@@ -94,14 +95,16 @@ md-sidenav md-content.md-default-theme{
      background-color: #e0f2f1;
 
 }
-
+/*
 html{
   height: 100%;
 }
 
 body {
   min-height: 100%;
-}
+}*/
+
+
 /*
 span.docs-menu-separator-icon img{
     width: 25%;

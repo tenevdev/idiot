@@ -5,16 +5,18 @@
 // Will add ngMessages
 
 md-toolbar.md-accent
-  h1.md-toolbar-tools Create project
+	h1.md-toolbar-tools Create project
 md-content(class='projectCreate' ng-controller='ProjectCreationController as create' layout-fill layout-align='center start')
-  form(class='projectCreate md-whiteframe-z1' name='registrationForm' method='post' ng-submit='create.submit()')
-    md-content.md-padding(layout='column')
-      md-input-container
-        label(for='projectName') Name
-        input(type='text' name='projectName' id='projectName' ng-model='create.name' required maxlength='30' minlength='4')
-      md-input-container
-        label(for='tags') Tag
-        input(type='tags' name='tags' id='tags' ng-model='create.tags' required)
-      .md-toolbar-tools
-        md-button.md-raised.md-primary(flex) Create
-    md-divider
+	form(class='projectCreate md-whiteframe-z1' name='registrationForm' method='post' ng-submit='create.submit()')
+		md-content.md-padding(layout='column')
+			md-input-container
+				label(for='projectName') Name
+				input(type='text' name='projectName' id='projectName' ng-model='create.name' required maxlength='30' minlength='4')
+			md-input-container
+				label(for='tags') Tag
+				input(type='tags' name='tags' id='tags' ng-model='create.tags' required)
+			.md-toolbar-tools(flex layout='row')
+				md-button.md-raised.md-primary(flex) Create
+				div(flex)
+				md-button(flex, href='', md-no-ink, class='md-primary' ng-click='userProjects.show=false') Cancel
+		md-divider
