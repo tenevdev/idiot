@@ -1,9 +1,9 @@
 md-content(layout='column' layout-fill)
 	section(layout='row' layout-md='column' layout-sm='column' ng-controller='ProjectsUserController as userProjects')
 		md-content(layout='column' flex layout-fill)
-			md-toolbar
+			md-toolbar.fixed-toolbar
 				h2.md-toolbar-tools
 					span Recent projects by {{userProjects.username}}
 			md-button.new-item.md-primary.md-fab.md-fab-top-right(ng-click='userProjects.show=true' ng-show='globals.currentUser') +
-			div(ng-include="'/partials/project-list/project-list'")
+			div.moving(ng-include="'/partials/project-list/project-list'")
 		md-content(layout='column' ng-show='globals.currentUser && userProjects.show' ng-include="'/partials/project-creation/project-creation'")

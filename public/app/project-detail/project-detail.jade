@@ -6,10 +6,10 @@
 
 md-content.missing(layout='column' layout-fill)
 	section(layout='row' layout-md='column' layout-sm='column' ng-controller='ProjectDetailController as projectCtrl')
-		md-content(layout-fill)
-			md-toolbar
+		md-content(layout='column' flex layout-fill)
+			md-toolbar.fixed-toolbar
 				h2.md-toolbar-tools
 					span {{projectCtrl.project.name}} > Hubs
 			md-button.new-item.md-primary.md-fab.md-fab-top-right(ng-click='projectCtrl.show=true' ng-show='globals.currentUser') +
-			div(flex ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
+			div.moving(flex ng-include="'/partials/project-detail/hub/hub-list/hub-list'")
 		md-content(layout-fill layout='column' ng-show='projectCtrl.show' ng-include="'/partials/project-detail/hub/hub-creation/hub-creation'")
