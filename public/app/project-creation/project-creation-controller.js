@@ -1,9 +1,11 @@
 define(function() {
     var ProjectCreationController = function($rootScope, $location, ProjectResource) {
+        this.tags = []
+
         this.submit = function() {
             var newProject = new ProjectResource({
                 name: this.name,
-                tags: [this.tags]
+                tags: this.tags
             })
 
             newProject.$save({

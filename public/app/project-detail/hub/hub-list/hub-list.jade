@@ -2,9 +2,6 @@
 // Should list hubs by a given project with action to load hub-detail partial of selected hub
 
 md-content
-    md-toolbar.md-accent
-        h2.md-toolbar-tools
-            span Hubs
     md-list.hubs(ng-controller='HubListController as hubList')
         md-item(ng-repeat='hub in hubList.hubs')
             md-item-content(ng-include="'/partials/project-detail/hub/hub-detail/hub-detail'")
