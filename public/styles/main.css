@@ -108,8 +108,35 @@ span.docs-menu-separator-icon img{
     padding: 10px;
 }*/
 
-a.md-button.md-default-theme.md-primary, .md-button.md-default-theme.md-primary span{
+/*.project-list span{
     font-size: 18px;
     font-weight: 500;
     float: left;
+}
+*/
+a{
+    color: #009688;
+}
+a:hover{
+    text-decoration: none;
+    color: #00695c;
+}
+
+.author span{
+    float: left;
+    text-transform: none;
+}
+.project-name span{
+    float: left;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+md-chip div{
+    padding-right: 5px;
+}
+
+md-chips{
+    margin-left: 14px;
 }

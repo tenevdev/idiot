@@ -9,8 +9,8 @@ md-list.projects
         md-item-content
             .md-tile-left
                 //Image
-            .md-tile-content(layout='column' layout-align='left left')
-                md-button.md-primary(md-no-ink ng-href='projects/{{project.owner.username}}/{{project.name}}') {{project.name}}
-                md-button.md-primary.md-hue-1(ng-href='projects/{{project.owner.username}}') by {{project.owner.username}}
+            .md-tile-content(layout='column')
+                md-button.project-name.md-primary(ng-href='projects/{{project.owner.username}}/{{project.name}}') {{project.name}}
+                md-button.author.md-primary.md-hue-1(ng-href='projects/{{project.owner.username}}') by {{project.owner.username}}
                 md-chips(ng-model='project.tags' readonly='true')
         md-divider(ng-if='!$last')
