@@ -1,10 +1,17 @@
 .chart(ng-controller='PolarChartController as dataChart' ng-show='dataChart.show')
-	md-select(ng-model='dataChart.seriesType')
-		md-option(value="polarArea") Area
-		md-option(value="polarLine" selected="selected") Line
-		md-option(value="polarSplineArea") Spline Area
-		md-option(value="polarSpline") Spline
-		md-option(value="polarScatter") Scatter
+	div(layout)
+		div(flex='10' layout layout-align='center center')
+			span.md-body-1 Chart type
+		md-select(ng-model='dataChart.seriesType')
+			md-option(value="polarArea") Area
+			md-option(value="polarLine" selected="selected") Line
+			md-option(value="polarSplineArea") Spline Area
+			md-option(value="polarSpline") Spline
+			md-option(value="polarScatter") Scatter
+	div(layout)
+		div(flex='10' layout layout-align='center center')
+			span.md-body-1 Interval
+		md-slider(flex md-discrete min='0.1' max='10' step='0.5' ng-model='dataChart.interval')
 	div(ng-attr-id="{{'data-chart-' + hub._id}}")
 	md-button(ng-click='dataChart.show = false')
 		md-icon(md-svg-src='md-toggle-arrow')

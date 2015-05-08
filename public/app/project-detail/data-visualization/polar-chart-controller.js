@@ -2,6 +2,7 @@ define(['jquery', 'igniteDataVisualization'], function($) {
     var DataChartController = function($scope, $routeParams, HubResource) {
         var self = this
         self.seriesType = 'polarLine'
+        self.interval = 1
         self.show = false;
 
         $scope.$on('HubSelectionChange', function(e, hub) {
@@ -30,8 +31,7 @@ define(['jquery', 'igniteDataVisualization'], function($) {
                         name: "RadiusAxis",
                         type: "numericRadius",
                         minimumValue: 0,
-                        maximumValue: 20,
-                        interval: 2
+                        interval: self.interval
                     }],
                     series: [{
                         name: "Vector",
@@ -49,7 +49,7 @@ define(['jquery', 'igniteDataVisualization'], function($) {
                 self.show = true
 
                 $scope.$watch(function() {
-                    return self.seriesType;
+                    return self.seriesType
                 }, function(newVal, oldVal) {
                     // Remove old series
                     $('#data-chart-' + self.hub._id).igDataChart("option", "series", [{
@@ -65,6 +65,15 @@ define(['jquery', 'igniteDataVisualization'], function($) {
                         radiusAxis: "RadiusAxis",
                         angleMemberPath: "angle",
                         radiusMemberPath: "radius"
+                    }]);
+                })
+
+                $scope.$watch(function(){
+                    return self.interval
+                }, function(newVal, oldVal){
+                    $('#data-chart-' + self.hub._id).igDataChart("option", "axes", [{
+                        name: 'RadiusAxis',
+                        interval: newVal
                     }]);
                 })
             }
