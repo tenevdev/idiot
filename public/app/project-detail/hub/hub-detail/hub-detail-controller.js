@@ -3,10 +3,8 @@ define(function() {
         var self = this
 
         this.select = function(hub) {
-            if (hub != HubSelectionService.selectedHub) {
-                $scope.$broadcast('HubSelectionChange', hub)
-                HubSelectionService.select(hub)
-            }
+            $scope.$broadcast('HubSelectionChange', hub)
+            HubSelectionService.select(hub)
         }
     }
 
