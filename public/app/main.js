@@ -10,9 +10,14 @@ require.config({
         angularAnimate: '../lib/angular-animate/angular-animate.min',
         angularMaterial: '../lib/angular-material/angular-material.min',
         angularIgnite: '../lib/ignite-ui/igniteui-angular',
-        ignite: '../lib/ignite-ui/ig.min',
-        igniteCore: '//cdn-na.infragistics.com/igniteui/2015.1/latest/js/infragistics.core',
-        igniteDataVisualization: '//cdn-na.infragistics.com/igniteui/2015.1/latest/js/infragistics.dv',
+        igniteCore: [
+            'http://cdn-na.infragistics.com/igniteui/2015.1/latest/js/infragistics.core',
+            '../lib/ignite-ui/ig.min'
+        ],
+        igniteDataVisualization: [
+            'http://cdn-na.infragistics.com/igniteui/2015.1/latest/js/infragistics.dv',
+            '../lib/ignite-ui/ig.min'
+        ],
         jquery: [
             '//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min',
             '../lib/jquery/dist/jquery'
@@ -40,7 +45,6 @@ require.config({
         'angularAria': ['angular'],
         'angularAnimate': ['angular'],
         'angularMaterial': ['angular'],
-        'ignite': ['jquery', 'jqueryUi', 'angular'],
         'igniteCore': ['jquery', 'jqueryUi'],
         'igniteDataVisualization': ['igniteCore']
     },

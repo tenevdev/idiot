@@ -12,12 +12,19 @@ md-content(class='projectCreate' ng-controller='ProjectCreationController as cre
 			md-input-container
 				label(for='projectName') Name
 				input(type='text' name='projectName' id='projectName' ng-model='create.name' required maxlength='30' minlength='4')
-			md-input-container
-				label(for='tags') Tag
-				input(type='tags' name='tags' id='tags' ng-model='create.tags' required)
+			md-chips(ng-model='create.tags' placeholder='Enter a tag'  delete-button-label='Remove tag' delete-hint='Press delete to remove tag' secondary-placeholder='Tag' readonly='false')
+				//- label(for='tags') Tag
+				//- input(type='tags' name='tags' id='tags' ng-model='create.tags' required)
 			.md-toolbar-tools(flex layout='row')
 				md-button.md-raised.md-primary(flex) Create
 				div(flex)
 				md-button(flex, href='', md-no-ink, class='md-primary' ng-click='userProjects.show=false') Cancel
 		md-divider
 
+//- <md-chips
+//-         ng-model="ctrl.tags"
+//-         readonly="ctrl.readonly"
+//-         placeholder="Enter a tag"
+//-         delete-button-label="Remove Tag"
+//-         delete-hint="Press delete to remove tag"
+//-         secondary-placeholder="+Tag"></md-chips>

@@ -1,4 +1,4 @@
-define(['jquery', 'ignite'], function($) {
+define(['jquery', 'igniteDataVisualization'], function($) {
     var DataChartController = function($scope, $routeParams, HubResource) {
         var self = this
         self.seriesType = 'polarLine'
